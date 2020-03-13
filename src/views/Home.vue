@@ -29,7 +29,6 @@ export default {
     CodePane,
   },
 
-
   data() {
     return {
       templateText: `<div>
@@ -51,6 +50,19 @@ export default {
   },
 };`,
     };
+  },
+
+  mounted() {
+    this.showPreview();
+  },
+
+  watch: {
+    templateText() {
+      this.showPreview();
+    },
+    jsText() {
+      this.showPreview();
+    },
   },
 
   methods: {
