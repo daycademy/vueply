@@ -21,7 +21,8 @@ export default Vue.extend({
     const editor = CodeMirror(this.$el, {
       value: this.value,
       mode: this.mode,
-      theme: 'material',
+      lineNumbers: true,
+      theme: 'dracula',
       tabSize: 2,
     });
 

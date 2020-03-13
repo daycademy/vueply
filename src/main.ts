@@ -3,6 +3,8 @@ import VueCirrus from 'vue-cirrus';
 import App from './App.vue';
 import router from './router';
 
+import 'codemirror/mode/javascript/javascript';
+import 'codemirror/mode/htmlmixed/htmlmixed';
 import 'vue-cirrus/dist/vue-cirrus.css';
 
 Vue.use(VueCirrus);
