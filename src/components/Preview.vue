@@ -3,7 +3,7 @@
     id="preview"
     name="result"
     sandbox="allow-forms allow-popups allow-scripts allow-same-origin"
-    frameborder="0"
+    frameBorder="0"
   ></iframe>
 </template>
 
