@@ -28,6 +28,7 @@ export default Vue.extend({
 
     window.addEventListener('load', () => {
       editor.getWrapperElement().style.fontSize = '16px';
+      editor.getWrapperElement().style.height = '100vh';
       editor.refresh();
     });
 

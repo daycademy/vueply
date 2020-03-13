@@ -1,14 +1,21 @@
 <template>
   <section id="home">
-    <CodePane id="html-code" v-model="templateText"></CodePane>
-    <CodePane id="js-code" mode="javascript" v-model="jsText"></CodePane>
-    <v-btn color="primary" @click="showPreview">Show Preview</v-btn>
-    <iframe
-      id="preview"
-      name="result"
-      sandbox="allow-forms allow-popups allow-scripts allow-same-origin"
-      frameborder="0"
-    ></iframe>
+    <v-row class="u-no-padding">
+      <v-col c="4" class="u-no-padding">
+        <CodePane id="html-code" v-model="templateText"></CodePane>
+      </v-col>
+      <v-col c="4" class="u-no-padding">
+        <CodePane id="js-code" mode="javascript" v-model="jsText"></CodePane>
+      </v-col>
+      <v-col c="4" class="u-no-padding">
+        <iframe
+          id="preview"
+          name="result"
+          sandbox="allow-forms allow-popups allow-scripts allow-same-origin"
+          frameborder="0"
+        ></iframe>
+      </v-col>
+    </v-row>
   </section>
 </template>
 
@@ -84,3 +91,14 @@ mergeJs(js, template);
   },
 };
 </script>
+
+<style lang="scss">
+#home {
+  height: 100%;
+
+  #preview {
+    width: 100%;
+    height: 100%;
+  }
+}
+</style>
