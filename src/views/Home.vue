@@ -26,14 +26,18 @@ export default {
     Preview,
   },
 
-  data() {
-    return {
-      templateCode: `<div>
+  props: {
+    templateCode: {
+      type: String,
+      default: `<div>
   <h1>{{ count }}</h1>
   <button @click="increment">Click</button>
 </div>
 `,
-      jsCode: `export default {
+    },
+    jsCode: {
+      type: String,
+      default: `export default {
   name: "HelloWorld",
   data() {
     return {
@@ -46,7 +50,7 @@ export default {
     },
   },
 };`,
-    };
+    },
   },
 };
 </script>
