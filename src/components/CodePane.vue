@@ -4,18 +4,16 @@
 
 <script lang="ts">
 import Vue from 'vue';
+import { Component, Prop } from 'vue-property-decorator';
 import CodeMirror from 'codemirror';
 
-export default Vue.extend({
-  name: 'CodePane',
+@Component({})
+export default class CodePane extends Vue {
+  @Prop()
+  private value!: string;
 
-  props: {
-    value: String,
-    mode: {
-      type: String,
-      default: 'text/html',
-    },
-  },
+  @Prop({ default: 'text/html' })
+  private mode!: string;
 
   mounted() {
     const editor = CodeMirror(this.$el, {
@@ -34,6 +32,6 @@ export default Vue.extend({
 
     /* eslint-disable-next-line */
     editor.on('change', (changeObject: any) => this.$emit('input', changeObject.getValue()));
-  },
-});
+  }
+}
 </script>
