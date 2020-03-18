@@ -22,15 +22,18 @@ import Vue from 'vue';
 
 export default Vue.extend({
   methods: {
-    chooseFile(event: any, fileType: string) {
+    chooseFile(event: MouseEvent, fileType: string) {
       event.preventDefault();
 
       for (let i = 0; i < document.getElementsByClassName('file').length; i += 1) {
         document.getElementsByClassName('file')[i].classList.remove('selected');
       }
 
-      event.srcElement.classList.add('selected');
-      this.$emit('chooseFile', fileType);
+      const srcElement = event.srcElement as Element;
+      if (srcElement) {
+        srcElement.classList.add('selected');
+        this.$emit('chooseFile', fileType);
+      }
     },
   },
 });
