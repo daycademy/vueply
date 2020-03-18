@@ -56,23 +56,23 @@ export default {
     return {
       fileType: 'text/html',
       templateCode: `<div>
-    <h1>{{ count }}</h1>
-    <button @click="increment">Click</button>
-  </div>
+  <h1>{{ count }}</h1>
+  <button @click="increment">Click</button>
+</div>
   `,
       jsCode: `export default {
-    name: "HelloWorld",
-    data() {
-      return {
-        count: 0,
-      };
+  name: "HelloWorld",
+  data() {
+    return {
+      count: 0,
+    };
+  },
+  methods: {
+    increment() {
+      this.count += 1;
     },
-    methods: {
-      increment() {
-        this.count += 1;
-      },
-    },
-  };`,
+  },
+};`,
     };
   },
 };
@@ -81,11 +81,6 @@ export default {
 <style lang="scss">
 #home {
   height: 100%;
-
-  #preview {
-    width: 100%;
-    height: 100%;
-  }
 
   .left, .middle {
     border-right: 1px solid #333;
