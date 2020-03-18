@@ -1,11 +1,11 @@
 <template>
   <section id="home">
     <v-row class="u-no-padding">
-      <v-col c="4" class="left u-no-padding">
-        <CodePane id="html-code" v-model="templateCode"></CodePane>
+      <v-col c="2" class="u-no-padding">
+        <FileExplorer @chooseFile="chooseFile" />
       </v-col>
-      <v-col c="4" class="middle u-no-padding">
-        <CodePane id="js-code" mode="javascript" v-model="jsCode"></CodePane>
+      <v-col c="6" class="left u-no-padding">
+        <CodePane :mode="fileType" :value="codePaneCode"></CodePane>
       </v-col>
       <v-col c="4" class="right u-no-padding">
         <Preview :templateCode="templateCode" :jsCode="jsCode" />
@@ -17,6 +17,7 @@
 <script>
 import CodePane from '@/components/CodePane.vue';
 import Preview from '@/components/Preview.vue';
+import FileExplorer from '@/components/FileExplorer.vue';
 
 export default {
   name: 'Home',
@@ -24,6 +25,7 @@ export default {
   components: {
     CodePane,
     Preview,
+    FileExplorer,
   },
 
   mounted() {
@@ -35,8 +37,24 @@ export default {
     }, false);
   },
 
+  methods: {
+    chooseFile(fileType) {
+      this.fileType = fileType;
+    },
+  },
+
+  computed: {
+    codePaneCode() {
+      if (this.fileType === 'text/html') {
+        return this.templateCode;
+      }
+      return this.jsCode;
+    },
+  },
+
   data() {
     return {
+      fileType: 'text/html',
       templateCode: `<div>
     <h1>{{ count }}</h1>
     <button @click="increment">Click</button>

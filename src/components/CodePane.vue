@@ -4,7 +4,7 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import { Component, Prop } from 'vue-property-decorator';
+import { Component, Prop, Watch } from 'vue-property-decorator';
 import CodeMirror from 'codemirror';
 
 @Component({})
@@ -14,6 +14,15 @@ export default class CodePane extends Vue {
 
   @Prop({ default: 'text/html' })
   private mode!: string;
+
+  private editor!: any;
+
+  @Watch('mode')
+  onModeChanged(value: string) {
+    this.editor.setOption('mode', value);
+    this.editor.setOption('value', this.value);
+    this.editor.refresh();
+  }
 
   mounted() {
     const editor = CodeMirror(this.$el, {
@@ -32,6 +41,8 @@ export default class CodePane extends Vue {
 
     /* eslint-disable-next-line */
     editor.on('change', (changeObject: any) => this.$emit('input', changeObject.getValue()));
+
+    this.editor = editor;
   }
 }
 </script>
