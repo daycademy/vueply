@@ -72,7 +72,20 @@ export default {
   <h1>{{ count }}</h1>
   <button @click="increment">Click</button>
 </div>`,
-        css: '',
+        css: `@import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
+
+h1 {
+  font-family: "Montserrat";
+}
+
+button {
+  padding: 10px 20px;
+  border-color: transparent;
+  border-radius: 5px;
+  font-size: 15px;
+  background-color: #27AE60;
+  color: white;
+}`,
         js: `export default {
   name: "HelloWorld",
   data() {
