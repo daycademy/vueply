@@ -5,10 +5,10 @@
         <FileExplorer @chooseFile="chooseFile" />
       </v-col>
       <v-col c="6" class="left u-no-padding">
-        <CodePane :mode="fileType" :value="codePaneCode"></CodePane>
+        <CodePane :mode="fileType" @input="updateCode" :value="codePaneCode"></CodePane>
       </v-col>
       <v-col c="4" class="right u-no-padding">
-        <Preview :templateCode="templateCode" :jsCode="jsCode" />
+        <Preview :templateCode="code.template" :jsCode="code.js" :cssCode="code.css" />
       </v-col>
     </v-row>
   </section>
@@ -41,26 +41,39 @@ export default {
     chooseFile(fileType) {
       this.fileType = fileType;
     },
+    updateCode(changedCode) {
+      if (this.fileType === 'text/html') {
+        this.code.template = changedCode;
+      } else if (this.fileType === 'css') {
+        this.code.css = changedCode;
+      } else {
+        this.code.js = changedCode;
+      }
+    },
   },
 
   computed: {
     codePaneCode() {
       if (this.fileType === 'text/html') {
-        return this.templateCode;
+        return this.code.template;
       }
-      return this.jsCode;
+      if (this.fileType === 'css') {
+        return this.code.css;
+      }
+      return this.code.js;
     },
   },
 
   data() {
     return {
       fileType: 'text/html',
-      templateCode: `<div>
+      code: {
+        template: `<div>
   <h1>{{ count }}</h1>
   <button @click="increment">Click</button>
-</div>
-  `,
-      jsCode: `export default {
+</div>`,
+        css: '',
+        js: `export default {
   name: "HelloWorld",
   data() {
     return {
@@ -73,6 +86,7 @@ export default {
     },
   },
 };`,
+      },
     };
   },
 };

@@ -19,6 +19,9 @@ export default class Preview extends Vue {
   @Prop()
   private jsCode!: string;
 
+  @Prop()
+  private cssCode!: string;
+
   created() {
     this.$root.$refs.Preview = this;
   }
@@ -30,14 +33,14 @@ export default class Preview extends Vue {
   showPreview() {
     const lib = 'https://cdn.jsdelivr.net/npm/vue@2.6.11';
     const templateCode = this.templateCode.replace(/\s*\n+\s*/g, ' ').replace(/>\s+/g, '>').replace(/\s+</g, '<');
-    const { jsCode } = this;
+    const { jsCode, cssCode } = this;
     /* eslint-disable-next-line */
     const script = 'var template = `<template>' + templateCode + '</template>`;' + 'var js =`' + jsCode + '`;';
-
     const previewDoc = window.frames[0].document;
     previewDoc.write('<!DOCTYPE html>');
     previewDoc.write('<html>');
     previewDoc.write('<head>');
+    previewDoc.write(`<style type="text/css">${cssCode}<\/style>`);
     previewDoc.write(`<script src=${lib} type="text/javascript"><\/script>`);
     previewDoc.write('</head>');
     previewDoc.write('<body>');
