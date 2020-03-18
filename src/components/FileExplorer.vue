@@ -4,14 +4,14 @@
     <v-divider></v-divider>
     <p class="description">FILES</p>
     <div id="files">
-      <p class="file selected">
-        <a @click="chooseFile($event, 'text/html')">index.html</a>
+      <p @click="chooseFile($event, 'text/html')" class="file selected">
+        index.html
       </p>
-      <p class="file">
-        <a @click="chooseFile($event, 'css')">index.css</a>
+      <p @click="chooseFile($event, 'css')" class="file">
+        index.css
       </p>
-      <p class="file">
-        <a @click="chooseFile($event, 'javascript')">app.js</a>
+      <p @click="chooseFile($event, 'javascript')" class="file">
+        app.js
       </p>
     </div>
   </section>
@@ -29,7 +29,7 @@ export default Vue.extend({
         document.getElementsByClassName('file')[i].classList.remove('selected');
       }
 
-      event.srcElement.parentElement.classList.add('selected');
+      event.srcElement.classList.add('selected');
       this.$emit('chooseFile', fileType);
     },
   },
@@ -57,17 +57,11 @@ export default Vue.extend({
   #files {
     .file {
       padding-bottom: 1rem;
-
-      a {
-        cursor: pointer;
-        color: #9497B0;
-      }
+      cursor: pointer;
+      color: #9497B0;
 
       &.selected {
-        a {
-          color: #fff;
-        }
-
+        color: #fff;
         background-color: #282A36;
       }
     }
