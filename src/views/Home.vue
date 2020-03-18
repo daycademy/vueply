@@ -26,31 +26,27 @@ export default {
     Preview,
   },
 
-  props: {
-    templateCode: {
-      type: String,
-      default: `<div>
-  <h1>{{ count }}</h1>
-  <button @click="increment">Click</button>
-</div>
-`,
-    },
-    jsCode: {
-      type: String,
-      default: `export default {
-  name: "HelloWorld",
   data() {
     return {
-      count: 0,
+      templateCode: `<div>
+    <h1>{{ count }}</h1>
+    <button @click="increment">Click</button>
+  </div>
+  `,
+      jsCode: `export default {
+    name: "HelloWorld",
+    data() {
+      return {
+        count: 0,
+      };
+    },
+    methods: {
+      increment() {
+        this.count += 1;
+      },
+    },
+  };`,
     };
-  },
-  methods: {
-    increment() {
-      this.count += 1;
-    },
-  },
-};`,
-    },
   },
 };
 </script>

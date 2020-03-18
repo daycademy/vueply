@@ -9,7 +9,7 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import { Component, Prop, Watch } from 'vue-property-decorator';
+import { Component, Prop } from 'vue-property-decorator';
 
 @Component({})
 export default class Preview extends Vue {
@@ -20,16 +20,6 @@ export default class Preview extends Vue {
   private jsCode!: string;
 
   mounted() {
-    this.showPreview();
-  }
-
-  @Watch('templateCode')
-  private onTemplateCodeChange() {
-    this.showPreview();
-  }
-
-  @Watch('jsCode')
-  private onJsCodeChange() {
     this.showPreview();
   }
 
