@@ -19,11 +19,15 @@ export default class Preview extends Vue {
   @Prop()
   private jsCode!: string;
 
+  created() {
+    this.$root.$refs.Preview = this;
+  }
+
   mounted() {
     this.showPreview();
   }
 
-  private showPreview() {
+  showPreview() {
     const lib = 'https://cdn.jsdelivr.net/npm/vue@2.6.11';
     const templateCode = this.templateCode.replace(/\s*\n+\s*/g, ' ').replace(/>\s+/g, '>').replace(/\s+</g, '<');
     const { jsCode } = this;

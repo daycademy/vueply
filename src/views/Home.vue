@@ -26,6 +26,15 @@ export default {
     Preview,
   },
 
+  mounted() {
+    document.addEventListener('keydown', (e) => {
+      if ((window.navigator.platform.match('Mac') ? e.metaKey : e.ctrlKey) && e.keyCode === 83) {
+        e.preventDefault();
+        this.$root.$refs.Preview.showPreview();
+      }
+    }, false);
+  },
+
   data() {
     return {
       templateCode: `<div>
