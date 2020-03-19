@@ -7,17 +7,13 @@
     <v-divider></v-divider>
     <p class="description">FILES</p>
     <div id="files">
-      <p @click="chooseFile($event, 'text/html')" class="file selected">
-        <i class="icon fab fa-html5"></i> index.html
-      </p>
-      <p @click="chooseFile($event, 'css')" class="file">
-        <i class="icon fab fa-css3-alt"></i> index.css
-      </p>
-      <p @click="chooseFile($event, 'javascript')" class="file">
-        <i class="icon fab fa-js-square"></i> app.js
-      </p>
-      <p @click="chooseFile($event, 'text/x-vue')" class="file">
-        <i class="icon fab fa-vuejs"></i> App.vue
+      <p
+        v-for="(value, key) in files"
+        :key="key"
+        @click="chooseFile($event, key, value.type)"
+        :class="`file${currentSelected === key ? ' selected' : ''}`"
+      >
+        <i :class="`icon fab ${icons[value.type].icon}`"></i> {{ key }}
       </p>
     </div>
   </section>
@@ -27,17 +23,48 @@
 import Vue from 'vue';
 
 export default Vue.extend({
+  data() {
+    return {
+      currentSelected: 'index.html',
+      files: {
+        'index.html': {
+          type: 'text/html',
+        },
+        'index.css': {
+          type: 'css',
+        },
+        'app.js': {
+          type: 'javascript',
+        },
+        'App.vue': {
+          type: 'text/x-vue',
+        },
+      },
+      icons: {
+        'text/html': {
+          icon: 'fa-html5',
+        },
+        css: {
+          icon: 'fa-css3-alt',
+        },
+        javascript: {
+          icon: 'fa-js-square',
+        },
+        'text/x-vue': {
+          icon: 'fa-vuejs',
+        },
+      },
+    };
+  },
+
   methods: {
-    chooseFile(event: MouseEvent, fileType: string) {
+    chooseFile(event: MouseEvent, filename: string, fileType: string) {
       event.preventDefault();
 
-      for (let i = 0; i < document.getElementsByClassName('file').length; i += 1) {
-        document.getElementsByClassName('file')[i].classList.remove('selected');
-      }
+      this.currentSelected = filename;
 
       const srcElement = event.srcElement as Element;
       if (srcElement) {
-        srcElement.classList.add('selected');
         this.$emit('chooseFile', fileType);
       }
     },
