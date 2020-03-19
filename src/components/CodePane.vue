@@ -31,6 +31,7 @@ export default class CodePane extends Vue {
       lineNumbers: true,
       theme: 'dracula',
       tabSize: 2,
+      scrollbarStyle: 'overlay',
     });
 
     window.addEventListener('load', () => {

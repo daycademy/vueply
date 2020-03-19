@@ -46,8 +46,10 @@ export default {
         this.code.template = changedCode;
       } else if (this.fileType === 'css') {
         this.code.css = changedCode;
-      } else {
+      } else if (this.fileType === 'javascript') {
         this.code.js = changedCode;
+      } else {
+        this.code.vue = changedCode;
       }
     },
   },
@@ -60,7 +62,10 @@ export default {
       if (this.fileType === 'css') {
         return this.code.css;
       }
-      return this.code.js;
+      if (this.fileType === 'javascript') {
+        return this.code.js;
+      }
+      return this.code.vue;
     },
   },
 
@@ -68,6 +73,25 @@ export default {
     return {
       fileType: 'text/html',
       code: {
+        vue: `<template>
+  <h1>{{ message }}</h1>
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+      message: 'Hello World',
+    };
+  },
+};
+<\/script>
+
+<style>
+h1 {
+  color: green;
+}
+</style>`,
         template: `<div>
   <h1>{{ count }}</h1>
   <button @click="increment">Click</button>

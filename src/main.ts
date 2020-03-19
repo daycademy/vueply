@@ -5,6 +5,9 @@ import router from './router';
 
 import 'codemirror/mode/javascript/javascript';
 import 'codemirror/mode/htmlmixed/htmlmixed';
+import 'codemirror/mode/css/css';
+import 'codemirror/mode/vue/vue';
+import 'codemirror/addon/scroll/simplescrollbars';
 import 'vue-cirrus/dist/vue-cirrus.css';
 
 Vue.use(VueCirrus);

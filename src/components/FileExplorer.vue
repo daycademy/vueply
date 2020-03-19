@@ -13,6 +13,9 @@
       <p @click="chooseFile($event, 'javascript')" class="file">
         app.js
       </p>
+      <p @click="chooseFile($event, 'text/x-vue')" class="file">
+        App.vue
+      </p>
     </div>
   </section>
 </template>

@@ -22,6 +22,9 @@ export default class Preview extends Vue {
   @Prop()
   private cssCode!: string;
 
+  @Prop({ default: null })
+  private vueCode!: string;
+
   created() {
     this.$root.$refs.Preview = this;
   }
@@ -32,10 +35,35 @@ export default class Preview extends Vue {
 
   showPreview() {
     const lib = 'https://cdn.jsdelivr.net/npm/vue@2.6.11';
-    const templateCode = this.templateCode.replace(/\s*\n+\s*/g, ' ').replace(/>\s+/g, '>').replace(/\s+</g, '<');
-    const { jsCode, cssCode } = this;
-    /* eslint-disable-next-line */
-    const script = 'var template = `<template>' + templateCode + '</template>`;' + 'var js =`' + jsCode + '`;';
+
+    let templateCode = '';
+    let jsCode = '';
+    let cssCode = '';
+    let script = '';
+
+    if (!this.vueCode) {
+      templateCode = this.templateCode.replace(/\s*\n+\s*/g, ' ').replace(/>\s+/g, '>').replace(/\s+</g, '<');
+      jsCode = this.jsCode;
+      cssCode = this.cssCode;
+      /* eslint-disable-next-line */
+      script = 'var template = `<template>' + templateCode + '</template>`;' + 'var js =`' + jsCode + '`;';
+    } else {
+      const templateMatch = this.vueCode.match(/<template>\s.*?\s<\/template>/gms);
+      const scriptMatch = this.vueCode.match(/<script>\s.*?\s<\/script>/gms);
+      const styleMatch = this.vueCode.match(/<style>\s.*?\s<\/style>/gms);
+
+      if (!templateMatch || !scriptMatch || !styleMatch) {
+        console.log('No template/script/style match!');
+        return;
+      }
+
+      templateCode = templateMatch[0].replace(/\s*\n+\s*/g, ' ').replace(/>\s+/g, '>').replace(/\s+</g, '<');
+      jsCode = scriptMatch[0].replace('<script>', '').replace('<\/script>', '');
+      cssCode = styleMatch[0].replace('<style>', '').replace('<\/style>', '');
+      /* eslint-disable-next-line */
+      script = 'var template = `' + templateCode + '`;' + 'var js =`' + jsCode + '`;';
+    }
+
     const previewDoc = window.frames[0].document;
     previewDoc.write('<!DOCTYPE html>');
     previewDoc.write('<html>');
