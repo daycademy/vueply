@@ -5,16 +5,16 @@
     <p class="description">FILES</p>
     <div id="files">
       <p @click="chooseFile($event, 'text/html')" class="file selected">
-        index.html
+        <i class="icon fab fa-html5"></i> index.html
       </p>
       <p @click="chooseFile($event, 'css')" class="file">
-        index.css
+        <i class="icon fab fa-css3-alt"></i> index.css
       </p>
       <p @click="chooseFile($event, 'javascript')" class="file">
-        app.js
+        <i class="icon fab fa-js-square"></i> app.js
       </p>
       <p @click="chooseFile($event, 'text/x-vue')" class="file">
-        App.vue
+        <i class="icon fab fa-vuejs"></i> App.vue
       </p>
     </div>
   </section>
@@ -47,6 +47,21 @@ export default Vue.extend({
   height: 100%;
   width: 100%;
   background-color: #333545;
+
+  .fab {
+    &.fa-html5 {
+      color: #E67E22;
+    }
+    &.fa-css3-alt {
+      color: #3498DB;
+    }
+    &.fa-js-square {
+      color: #F1C40F;
+    }
+    &.fa-vuejs {
+      color: #2ECC71;
+    }
+  }
 
   p {
     color: white;
