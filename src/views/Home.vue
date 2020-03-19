@@ -8,7 +8,10 @@
         <CodePane :mode="fileType" @input="updateCode" :value="codePaneCode"></CodePane>
       </v-col>
       <v-col c="4" class="right u-no-padding">
+        <!--
         <Preview :templateCode="code.template" :jsCode="code.js" :cssCode="code.css" />
+        -->
+        <Preview :vueCode="code.vue" />
       </v-col>
     </v-row>
   </section>
@@ -74,22 +77,43 @@ export default {
       fileType: 'text/html',
       code: {
         vue: `<template>
-  <h1>{{ message }}</h1>
+<div class="begin">
+  <h1>{{ title }}</h1>
+  <h2>{{ counter }}</h2>
+  <button @click="count">Click me</button>
+</div>
 </template>
 
 <script>
 export default {
   data() {
     return {
-      message: 'Hello World',
+      title: 'Hello World',
+      counter: 0,
     };
+  },
+  methods: {
+    count() {
+      this.counter++;
+    },
   },
 };
 <\/script>
 
 <style>
+@import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
+
 h1 {
-  color: green;
+  font-family: "Montserrat";
+}
+
+button {
+  padding: 10px 20px;
+  border-color: transparent;
+  border-radius: 5px;
+  font-size: 15px;
+  background-color: #27AE60;
+  color: white;
 }
 </style>`,
         template: `<div>
