@@ -5,13 +5,13 @@
         <FileExplorer @chooseFile="chooseFile" />
       </v-col>
       <v-col c="6" class="left u-no-padding">
-        <CodePane :mode="fileType" @input="updateCode" :value="codePaneCode"></CodePane>
+        <CodePane :mode="currentFile.type" @input="updateCode" :value="currentFile.code"></CodePane>
       </v-col>
       <v-col c="4" class="right u-no-padding">
         <!--
         <Preview :templateCode="code.template" :jsCode="code.js" :cssCode="code.css" />
         -->
-        <Preview :vueCode="code.vue" />
+        <Preview :vueCode="currentFile.code" />
       </v-col>
     </v-row>
   </section>
@@ -41,114 +41,25 @@ export default {
   },
 
   methods: {
-    chooseFile(fileType) {
-      this.fileType = fileType;
+    chooseFile(filename) {
+      this.$store.dispatch('updateSelectedFile', filename);
     },
     updateCode(changedCode) {
-      if (this.fileType === 'text/html') {
-        this.code.template = changedCode;
-      } else if (this.fileType === 'css') {
-        this.code.css = changedCode;
-      } else if (this.fileType === 'javascript') {
-        this.code.js = changedCode;
-      } else {
-        this.code.vue = changedCode;
-      }
+      const selectedFile = this.currentFile;
+      selectedFile.code = changedCode;
     },
   },
 
   computed: {
-    codePaneCode() {
-      if (this.fileType === 'text/html') {
-        return this.code.template;
+    currentFile() {
+      const { selectedFile, files } = this.$store.state;
+      for (let i = 0; i < files.length; i += 1) {
+        if (files[i].name === selectedFile) {
+          return files[i];
+        }
       }
-      if (this.fileType === 'css') {
-        return this.code.css;
-      }
-      if (this.fileType === 'javascript') {
-        return this.code.js;
-      }
-      return this.code.vue;
+      return null;
     },
-  },
-
-  data() {
-    return {
-      fileType: 'text/html',
-      code: {
-        vue: `<template>
-<div class="begin">
-  <h1>{{ title }}</h1>
-  <h2>{{ counter }}</h2>
-  <button @click="count">Click me</button>
-</div>
-</template>
-
-<script>
-export default {
-  data() {
-    return {
-      title: 'Hello World',
-      counter: 0,
-    };
-  },
-  methods: {
-    count() {
-      this.counter++;
-    },
-  },
-};
-<\/script>
-
-<style>
-@import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
-
-h1 {
-  font-family: "Montserrat";
-}
-
-button {
-  padding: 10px 20px;
-  border-color: transparent;
-  border-radius: 5px;
-  font-size: 15px;
-  background-color: #27AE60;
-  color: white;
-}
-</style>`,
-        template: `<div>
-  <h1>{{ count }}</h1>
-  <button @click="increment">Click</button>
-</div>`,
-        css: `@import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
-
-h1 {
-  font-family: "Montserrat";
-}
-
-button {
-  padding: 10px 20px;
-  border-color: transparent;
-  border-radius: 5px;
-  font-size: 15px;
-  background-color: #27AE60;
-  color: white;
-}`,
-        js: `export default {
-  name: "HelloWorld",
-  data() {
-    return {
-      count: 0,
-    };
-  },
-  methods: {
-    increment() {
-      this.count += 1;
-    },
-  },
-};`,
-      },
-    };
   },
 };
 </script>

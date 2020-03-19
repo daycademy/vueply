@@ -8,12 +8,12 @@
     <p class="description">FILES</p>
     <div id="files">
       <p
-        v-for="(value, key) in files"
-        :key="key"
-        @click="chooseFile($event, key, value.type)"
-        :class="`file${currentSelected === key ? ' selected' : ''}`"
+        v-for="file in files"
+        :key="file.name"
+        @click="chooseFile($event, file.name)"
+        :class="`file${selectedFile === file.name ? ' selected' : ''}`"
       >
-        <i :class="`icon fab ${icons[value.type].icon}`"></i> {{ key }}
+        <i :class="`icon fab ${icons[file.type].icon}`"></i> {{ file.name }}
       </p>
     </div>
   </section>
@@ -21,25 +21,11 @@
 
 <script lang="ts">
 import Vue from 'vue';
+import FileModel from '../store/models/FileModel';
 
 export default Vue.extend({
   data() {
     return {
-      currentSelected: 'index.html',
-      files: {
-        'index.html': {
-          type: 'text/html',
-        },
-        'index.css': {
-          type: 'css',
-        },
-        'app.js': {
-          type: 'javascript',
-        },
-        'App.vue': {
-          type: 'text/x-vue',
-        },
-      },
       icons: {
         'text/html': {
           icon: 'fa-html5',
@@ -57,15 +43,23 @@ export default Vue.extend({
     };
   },
 
-  methods: {
-    chooseFile(event: MouseEvent, filename: string, fileType: string) {
-      event.preventDefault();
+  computed: {
+    files(): FileModel[] {
+      const { files } = this.$store.state;
+      return files;
+    },
+    selectedFile(): string {
+      return this.$store.state.selectedFile;
+    },
+  },
 
-      this.currentSelected = filename;
+  methods: {
+    chooseFile(event: MouseEvent, filename: string) {
+      event.preventDefault();
 
       const srcElement = event.srcElement as Element;
       if (srcElement) {
-        this.$emit('chooseFile', fileType);
+        this.$emit('chooseFile', filename);
       }
     },
   },
