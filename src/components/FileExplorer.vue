@@ -1,6 +1,9 @@
 <template>
   <section id="file-explorer">
-    <p>Project</p>
+    <p class="title">
+      Project
+      <i class="icon fas fa-cog"></i>
+    </p>
     <v-divider></v-divider>
     <p class="description">FILES</p>
     <div id="files">
@@ -47,6 +50,17 @@ export default Vue.extend({
   height: 100%;
   width: 100%;
   background-color: #333545;
+
+  .title {
+    display: flex;
+    align-items: center;
+
+    .icon {
+      margin-left: auto;
+      margin-right: 16px;
+      color: #6A6F8D;
+    }
+  }
 
   .fab {
     &.fa-html5 {
