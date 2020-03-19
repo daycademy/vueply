@@ -62,9 +62,15 @@ export default Vue.extend({
 
   #files {
     .file {
-      padding-bottom: 1rem;
+      padding-bottom: 0.2em;
+      padding-top: 0.2em;
+      margin-bottom: 0;
       cursor: pointer;
       color: #9497B0;
+
+      &:hover {
+        background-color: #3E4153;
+      }
 
       &.selected {
         color: #fff;
