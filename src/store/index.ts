@@ -4,12 +4,9 @@ import FileModel from './models/FileModel';
 
 Vue.use(Vuex);
 
-type Dictionary = {
-  [index: string]: string;
-}
-
 export default new Vuex.Store({
   state: {
+    currentProject: 'web',
     selectedFile: 'index.html',
     files: Array<FileModel>(
       {
@@ -109,6 +106,9 @@ button {
     updateSelectedFile(state, name: string) {
       state.selectedFile = name;
     },
+    setProject(state, project: string) {
+      state.currentProject = project;
+    },
   },
 
   actions: {
@@ -117,6 +117,9 @@ button {
     },
     updateSelectedFile(context, name: string) {
       context.commit('updateSelectedFile', name);
+    },
+    setProject(context, project: string) {
+      context.commit('setProject', project);
     },
   },
 });

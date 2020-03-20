@@ -2,7 +2,15 @@
   <section id="file-explorer">
     <p class="title">
       Project
-      <i class="icon fas fa-cog"></i>
+      <v-dropdown>
+        <template v-slot:button>
+          <v-btn color="transparent" dropdown>
+            <i class="icon fas fa-cog"></i>
+          </v-btn>
+        </template>
+        <v-dropdown-item @click="chooseProject('web')">Web</v-dropdown-item>
+        <v-dropdown-item @click="chooseProject('vue')">Vue</v-dropdown-item>
+      </v-dropdown>
     </p>
     <v-divider></v-divider>
     <p class="description">FILES</p>
@@ -54,6 +62,9 @@ export default Vue.extend({
   },
 
   methods: {
+    chooseProject(project: string) {
+      this.$emit('chooseProject', project);
+    },
     chooseFile(event: MouseEvent, filename: string) {
       event.preventDefault();
 
@@ -76,10 +87,22 @@ export default Vue.extend({
     display: flex;
     align-items: center;
 
-    .icon {
+    .list-dropdown {
       margin-left: auto;
       margin-right: 16px;
-      color: #6A6F8D;
+
+      .menu {
+        background-color: #333545;
+
+        li a {
+          color: #fff;
+        }
+      }
+
+      button {
+        color: #6A6F8D;
+        font-size: 14px;
+      }
     }
   }
 

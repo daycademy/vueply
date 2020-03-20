@@ -2,7 +2,7 @@
   <section id="home">
     <v-row class="u-no-padding">
       <v-col c="2" class="u-no-padding">
-        <FileExplorer @chooseFile="chooseFile" />
+        <FileExplorer @chooseFile="chooseFile" @chooseProject="chooseProject" />
       </v-col>
       <v-col c="6" class="left u-no-padding">
         <CodePane :mode="currentFile.type" @input="updateCode" :value="currentFile.code"></CodePane>
@@ -41,6 +41,9 @@ export default {
   },
 
   methods: {
+    chooseProject(project) {
+      this.$store.dispatch('setProject', project);
+    },
     chooseFile(filename) {
       this.$store.dispatch('updateSelectedFile', filename);
     },
