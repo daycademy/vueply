@@ -34,6 +34,10 @@ import FileModel from '../store/models/FileModel';
 export default Vue.extend({
   data() {
     return {
+      projectFiles: {
+        vue: ['text/x-vue'],
+        web: ['text/html', 'css', 'javascript'],
+      },
       icons: {
         'text/html': {
           icon: 'fa-html5',
@@ -53,7 +57,14 @@ export default Vue.extend({
 
   computed: {
     files(): FileModel[] {
-      const { files } = this.$store.state;
+      const project = this.$store.state.currentProject;
+
+      const projectFiles = project === 'web'
+        ? this.projectFiles.web
+        : this.projectFiles.vue;
+
+      let { files } = this.$store.state;
+      files = files.filter((file: FileModel) => projectFiles.includes(file.type as string));
       return files;
     },
     selectedFile(): string {

@@ -13,15 +13,6 @@ import { Component, Prop } from 'vue-property-decorator';
 
 @Component({})
 export default class Preview extends Vue {
-  @Prop()
-  private templateCode!: string;
-
-  @Prop()
-  private jsCode!: string;
-
-  @Prop()
-  private cssCode!: string;
-
   @Prop({ default: null })
   private vueCode!: string;
 
@@ -42,9 +33,12 @@ export default class Preview extends Vue {
     let script = '';
 
     if (!this.vueCode) {
-      templateCode = this.templateCode.replace(/\s*\n+\s*/g, ' ').replace(/>\s+/g, '>').replace(/\s+</g, '<');
-      jsCode = this.jsCode;
-      cssCode = this.cssCode;
+      const storeTemplate = this.$store.state.files[0].code;
+      const storeCss = this.$store.state.files[1].code;
+      const storeJs = this.$store.state.files[2].code;
+      templateCode = storeTemplate.replace(/\s*\n+\s*/g, ' ').replace(/>\s+/g, '>').replace(/\s+</g, '<');
+      jsCode = storeJs;
+      cssCode = storeCss;
       /* eslint-disable-next-line */
       script = 'var template = `<template>' + templateCode + '</template>`;' + 'var js =`' + jsCode + '`;';
     } else {

@@ -11,7 +11,9 @@
         <!--
         <Preview :templateCode="code.template" :jsCode="code.js" :cssCode="code.css" />
         -->
-        <Preview :vueCode="currentFile.code" />
+        <Preview
+          :vueCode="currentProject === 'vue' ? currentFile.code : null"
+        />
       </v-col>
     </v-row>
   </section>
@@ -54,6 +56,9 @@ export default {
   },
 
   computed: {
+    currentProject() {
+      return this.$store.state.currentProject;
+    },
     currentFile() {
       const { selectedFile, files } = this.$store.state;
       for (let i = 0; i < files.length; i += 1) {
