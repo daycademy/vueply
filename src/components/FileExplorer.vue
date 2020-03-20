@@ -97,6 +97,7 @@ export default Vue.extend({
   .title {
     display: flex;
     align-items: center;
+    color: #9598AF;
 
     .list-dropdown {
       margin-left: auto;
