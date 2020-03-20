@@ -120,6 +120,8 @@ button {
     },
     setProject(context, project: string) {
       context.commit('setProject', project);
+      const selectedFile = project === 'web' ? 'index.html' : 'App.vue';
+      context.commit('updateSelectedFile', selectedFile);
     },
   },
 });
