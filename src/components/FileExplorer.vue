@@ -57,14 +57,14 @@ export default Vue.extend({
 
   computed: {
     files(): FileModel[] {
-      const project = this.$store.state.currentProject;
+      const project = this.$store.state.project.currentProject;
 
       const projectFiles = project === 'web'
         ? this.projectFiles.web
         : this.projectFiles.vue;
 
       let { files } = this.$store.state;
-      files = files.filter((file: FileModel) => projectFiles.includes(file.type as string));
+      files = files.files.filter((file: FileModel) => projectFiles.includes(file.type as string));
       return files;
     },
     selectedFile(): string {

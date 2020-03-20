@@ -57,13 +57,13 @@ export default {
 
   computed: {
     currentProject() {
-      return this.$store.state.currentProject;
+      return this.$store.state.project.currentProject;
     },
     currentFile() {
-      const { selectedFile, files } = this.$store.state;
-      for (let i = 0; i < files.length; i += 1) {
-        if (files[i].name === selectedFile) {
-          return files[i];
+      const { files } = this.$store.state;
+      for (let i = 0; i < files.files.length; i += 1) {
+        if (files.files[i].name === files.selectedFile) {
+          return files.files[i];
         }
       }
       return null;

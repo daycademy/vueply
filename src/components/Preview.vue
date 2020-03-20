@@ -33,9 +33,9 @@ export default class Preview extends Vue {
     let script = '';
 
     if (!this.vueCode) {
-      const storeTemplate = this.$store.state.files[0].code;
-      const storeCss = this.$store.state.files[1].code;
-      const storeJs = this.$store.state.files[2].code;
+      const storeTemplate = this.$store.state.files.files[0].code;
+      const storeCss = this.$store.state.files.files[1].code;
+      const storeJs = this.$store.state.files.files[2].code;
       templateCode = storeTemplate.replace(/\s*\n+\s*/g, ' ').replace(/>\s+/g, '>').replace(/\s+</g, '<');
       jsCode = storeJs;
       cssCode = storeCss;
