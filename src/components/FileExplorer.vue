@@ -31,9 +31,12 @@
     </div>
 
     <div class="how-to-use">
-      <v-btn circle color="transparent">
-        <i class="fas fa-question-circle"></i>
-      </v-btn>
+      <p v-if="isOSXDevice">
+        <span>Cmd</span> + <span>S</span> in a File to Run
+      </p>
+      <p v-else>
+        <span>Strg</span> + <span>S</span> in a File to Run
+      </p>
     </div>
   </section>
 </template>
@@ -64,6 +67,9 @@ export default Vue.extend({
   },
 
   computed: {
+    isOSXDevice() {
+      return navigator.platform.toUpperCase().indexOf('MAC') >= 0;
+    },
     files(): Array<FileModel> {
       return this.$store.getters.projectFiles(this.currentProject.projectName);
     },
@@ -103,12 +109,19 @@ export default Vue.extend({
 
   .how-to-use {
     position: absolute;
-    left: 16px;
-    bottom: 0;
+    left: 0.5em;
+    bottom: 0.5em;
 
-    button {
+    p {
       color: #9598AF;
-      font-size: 24px;
+      margin: 0;
+      padding: 0;
+
+      span {
+        background-color: #282A36;
+        padding: 4px 8px;
+        border-radius: 4px;
+      }
     }
   }
 
