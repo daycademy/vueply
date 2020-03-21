@@ -1,10 +1,10 @@
 <template>
   <section id="file-explorer">
     <p class="title">
-      Project
+      {{ currentProject }} Project
       <v-dropdown>
         <template v-slot:button>
-          <v-btn color="transparent" dropdown>
+          <v-btn size="small" color="transparent" dropdown>
             <i class="icon fas fa-cog"></i>
           </v-btn>
         </template>
@@ -54,8 +54,10 @@ export default Vue.extend({
 
   computed: {
     files(): Array<FileModel> {
-      const { project } = this.$store.state;
-      return this.$store.getters.projectFiles(project.currentProject);
+      return this.$store.getters.projectFiles(this.currentProject);
+    },
+    currentProject(): string {
+      return this.$store.state.project.currentProject;
     },
     selectedFile(): string {
       return this.$store.state.files.selectedFile;
@@ -91,7 +93,7 @@ export default Vue.extend({
 
     .list-dropdown {
       margin-left: auto;
-      margin-right: 16px;
+      margin-right: 7px;
 
       .menu {
         background-color: #333545;
