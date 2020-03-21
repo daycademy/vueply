@@ -10,6 +10,7 @@
 <script lang="ts">
 import Vue from 'vue';
 import { Component, Prop } from 'vue-property-decorator';
+import FileModel from '../store/models/FileModel';
 
 @Component({})
 export default class Preview extends Vue {
@@ -35,9 +36,9 @@ export default class Preview extends Vue {
     let script = '';
 
     if (this.currentProject !== 'vue') {
-      const storeTemplate = projectFiles[0].code;
-      const storeCss = projectFiles[1].code;
-      const storeJs = projectFiles[2].code;
+      const storeTemplate = projectFiles.filter((projectFile: FileModel) => projectFile.type === 'text/html')[0].code;
+      const storeCss = projectFiles.filter((projectFile: FileModel) => projectFile.type === 'css')[0].code;
+      const storeJs = projectFiles.filter((projectFile: FileModel) => projectFile.type === 'javascript')[0].code;
       templateCode = storeTemplate.replace(/\s*\n+\s*/g, ' ').replace(/>\s+/g, '>').replace(/\s+</g, '<');
       jsCode = storeJs;
       cssCode = storeCss;
