@@ -29,6 +29,12 @@
         <i :class="`icon fab ${icons[file.type].icon}`"></i> {{ file.name }}
       </p>
     </div>
+
+    <div class="how-to-use">
+      <v-btn circle color="transparent">
+        <i class="fas fa-question-circle"></i>
+      </v-btn>
+    </div>
   </section>
 </template>
 
@@ -94,6 +100,17 @@ export default Vue.extend({
   height: 100%;
   width: 100%;
   background-color: #333545;
+
+  .how-to-use {
+    position: absolute;
+    left: 16px;
+    bottom: 0;
+
+    button {
+      color: #9598AF;
+      font-size: 24px;
+    }
+  }
 
   .title {
     display: flex;
