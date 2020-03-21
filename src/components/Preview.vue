@@ -17,6 +17,8 @@ export default class Preview extends Vue {
   @Prop({ default: null })
   private currentProject!: string;
 
+  private logging: [] = [];
+
   created() {
     this.$root.$refs.Preview = this;
   }
@@ -62,6 +64,7 @@ export default class Preview extends Vue {
     }
 
     const previewDoc = window.frames[0].document;
+
     previewDoc.write('<!DOCTYPE html>');
     previewDoc.write('<html>');
     previewDoc.write('<head>');
@@ -85,8 +88,14 @@ function mergeJs(js, template) {
   return new Vue(vueObj);
 }
 
-mergeJs(js, template);
+try {
+  mergeJs(js, template);
+} catch (err) {
+  console.log(err);
+  document.getElementsByTagName('body')[0].innerHTML = '<p style="color:red">' + err + '</p>';
+}
 <\/script>`);
+
     previewDoc.write('</body>');
     previewDoc.write('</html>');
     previewDoc.close();
