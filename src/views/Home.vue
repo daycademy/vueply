@@ -11,9 +11,7 @@
         <!--
         <Preview :templateCode="code.template" :jsCode="code.js" :cssCode="code.css" />
         -->
-        <Preview
-          :vueCode="currentProject === 'vue' ? currentFile.code : null"
-        />
+        <Preview :currentProject="currentProject" />
       </v-col>
     </v-row>
   </section>

@@ -14,7 +14,7 @@ import { Component, Prop } from 'vue-property-decorator';
 @Component({})
 export default class Preview extends Vue {
   @Prop({ default: null })
-  private vueCode!: string;
+  private currentProject!: string;
 
   created() {
     this.$root.$refs.Preview = this;
@@ -26,25 +26,27 @@ export default class Preview extends Vue {
 
   showPreview() {
     const lib = 'https://cdn.jsdelivr.net/npm/vue@2.6.11';
+    const bindVueLibrary = this.currentProject.includes('vue');
+    const projectFiles = this.$store.getters.projectFiles(this.currentProject);
 
     let templateCode = '';
     let jsCode = '';
     let cssCode = '';
     let script = '';
 
-    if (!this.vueCode) {
-      const storeTemplate = this.$store.state.files.files[0].code;
-      const storeCss = this.$store.state.files.files[1].code;
-      const storeJs = this.$store.state.files.files[2].code;
+    if (this.currentProject !== 'vue') {
+      const storeTemplate = projectFiles[0].code;
+      const storeCss = projectFiles[1].code;
+      const storeJs = projectFiles[2].code;
       templateCode = storeTemplate.replace(/\s*\n+\s*/g, ' ').replace(/>\s+/g, '>').replace(/\s+</g, '<');
       jsCode = storeJs;
       cssCode = storeCss;
       /* eslint-disable-next-line */
       script = 'var template = `<template>' + templateCode + '</template>`;' + 'var js =`' + jsCode + '`;';
     } else {
-      const templateMatch = this.vueCode.match(/<template>\s.*?\s<\/template>/gms);
-      const scriptMatch = this.vueCode.match(/<script>\s.*?\s<\/script>/gms);
-      const styleMatch = this.vueCode.match(/<style>\s.*?\s<\/style>/gms);
+      const templateMatch = projectFiles[0].code.match(/<template>\s.*?\s<\/template>/gms);
+      const scriptMatch = projectFiles[0].code.match(/<script>\s.*?\s<\/script>/gms);
+      const styleMatch = projectFiles[0].code.match(/<style>\s.*?\s<\/style>/gms);
 
       if (!templateMatch || !scriptMatch || !styleMatch) {
         console.log('No template/script/style match!');
@@ -63,7 +65,9 @@ export default class Preview extends Vue {
     previewDoc.write('<html>');
     previewDoc.write('<head>');
     previewDoc.write(`<style type="text/css">${cssCode}<\/style>`);
-    previewDoc.write(`<script src=${lib} type="text/javascript"><\/script>`);
+    if (bindVueLibrary) {
+      previewDoc.write(`<script src=${lib} type="text/javascript"><\/script>`);
+    }
     previewDoc.write('</head>');
     previewDoc.write('<body>');
     previewDoc.write('<div id="app"></div>');
