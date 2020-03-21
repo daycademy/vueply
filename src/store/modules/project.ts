@@ -6,14 +6,17 @@ const state: ProjectState = {
   currentProject: 'vue-web',
   projectFilesLink: [
     {
+      displayName: 'Vue',
       projectName: 'vue',
       fileTypes: ['text/x-vue'],
     },
     {
+      displayName: 'Web Vue',
       projectName: 'vue-web',
       fileTypes: ['text/html', 'css', 'javascript'],
     },
     {
+      displayName: 'JavaScript',
       projectName: 'javascript',
       fileTypes: ['text/html', 'css', 'javascript'],
     },

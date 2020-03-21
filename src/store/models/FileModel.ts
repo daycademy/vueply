@@ -1,8 +1,11 @@
 export default class FileModel {
-  name: String;
-  type: String;
-  project: String;
-  code?: String;
+  name: string;
+
+  type: string;
+
+  project: string;
+
+  code?: string;
 
   constructor() {
     this.name = '';

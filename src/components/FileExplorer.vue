@@ -1,16 +1,20 @@
 <template>
   <section id="file-explorer">
     <p class="title">
-      {{ currentProject }} Project
+      {{ currentProject.displayName }} Project
       <v-dropdown>
         <template v-slot:button>
           <v-btn size="small" color="transparent" dropdown>
             <i class="icon fas fa-cog"></i>
           </v-btn>
         </template>
-        <v-dropdown-item @click="chooseProject('javascript')">JavaScript</v-dropdown-item>
-        <v-dropdown-item @click="chooseProject('vue-web')">Vue Web</v-dropdown-item>
-        <v-dropdown-item @click="chooseProject('vue')">Vue</v-dropdown-item>
+        <v-dropdown-item
+          v-for="project in $store.state.project.projectFilesLink"
+          :key="project.projectName"
+          @click="chooseProject(project.projectName)"
+        >
+          {{ project.displayName }}
+        </v-dropdown-item>
       </v-dropdown>
     </p>
     <v-divider></v-divider>
@@ -31,6 +35,7 @@
 <script lang="ts">
 import Vue from 'vue';
 import FileModel from '../store/models/FileModel';
+import { ProjectFileLink } from '../store/modules/types';
 
 export default Vue.extend({
   data() {
@@ -54,10 +59,14 @@ export default Vue.extend({
 
   computed: {
     files(): Array<FileModel> {
-      return this.$store.getters.projectFiles(this.currentProject);
+      return this.$store.getters.projectFiles(this.currentProject.projectName);
     },
-    currentProject(): string {
-      return this.$store.state.project.currentProject;
+    currentProject(): ProjectFileLink {
+      return this.$store.state.project.projectFilesLink
+        .filter(
+          (projectFileLink: ProjectFileLink) => projectFileLink.projectName
+            === this.$store.state.project.currentProject,
+        )[0];
     },
     selectedFile(): string {
       return this.$store.state.files.selectedFile;
