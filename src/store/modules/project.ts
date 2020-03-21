@@ -3,7 +3,21 @@ import { ProjectState } from './types';
 import { RootState } from '../types';
 
 const state: ProjectState = {
-  currentProject: 'web',
+  currentProject: 'vue-web',
+  projectFilesLink: [
+    {
+      projectName: 'vue',
+      fileTypes: ['text/x-vue'],
+    },
+    {
+      projectName: 'vue-web',
+      fileTypes: ['text/html', 'css', 'javascript'],
+    },
+    {
+      projectName: 'javascript',
+      fileTypes: ['text/html', 'css', 'javascript'],
+    },
+  ],
 };
 
 const getters = {};
@@ -11,8 +25,6 @@ const getters = {};
 const actions = {
   setProject(context: ActionContext<ProjectState, RootState>, project: string) {
     context.commit('setProject', project);
-    const selectedFile = project === 'web' ? 'index.html' : 'App.vue';
-    context.commit('updateSelectedFile', selectedFile);
   },
 };
 

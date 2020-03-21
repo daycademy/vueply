@@ -9,6 +9,7 @@ const state: FileState = {
     {
       name: 'index.html',
       type: 'text/html',
+      project: 'vue-web',
       code: `<div>
   <h1>{{ count }}</h1>
   <button @click="increment">Click</button>
@@ -17,6 +18,7 @@ const state: FileState = {
     {
       name: 'index.css',
       type: 'css',
+      project: 'vue-web',
       code: `@import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
 
 h1 {
@@ -35,6 +37,7 @@ button {
     {
       name: 'app.js',
       type: 'javascript',
+      project: 'vue-web',
       code: `export default {
   name: "HelloWorld",
   data() {
@@ -52,6 +55,7 @@ button {
     {
       name: 'App.vue',
       type: 'text/x-vue',
+      project: 'vue',
       code: `<template>
 <div class="begin">
   <h1>{{ title }}</h1>
@@ -93,10 +97,33 @@ button {
 }
 </style>`,
     },
+    {
+      name: 'index.html',
+      type: 'text/html',
+      project: 'javascript',
+      code: '<div>test</div>',
+    },
+    {
+      name: 'index.css',
+      type: 'css',
+      project: 'javascript',
+      code: `h1 {
+  color: red;
+}`,
+    },
+    {
+      name: 'index.js',
+      type: 'javascript',
+      project: 'javascript',
+      code: 'console.log(123);',
+    },
   ),
 };
 
-const getters = {};
+const getters = {
+  projectFiles: (fileState: FileState) => (project: string): Array<FileModel> => fileState.files
+    .filter((file: FileModel) => file.project === project),
+};
 
 const actions = {
   addFile(context: ActionContext<FileState, RootState>, fileModel: FileModel) {

@@ -45,6 +45,8 @@ export default {
   methods: {
     chooseProject(project) {
       this.$store.dispatch('setProject', project);
+      const projectFiles = this.$store.getters.projectFiles(project);
+      this.$store.dispatch('updateSelectedFile', projectFiles[0].name);
     },
     chooseFile(filename) {
       this.$store.dispatch('updateSelectedFile', filename);
@@ -60,10 +62,10 @@ export default {
       return this.$store.state.project.currentProject;
     },
     currentFile() {
-      const { files } = this.$store.state;
-      for (let i = 0; i < files.files.length; i += 1) {
-        if (files.files[i].name === files.selectedFile) {
-          return files.files[i];
+      const projectFiles = this.$store.getters.projectFiles(this.currentProject);
+      for (let i = 0; i < projectFiles.length; i += 1) {
+        if (projectFiles[i].name === this.$store.state.files.selectedFile) {
+          return projectFiles[i];
         }
       }
       return null;

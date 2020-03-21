@@ -8,7 +8,8 @@
             <i class="icon fas fa-cog"></i>
           </v-btn>
         </template>
-        <v-dropdown-item @click="chooseProject('web')">Web</v-dropdown-item>
+        <v-dropdown-item @click="chooseProject('javascript')">JavaScript</v-dropdown-item>
+        <v-dropdown-item @click="chooseProject('vue-web')">Vue Web</v-dropdown-item>
         <v-dropdown-item @click="chooseProject('vue')">Vue</v-dropdown-item>
       </v-dropdown>
     </p>
@@ -34,10 +35,6 @@ import FileModel from '../store/models/FileModel';
 export default Vue.extend({
   data() {
     return {
-      projectFiles: {
-        vue: ['text/x-vue'],
-        web: ['text/html', 'css', 'javascript'],
-      },
       icons: {
         'text/html': {
           icon: 'fa-html5',
@@ -56,19 +53,12 @@ export default Vue.extend({
   },
 
   computed: {
-    files(): FileModel[] {
-      const project = this.$store.state.project.currentProject;
-
-      const projectFiles = project === 'web'
-        ? this.projectFiles.web
-        : this.projectFiles.vue;
-
-      let { files } = this.$store.state;
-      files = files.files.filter((file: FileModel) => projectFiles.includes(file.type as string));
-      return files;
+    files(): Array<FileModel> {
+      const { project } = this.$store.state;
+      return this.$store.getters.projectFiles(project.currentProject);
     },
     selectedFile(): string {
-      return this.$store.state.selectedFile;
+      return this.$store.state.files.selectedFile;
     },
   },
 
