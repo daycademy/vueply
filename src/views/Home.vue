@@ -20,7 +20,7 @@
 <script>
 import CodePane from '@/components/CodePane.vue';
 import Preview from '@/components/Preview.vue';
-import FileExplorer from '@/components/FileExplorer.vue';
+import FileExplorer from '@/modules/FileExplorer/FileExplorer.vue';
 
 export default {
   name: 'Home',
