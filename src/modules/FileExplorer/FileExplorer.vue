@@ -34,7 +34,7 @@
 <script lang="ts">
 import Vue from 'vue';
 import { Component } from 'vue-property-decorator';
-import { ProjectFileLink } from '@/store/modules/types';
+import ProjectFileLink from '@/store/models/ProjectFileLink';
 import FileModel from '@/store/models/FileModel';
 import SettingsDropdown from './Components/SettingsDropdown.vue';
 import AddFileButton from './Components/AddFileButton.vue';

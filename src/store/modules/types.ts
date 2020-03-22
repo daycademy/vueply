@@ -1,14 +1,9 @@
 import FileModel from '../models/FileModel';
+import ProjectFileLink from '../models/ProjectFileLink';
 
 export interface FileState {
   files: Array<FileModel>;
   selectedFile: string;
-}
-
-export interface ProjectFileLink {
-  displayName: string;
-  projectName: string;
-  fileTypes: Array<string>;
 }
 
 export interface ProjectState {
