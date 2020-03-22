@@ -13,7 +13,7 @@ import { Component, Prop } from 'vue-property-decorator';
 import FileModel from '../store/models/FileModel';
 
 @Component({})
-export default class Preview extends Vue {
+export default class ThePreview extends Vue {
   @Prop({ default: null })
   private currentProject!: string;
 

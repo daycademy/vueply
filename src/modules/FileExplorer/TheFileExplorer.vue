@@ -4,7 +4,7 @@
       {{ currentProject.displayName }} Project
       <SettingsDropdown
         :projects="$store.state.project.projectFilesLink"
-        @chooseProject="chooseProject"
+        @choose-project="chooseProject"
       />
     </p>
     <v-divider />
@@ -14,9 +14,9 @@
         <AddFileButton />
       </div>
       <Files
-        :selectedFile="selectedFile"
+        :selected-file="selectedFile"
         :files="files"
-        @chooseFile="chooseFile"
+        @choose-file="chooseFile"
       />
     </div>
 
@@ -47,7 +47,7 @@ import Files from './Components/Files.vue';
     Files,
   },
 })
-export default class FileExplorer extends Vue {
+export default class TheFileExplorer extends Vue {
   private chooseFile(filename: string) {
     this.$store.dispatch('updateSelectedFile', filename);
   }

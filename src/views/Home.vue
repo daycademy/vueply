@@ -2,16 +2,13 @@
   <section id="home">
     <v-row class="u-no-padding">
       <v-col c="2" class="u-no-padding">
-        <FileExplorer />
+        <TheFileExplorer />
       </v-col>
       <v-col c="6" class="left u-no-padding">
         <CodePane :mode="currentFile.type" @input="updateCode" :value="currentFile.code"></CodePane>
       </v-col>
       <v-col c="4" class="right u-no-padding">
-        <!--
-        <Preview :templateCode="code.template" :jsCode="code.js" :cssCode="code.css" />
-        -->
-        <Preview :currentProject="currentProject" />
+        <ThePreview :current-project="currentProject" />
       </v-col>
     </v-row>
   </section>
@@ -19,16 +16,16 @@
 
 <script>
 import CodePane from '@/components/CodePane.vue';
-import Preview from '@/components/Preview.vue';
-import FileExplorer from '@/modules/FileExplorer/FileExplorer.vue';
+import ThePreview from '@/components/ThePreview.vue';
+import TheFileExplorer from '@/modules/FileExplorer/TheFileExplorer.vue';
 
 export default {
   name: 'Home',
 
   components: {
     CodePane,
-    Preview,
-    FileExplorer,
+    ThePreview,
+    TheFileExplorer,
   },
 
   mounted() {

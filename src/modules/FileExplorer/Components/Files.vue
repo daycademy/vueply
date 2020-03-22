@@ -47,7 +47,7 @@ export default class Files extends Vue {
     event.preventDefault();
     const srcElement = event.srcElement as Element;
     if (srcElement) {
-      this.$emit('chooseFile', filename);
+      this.$emit('choose-file', filename);
     }
   }
 }

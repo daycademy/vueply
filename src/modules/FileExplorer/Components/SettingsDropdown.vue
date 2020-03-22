@@ -26,7 +26,7 @@ export default class SettingsDropdown extends Vue {
   private projects!: Array<ProjectFileLink>;
 
   private chooseProject(project: string): void {
-    this.$emit('chooseProject', project);
+    this.$emit('choose-project', project);
   }
 }
 </script>
