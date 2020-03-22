@@ -18,7 +18,12 @@
       </v-dropdown>
     </p>
     <v-divider></v-divider>
-    <p class="description">FILES</p>
+    <div class="files-title">
+      <p class="description">FILES</p>
+      <v-btn size="small" color="transparent">
+        <i class="icon fas fa-plus"></i>
+      </v-btn>
+    </div>
     <div id="files">
       <p
         v-for="file in files"
@@ -172,6 +177,19 @@ export default Vue.extend({
 
     &.description {
       color: #9497B0;
+      font-size: 14px;
+    }
+  }
+
+  .files-title {
+    display: flex;
+    align-items: center;
+
+    button {
+      margin-bottom: 0;
+      margin-left: auto;
+      margin-right: 7px;
+      color: #6A6F8D;
       font-size: 14px;
     }
   }
