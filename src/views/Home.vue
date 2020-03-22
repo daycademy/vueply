@@ -49,9 +49,9 @@ export default {
       return this.$store.state.project.currentProject;
     },
     currentFile() {
-      const projectFiles = this.$store.getters.projectFiles(this.currentProject);
+      const projectFiles = this.$store.getters['fileExplorer/projectFiles'](this.currentProject);
       for (let i = 0; i < projectFiles.length; i += 1) {
-        if (projectFiles[i].name === this.$store.state.files.selectedFile) {
+        if (projectFiles[i].name === this.$store.state.fileExplorer.state.selectedFile) {
           return projectFiles[i];
         }
       }

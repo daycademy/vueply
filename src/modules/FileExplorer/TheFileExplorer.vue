@@ -14,7 +14,7 @@
         <AddFileButton />
       </div>
       <Files
-        :selected-file="selectedFile"
+        :selected-file="$store.state.fileExplorer.state.selectedFile"
         :files="files"
         @choose-file="chooseFile"
       />
@@ -49,13 +49,13 @@ import Files from './Components/Files.vue';
 })
 export default class TheFileExplorer extends Vue {
   private chooseFile(filename: string) {
-    this.$store.dispatch('updateSelectedFile', filename);
+    this.$store.dispatch('fileExplorer/updateSelectedFile', filename);
   }
 
   private chooseProject(project: string) {
     this.$store.dispatch('setProject', project);
-    const projectFiles = this.$store.getters.projectFiles(project);
-    this.$store.dispatch('updateSelectedFile', projectFiles[0].name);
+    const projectFiles = this.$store.getters['fileExplorer/projectFiles'](project);
+    this.$store.dispatch('fileExplorer/updateSelectedFile', projectFiles[0].name);
   }
 
   private get currentProject(): ProjectFileLink {
@@ -66,12 +66,8 @@ export default class TheFileExplorer extends Vue {
       )[0];
   }
 
-  private get selectedFile(): string {
-    return this.$store.state.files.selectedFile;
-  }
-
   private get files(): Array<FileModel> {
-    return this.$store.getters.projectFiles(this.currentProject.projectName);
+    return this.$store.getters['fileExplorer/projectFiles'](this.currentProject.projectName);
   }
 
   // eslint-disable-next-line

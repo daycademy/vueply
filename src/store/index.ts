@@ -1,14 +1,14 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
+import fileExplorer from '@/modules/FileExplorer/Store';
 import { RootState } from './types';
-import files from './modules/files';
 import project from './modules/project';
 
 Vue.use(Vuex);
 
 export default new Vuex.Store<RootState>({
   modules: {
-    files,
+    fileExplorer,
     project,
   },
 });

@@ -1,7 +1,5 @@
-import { ActionContext } from 'vuex';
-import FileModel from '../models/FileModel';
-import { FileState } from './types';
-import { RootState } from '../types';
+import { FileState } from '@/store/modules/types';
+import FileModel from '@/store/models/FileModel';
 
 const state: FileState = {
   selectedFile: 'index.html',
@@ -120,32 +118,6 @@ button {
   ),
 };
 
-const getters = {
-  projectFiles: (fileState: FileState) => (project: string): Array<FileModel> => fileState.files
-    .filter((file: FileModel) => file.project === project),
-};
-
-const actions = {
-  addFile(context: ActionContext<FileState, RootState>, fileModel: FileModel) {
-    context.commit('addFile', fileModel);
-  },
-  updateSelectedFile(context: ActionContext<FileState, RootState>, name: string) {
-    context.commit('updateSelectedFile', name);
-  },
-};
-
-const mutations = {
-  addFile(fileState: FileState, fileModel: FileModel) {
-    fileState.files.push(fileModel);
-  },
-  updateSelectedFile(fileState: FileState, name: string) {
-    fileState.selectedFile = name;
-  },
-};
-
 export default {
   state,
-  getters,
-  actions,
-  mutations,
 };

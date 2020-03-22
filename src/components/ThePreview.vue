@@ -30,7 +30,7 @@ export default class ThePreview extends Vue {
   showPreview() {
     const lib = 'https://cdn.jsdelivr.net/npm/vue@2.6.11';
     const bindVueLibrary = this.currentProject.includes('vue');
-    const projectFiles = this.$store.getters.projectFiles(this.currentProject);
+    const projectFiles = this.$store.getters['fileExplorer/projectFiles'](this.currentProject);
 
     let templateCode = '';
     let jsCode = '';
