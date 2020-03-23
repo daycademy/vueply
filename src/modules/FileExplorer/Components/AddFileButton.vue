@@ -1,5 +1,5 @@
 <template>
-  <v-btn size="small" color="transparent">
+  <v-btn size="small" color="transparent" @click="$emit('click')">
     <i class="icon fas fa-plus"></i>
   </v-btn>
 </template>

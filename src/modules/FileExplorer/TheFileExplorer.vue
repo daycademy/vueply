@@ -11,13 +11,20 @@
     <div id="files">
       <div class="title">
         <p>FILES</p>
-        <AddFileButton />
+        <AddFileButton @click="openNewFileInputField" />
       </div>
       <Files
         :selected-file="$store.state.fileExplorer.state.selectedFile"
         :files="files"
         @choose-file="chooseFile"
       />
+      <input
+        v-if="showNewFileInput"
+        ref="newFileInput"
+        type="text"
+        class="form-group-input"
+        @keyup="addFile"
+      >
     </div>
 
     <div id="how-to-use">
@@ -48,6 +55,22 @@ import Files from './Components/Files.vue';
   },
 })
 export default class TheFileExplorer extends Vue {
+  private showNewFileInput = false;
+
+  private openNewFileInputField() {
+    this.showNewFileInput = true;
+    // FIXME: sloppy solution, just for fun
+    setTimeout(() => {
+      (this.$refs.newFileInput as HTMLElement).focus();
+    });
+  }
+
+  private addFile(event: KeyboardEvent) {
+    if (event.keyCode === 13) {
+      this.showNewFileInput = false;
+    }
+  }
+
   private chooseFile(filename: string) {
     this.$store.dispatch('fileExplorer/updateSelectedFile', filename);
   }
@@ -109,6 +132,12 @@ export default class TheFileExplorer extends Vue {
   }
 
   #files {
+    input {
+      background-color: #282A36;
+      color: #9497B0;
+      border: 1px solid #282A36;
+    }
+
     .title {
       display: flex;
       align-items: center;
