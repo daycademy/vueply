@@ -23,6 +23,7 @@
         ref="newFileInput"
         type="text"
         class="form-group-input"
+        v-model="newFilename"
         @keyup="addFile"
       >
     </div>
@@ -57,6 +58,8 @@ import Files from './Components/Files.vue';
 export default class TheFileExplorer extends Vue {
   private showNewFileInput = false;
 
+  private newFilename = '';
+
   private openNewFileInputField() {
     this.showNewFileInput = true;
     // FIXME: sloppy solution, just for fun
@@ -68,6 +71,12 @@ export default class TheFileExplorer extends Vue {
   private addFile(event: KeyboardEvent) {
     if (event.keyCode === 13) {
       this.showNewFileInput = false;
+      this.$store.dispatch('fileExplorer/addFile', {
+        name: this.newFilename,
+        type: 'javascript',
+        project: this.currentProject.projectName,
+        code: '/* Insert your code here ... */',
+      } as FileModel);
     }
   }
 
