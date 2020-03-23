@@ -77,6 +77,10 @@ export default class TheFileExplorer extends Vue {
         project: this.currentProject.projectName,
         code: '/* Insert your code here ... */',
       } as FileModel);
+      this.newFilename = '';
+    } else if (event.keyCode === 27) {
+      this.showNewFileInput = false;
+      this.newFilename = '';
     }
   }
 
