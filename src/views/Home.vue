@@ -8,7 +8,7 @@
         <CodePane :mode="currentFile.type" @input="updateCode" :value="currentFile.code"></CodePane>
       </v-col>
       <v-col c="4" class="right u-no-padding">
-        <ThePreview :current-project="currentProject" />
+        <ThePreview />
       </v-col>
     </v-row>
   </section>
