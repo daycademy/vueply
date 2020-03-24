@@ -21,6 +21,13 @@ export default class ThePreview extends Vue {
 
   mounted() {
     this.showPreview();
+
+    const frame = window.frames[0];
+    const originalLog = frame.console.log;
+    frame.console.log = (message, ...args: [string]) => {
+      frame.document.getElementsByTagName('body')[0].innerHTML += `<p>${message}</p>`;
+      originalLog.apply(message, args);
+    };
   }
 
   private get currentProject(): string {
