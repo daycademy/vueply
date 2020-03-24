@@ -113,7 +113,17 @@ button {
       name: 'index.js',
       type: 'javascript',
       project: 'javascript',
-      code: 'console.log(123);',
+      code: `import 'my-import-file.js';
+
+console.log(123);`,
+    },
+    {
+      name: 'my-import-file.js',
+      type: 'javascript',
+      project: 'javascript',
+      code: `const test = () => {
+  console.log('In the awesome test function');
+};`,
     },
   ),
 };
