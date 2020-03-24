@@ -5,7 +5,13 @@
         <TheFileExplorer />
       </v-col>
       <v-col c="6" class="left u-no-padding">
-        <CodePane :mode="currentFile.type" @input="updateCode" :value="currentFile.code"></CodePane>
+        <CodePane
+          :currentProject="currentProject"
+          :currentFile="currentFile"
+          :mode="currentFile.type"
+          @input="updateCode"
+          :value="currentFile.code"
+        ></CodePane>
       </v-col>
       <v-col c="4" class="right u-no-padding">
         <ThePreview />

@@ -6,6 +6,8 @@
 import Vue from 'vue';
 import { Component, Prop, Watch } from 'vue-property-decorator';
 import CodeMirror from 'codemirror';
+import ThePreview from './ThePreview.vue';
+import FileModel from '../store/models/FileModel';
 
 @Component({})
 export default class CodePane extends Vue {
@@ -14,6 +16,12 @@ export default class CodePane extends Vue {
 
   @Prop({ default: 'text/html' })
   private mode!: string;
+
+  @Prop()
+  private currentProject!: string;
+
+  @Prop()
+  private currentFile!: FileModel;
 
   private editor!: CodeMirror.Editor;
 
@@ -24,10 +32,12 @@ export default class CodePane extends Vue {
     this.editor.refresh();
   }
 
-  @Watch('value')
-  onValueChanged(value: string) {
-    this.editor.setOption('value', value);
+  @Watch('currentProject')
+  onCurrentProjectChanged() {
+    this.editor.setOption('value', this.currentFile.code);
     this.editor.refresh();
+
+    (this.$root.$refs.Preview as ThePreview).showPreview();
   }
 
   mounted() {
