@@ -1,5 +1,5 @@
 <a href="https://daycademy.github.io/vueply/">
-    <img src="https://i.imgur.com/wJcctG6.png" alt="Vueply Logo" align="right" height="100" />
+    <img src="https://i.imgur.com/UepKpgd.png" alt="Vueply Logo" align="right" height="100" />
 </a>
 
 Vueply
