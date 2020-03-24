@@ -6,4 +6,3 @@ declare module '*.vue' {
 
 // FIXME: Exclude types in extra files
 declare module 'vue-cirrus';
-declare module 'codemirror';

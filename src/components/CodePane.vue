@@ -15,7 +15,7 @@ export default class CodePane extends Vue {
   @Prop({ default: 'text/html' })
   private mode!: string;
 
-  private editor!: any;
+  private editor!: CodeMirror.Editor;
 
   @Watch('mode')
   onModeChanged(value: string) {
@@ -31,7 +31,7 @@ export default class CodePane extends Vue {
   }
 
   mounted() {
-    const editor = CodeMirror(this.$el, {
+    const editor = CodeMirror(this.$el as HTMLElement, {
       value: this.value,
       mode: this.mode,
       lineNumbers: true,
