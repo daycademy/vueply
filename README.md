@@ -1,5 +1,3 @@
-<p align="center"><img src="" width="200"></p>
-
 <a href="https://daycademy.github.io/vueply/">
     <img src="https://i.imgur.com/wJcctG6.png" alt="Vueply Logo" align="right" height="100" />
 </a>
