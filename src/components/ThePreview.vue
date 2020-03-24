@@ -40,8 +40,37 @@ export default class ThePreview extends Vue {
     if (this.currentProject !== 'vue') {
       const htmlCode = projectFiles.filter((projectFile: FileModel) => projectFile.type === 'text/html')[0].code;
       const cssCode = projectFiles.filter((projectFile: FileModel) => projectFile.type === 'css')[0].code;
-      const javascriptCode = projectFiles.filter((projectFile: FileModel) => projectFile.type === 'javascript')[0].code;
-      translater.translateIntoJavaScript(window.frames[0], htmlCode, javascriptCode, cssCode);
+      // Get all javascript files
+      const javascriptFiles: Array<FileModel> = projectFiles.filter((projectFile: FileModel) => projectFile.type === 'javascript');
+
+      // If multiple javascript files are in one project
+      if (javascriptFiles.length !== 1) {
+        // Get the `index.js` file from the web project
+        let mainJavascriptFile: string = javascriptFiles.filter((file: FileModel) => file.name === 'index.js')[0].code;
+        // Get all other file names by regexing
+        const otherFileNamesRegex = mainJavascriptFile.match(/import\s*['"].*['"]/gm);
+        if (otherFileNamesRegex) {
+          // Loop through found import statements
+          otherFileNamesRegex.forEach((otherFileNameRegex) => {
+            // Replace single and double quotes with nothing and select the filename
+            const otherFileName = otherFileNameRegex.replace(/["']/g, '').split(' ')[1];
+            // Filter the project files and get the file by the import statement filename
+            const file: FileModel = projectFiles
+              .filter((projectFile: FileModel) => projectFile.name === otherFileName)[0];
+            // Replace import statement in main javascript file with file code
+            const importRegex = new RegExp(`import ['"]${file.name}['"]`, 'gm');
+            mainJavascriptFile = mainJavascriptFile.replace(importRegex, file.code);
+          });
+          translater.translateIntoJavaScript(
+            window.frames[0], htmlCode, mainJavascriptFile, cssCode,
+          );
+        }
+      } else {
+        // Translate just the first found javascript file
+        translater.translateIntoJavaScript(
+          window.frames[0], htmlCode, javascriptFiles[0].code, cssCode,
+        );
+      }
     } else {
       translater.translateIntoVue(window.frames[0], projectFiles[0].code);
     }

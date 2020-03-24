@@ -115,7 +115,8 @@ button {
       project: 'javascript',
       code: `import 'my-import-file.js';
 
-console.log(123);`,
+console.log(123);
+test();`,
     },
     {
       name: 'my-import-file.js',
