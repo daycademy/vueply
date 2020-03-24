@@ -24,6 +24,12 @@ export default class CodePane extends Vue {
     this.editor.refresh();
   }
 
+  @Watch('value')
+  onValueChanged(value: string) {
+    this.editor.setOption('value', value);
+    this.editor.refresh();
+  }
+
   mounted() {
     const editor = CodeMirror(this.$el, {
       value: this.value,
