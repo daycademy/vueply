@@ -32,6 +32,14 @@ export default class CodePane extends Vue {
     this.editor.refresh();
   }
 
+  @Watch('currentFile')
+  onCurrentFileChange(newFile: FileModel, oldFile: FileModel) {
+    if (newFile.name !== oldFile.name) {
+      this.editor.setOption('value', newFile.code);
+      this.editor.refresh();
+    }
+  }
+
   @Watch('currentProject')
   onCurrentProjectChanged() {
     this.editor.setOption('value', this.currentFile.code);
