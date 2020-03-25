@@ -7,7 +7,7 @@
       :class="`file${selectedFile === file.name ? ' selected' : ''}`"
     >
       <i :class="`icon fab ${icons[file.type].icon}`"></i> {{ file.name }}
-      <i class="delete-icon fas fa-trash" @click="deleteFile(file.name)"></i>
+      <i class="delete-icon fas fa-trash" @click="deleteFile($event, file.name)"></i>
     </p>
   </div>
 </template>
@@ -44,7 +44,8 @@ export default class Files extends Vue {
   @Prop()
   private selectedFile!: string;
 
-  private deleteFile(filename: string) {
+  private deleteFile(event: MouseEvent, filename: string) {
+    event.stopPropagation();
     this.$emit('delete-file', filename);
   }
 
