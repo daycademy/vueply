@@ -38,8 +38,10 @@ export default class ThePreview extends Vue {
     const projectFiles = this.$store.getters['fileExplorer/projectFiles'](this.currentProject);
 
     if (this.currentProject !== 'vue') {
-      const htmlCode = projectFiles.filter((projectFile: FileModel) => projectFile.type === 'text/html')[0].code;
-      const cssCode = projectFiles.filter((projectFile: FileModel) => projectFile.type === 'css')[0].code;
+      const allHtmlFiles: Array<FileModel> = projectFiles.filter((projectFile: FileModel) => projectFile.type === 'text/html');
+      const allCssFiles: Array<FileModel> = projectFiles.filter((projectFile: FileModel) => projectFile.type === 'css');
+      const htmlCode: string = allHtmlFiles.length !== 0 ? allHtmlFiles[0].code : '';
+      const cssCode: string = allCssFiles.length !== 0 ? allCssFiles[0].code : '';
       // Get all javascript files
       const javascriptFiles: Array<FileModel> = projectFiles.filter((projectFile: FileModel) => projectFile.type === 'javascript');
 
