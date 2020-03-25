@@ -7,6 +7,7 @@
       :class="`file${selectedFile === file.name ? ' selected' : ''}`"
     >
       <i :class="`icon fab ${icons[file.type].icon}`"></i> {{ file.name }}
+      <i class="delete-icon fas fa-trash" @click="deleteFile(file.name)"></i>
     </p>
   </div>
 </template>
@@ -43,6 +44,10 @@ export default class Files extends Vue {
   @Prop()
   private selectedFile!: string;
 
+  private deleteFile(filename: string) {
+    this.$emit('delete-file', filename);
+  }
+
   private chooseFile(event: MouseEvent, filename: string) {
     event.preventDefault();
     const srcElement = event.srcElement as Element;
@@ -75,17 +80,33 @@ export default class Files extends Vue {
     margin-bottom: 0;
     padding-bottom: 0.2em;
     padding-top: 0.2em;
-    padding-left: 1rem;
+    padding-left: 1em;
     cursor: pointer;
     color: #9497B0;
 
+    .delete-icon {
+      visibility: hidden;
+      float: right;
+      margin: 0.5em;
+      margin-right: 1em;
+      color: #9497B0;
+    }
+
     &:hover {
       background-color: #3E4153;
+
+      .delete-icon {
+        visibility: visible;
+      }
     }
 
     &.selected {
       color: #fff;
       background-color: #282A36;
+
+      .delete-icon {
+        visibility: visible;
+      }
     }
   }
 }
