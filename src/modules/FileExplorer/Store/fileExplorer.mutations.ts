@@ -10,7 +10,15 @@ const updateSelectedFile = ({ state }: State<FileState>, name: string) => {
   state.selectedFile = name;
 };
 
+const deleteFile = (state: State<FileState>, name: string) => {
+  state.state.files = state.state.files.filter((file) => file.name !== name);
+  if (state.state.files.length !== 0) {
+    updateSelectedFile(state, state.state.files[0].name);
+  }
+};
+
 export default {
   addFile,
   updateSelectedFile,
+  deleteFile,
 };

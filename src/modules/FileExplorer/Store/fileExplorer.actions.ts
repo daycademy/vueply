@@ -11,7 +11,12 @@ const updateSelectedFile = (context: ActionContext<FileState, RootState>, name: 
   context.commit('updateSelectedFile', name);
 };
 
+const deleteFile = (context: ActionContext<FileState, RootState>, name: string) => {
+  context.commit('deleteFile', name);
+};
+
 export default {
   addFile,
   updateSelectedFile,
+  deleteFile,
 };

@@ -17,6 +17,7 @@
         :selected-file="$store.state.fileExplorer.state.selectedFile"
         :files="files"
         @choose-file="chooseFile"
+        @delete-file="deleteFile"
       />
       <input
         v-if="showNewFileInput"
@@ -82,6 +83,10 @@ export default class TheFileExplorer extends Vue {
       this.showNewFileInput = false;
       this.newFilename = '';
     }
+  }
+
+  private deleteFile(filename: string) {
+    this.$store.dispatch('fileExplorer/deleteFile', filename);
   }
 
   private chooseFile(filename: string) {
