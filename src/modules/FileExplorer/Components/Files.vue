@@ -88,7 +88,7 @@ export default class Files extends Vue {
       visibility: hidden;
       float: right;
       margin: 0.5em;
-      margin-right: 1em;
+      margin-right: 1.25em;
       color: #9497B0;
     }
 
