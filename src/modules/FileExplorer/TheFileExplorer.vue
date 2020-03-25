@@ -30,12 +30,11 @@
     </div>
 
     <div id="how-to-use" v-if="isOSXDevice">
-      <p><span>Cmd</span> + <span>S</span> in a File to Run</p>
-      <p><span>Cmd</span> + <span>.</span> to create a new file</p>
-    </div>
-    <div id="how-to-use" v-else>
-      <p><span>Strg</span> + <span>S</span> in a File to Run</p>
-      <p><span>Strg</span> + <span>.</span> to create a new file</p>
+      <p v-for="hotkey in hotkeysWithCmd" :key="hotkey.combination">
+        <span v-if="isOSXDevice">Cmd</span>
+        <span v-else>Strg</span>
+        + <span>{{ hotkey.combination }}</span> {{ hotkey.description }}
+      </p>
     </div>
   </section>
 </template>
@@ -60,6 +59,17 @@ export default class TheFileExplorer extends Vue {
   private showNewFileInput = false;
 
   private newFilename = '';
+
+  private hotkeysWithCmd = [
+    {
+      combination: 'S',
+      description: 'in a File to run',
+    },
+    {
+      combination: '.',
+      description: 'to create a new File',
+    },
+  ];
 
   @Prop()
   private didPressNewFile!: boolean;
