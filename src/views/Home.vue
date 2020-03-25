@@ -2,7 +2,9 @@
   <section id="home">
     <v-row class="u-no-padding">
       <v-col c="2" class="u-no-padding">
-        <TheFileExplorer />
+        <TheFileExplorer
+          :didPressNewFile="didPressNewFile"
+        />
       </v-col>
       <v-col c="6" class="left u-no-padding">
         <CodePane
@@ -34,11 +36,20 @@ export default {
     TheFileExplorer,
   },
 
+  data() {
+    return {
+      didPressNewFile: false,
+    };
+  },
+
   mounted() {
     document.addEventListener('keydown', (e) => {
       if ((window.navigator.platform.match('Mac') ? e.metaKey : e.ctrlKey) && e.keyCode === 83) {
         e.preventDefault();
         this.$root.$refs.Preview.showPreview();
+      } else if ((window.navigator.platform.match('Mac') ? e.metaKey : e.ctrlKey) && e.keyCode === 190) {
+        e.preventDefault();
+        this.didPressNewFile = !this.didPressNewFile;
       }
     }, false);
   },

@@ -29,20 +29,20 @@
       >
     </div>
 
-    <div id="how-to-use">
-      <p v-if="isOSXDevice">
-        <span>Cmd</span> + <span>S</span> in a File to Run
-      </p>
-      <p v-else>
-        <span>Strg</span> + <span>S</span> in a File to Run
-      </p>
+    <div id="how-to-use" v-if="isOSXDevice">
+      <p><span>Cmd</span> + <span>S</span> in a File to Run</p>
+      <p><span>Cmd</span> + <span>.</span> to create a new file</p>
+    </div>
+    <div id="how-to-use" v-else>
+      <p><span>Strg</span> + <span>S</span> in a File to Run</p>
+      <p><span>Strg</span> + <span>.</span> to create a new file</p>
     </div>
   </section>
 </template>
 
 <script lang="ts">
 import Vue from 'vue';
-import { Component } from 'vue-property-decorator';
+import { Component, Watch, Prop } from 'vue-property-decorator';
 import ProjectFileLink from '@/store/models/ProjectFileLink';
 import FileModel from '@/store/models/FileModel';
 import SettingsDropdown from './Components/SettingsDropdown.vue';
@@ -60,6 +60,14 @@ export default class TheFileExplorer extends Vue {
   private showNewFileInput = false;
 
   private newFilename = '';
+
+  @Prop()
+  private didPressNewFile!: boolean;
+
+  @Watch('didPressNewFile')
+  handleDidPressNewFile() {
+    this.openNewFileInputField();
+  }
 
   private openNewFileInputField() {
     this.showNewFileInput = true;
@@ -140,6 +148,10 @@ export default class TheFileExplorer extends Vue {
       color: #9598AF;
       margin: 0;
       padding: 0;
+
+      &:first-child {
+        margin-bottom: 1em;
+      }
 
       span {
         background-color: #282A36;
