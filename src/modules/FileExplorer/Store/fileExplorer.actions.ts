@@ -5,6 +5,7 @@ import FileModel from '@/store/models/FileModel';
 
 const addFile = (context: ActionContext<FileState, RootState>, fileModel: FileModel) => {
   context.commit('addFile', fileModel);
+  context.commit('updateSelectedFile', fileModel.name);
 };
 
 const updateSelectedFile = (context: ActionContext<FileState, RootState>, name: string) => {
