@@ -48,6 +48,7 @@ import SettingsDropdown from './Components/SettingsDropdown.vue';
 import AddFileButton from './Components/AddFileButton.vue';
 import Files from './Components/Files.vue';
 import FileType from '../../store/models/FileType';
+import CodePane from '../../components/CodePane.vue';
 
 @Component({
   components: {
@@ -102,6 +103,7 @@ export default class TheFileExplorer extends Vue {
             project: this.currentProject.projectName,
             code: fileTypeShortcut.defaultCode,
           } as FileModel);
+          (this.$root.$refs.CodePane as CodePane).editor.focus();
         }
       }
       this.newFilename = '';

@@ -23,7 +23,7 @@ export default class CodePane extends Vue {
   @Prop()
   private currentFile!: FileModel;
 
-  private editor!: CodeMirror.Editor;
+  editor!: CodeMirror.Editor;
 
   @Watch('mode')
   onModeChanged(value: string) {
@@ -68,6 +68,7 @@ export default class CodePane extends Vue {
     editor.on('change', (changeObject: any) => this.$emit('input', changeObject.getValue()));
 
     this.editor = editor;
+    this.$root.$refs.CodePane = this;
   }
 }
 </script>
