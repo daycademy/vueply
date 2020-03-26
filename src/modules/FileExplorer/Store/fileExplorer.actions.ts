@@ -1,6 +1,6 @@
 import { ActionContext } from 'vuex';
 import { FileState } from '@/store/modules/types';
-import { RootState } from '@/store/types';
+import { RootState, State } from '@/store/types';
 import FileModel from '@/store/models/FileModel';
 
 const addFile = (context: ActionContext<FileState, RootState>, fileModel: FileModel) => {
@@ -12,8 +12,11 @@ const updateSelectedFile = (context: ActionContext<FileState, RootState>, name: 
   context.commit('updateSelectedFile', name);
 };
 
-const deleteFile = (context: ActionContext<FileState, RootState>, name: string) => {
+const deleteFile = (context: ActionContext<State<FileState>, RootState>, name: string) => {
   context.commit('deleteFile', name);
+  if (context.state.state.files.length !== 0) {
+    context.commit('updateSelectedFile', context.state.state.files[0].name);
+  }
 };
 
 export default {
