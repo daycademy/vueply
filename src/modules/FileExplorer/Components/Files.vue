@@ -90,7 +90,7 @@ export default class Files extends Vue {
       float: right;
       margin: 0.5em;
       margin-right: 1.25em;
-      color: #9497B0;
+      color: rgb(94, 96, 113);
     }
 
     &:hover {
