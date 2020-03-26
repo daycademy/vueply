@@ -41,7 +41,8 @@ export default class ThePreview extends Vue {
       const allHtmlFiles: Array<FileModel> = projectFiles.filter((projectFile: FileModel) => projectFile.type === 'text/html');
       const allCssFiles: Array<FileModel> = projectFiles.filter((projectFile: FileModel) => projectFile.type === 'css');
       const htmlCode: string = allHtmlFiles.length !== 0 ? allHtmlFiles[0].code : '';
-      const cssCode: string = allCssFiles.length !== 0 ? allCssFiles[0].code : '';
+      const cssCode = allCssFiles.map((cssFile) => cssFile.code).join(' ');
+
       // Get all javascript files
       const javascriptFiles: Array<FileModel> = projectFiles.filter((projectFile: FileModel) => projectFile.type === 'javascript');
 
