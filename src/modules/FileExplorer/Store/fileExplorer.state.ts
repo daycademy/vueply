@@ -127,6 +127,23 @@ test();`,
 };`,
     },
   ),
+  fileTypes: [
+    {
+      codeMirrorName: 'javascript',
+      shortcut: 'js',
+      defaultCode: '/* Insert your code here ... */',
+    },
+    {
+      codeMirrorName: 'text/html',
+      shortcut: 'html',
+      defaultCode: '<div>Insert code here ...</div>',
+    },
+    {
+      codeMirrorName: 'css',
+      shortcut: 'css',
+      defaultCode: '/* Insert your code here ... */',
+    },
+  ],
 };
 
 export default {

@@ -47,6 +47,7 @@ import FileModel from '@/store/models/FileModel';
 import SettingsDropdown from './Components/SettingsDropdown.vue';
 import AddFileButton from './Components/AddFileButton.vue';
 import Files from './Components/Files.vue';
+import FileType from '../../store/models/FileType';
 
 @Component({
   components: {
@@ -90,12 +91,19 @@ export default class TheFileExplorer extends Vue {
   private addFile(event: KeyboardEvent) {
     if (event.keyCode === 13) {
       this.showNewFileInput = false;
-      this.$store.dispatch('fileExplorer/addFile', {
-        name: this.newFilename,
-        type: 'javascript',
-        project: this.currentProject.projectName,
-        code: '/* Insert your code here ... */',
-      } as FileModel);
+      const fileType = this.newFilename.split('.')[1];
+      if (fileType) {
+        const fileTypeShortcut = (this.$store.state.fileExplorer.state.fileTypes as Array<FileType>)
+          .filter((storeFileType) => storeFileType.shortcut === fileType)[0];
+        if (fileTypeShortcut) {
+          this.$store.dispatch('fileExplorer/addFile', {
+            name: this.newFilename,
+            type: fileTypeShortcut.codeMirrorName,
+            project: this.currentProject.projectName,
+            code: fileTypeShortcut.defaultCode,
+          } as FileModel);
+        }
+      }
       this.newFilename = '';
     } else if (event.keyCode === 27) {
       this.showNewFileInput = false;
