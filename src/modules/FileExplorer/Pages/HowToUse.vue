@@ -1,7 +1,7 @@
 <template>
   <div id="how-to-use" v-if="isOSXDevice">
-    <p v-for="hotkey in hotkeysWithCmd" :key="hotkey.combination">
-      <span v-if="isOSXDevice">Cmd</span>
+    <p v-for="hotkey in cmdCombinationHotkeys" :key="hotkey.combination">
+      <span v-if="isOSXDevice()">Cmd</span>
       <span v-else>Strg</span>
       + <span>{{ hotkey.combination }}</span> {{ hotkey.description }}
     </p>
@@ -14,7 +14,7 @@ import Component from 'vue-class-component';
 
 @Component({})
 export default class HowToUse extends Vue {
-  private hotkeysWithCmd = [
+  private cmdCombinationHotkeys = [
     {
       combination: 'S',
       description: 'in a File to run',
@@ -25,10 +25,7 @@ export default class HowToUse extends Vue {
     },
   ];
 
-  // eslint-disable-next-line
-  private get isOSXDevice(): boolean {
-    return navigator.platform.toUpperCase().indexOf('MAC') >= 0;
-  }
+  private isOSXDevice = (): boolean => navigator.platform.toUpperCase().indexOf('MAC') >= 0;
 }
 </script>
 
