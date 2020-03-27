@@ -29,13 +29,14 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import { Component, Watch, Prop } from 'vue-property-decorator';
+import { Component, Watch } from 'vue-property-decorator';
 import FileModel from '@/store/models/FileModel';
 import { Files, AddFileButton } from './Components';
 import { ProjectTitle, HowToUse } from './Pages';
 import FileType from '../../store/models/FileType';
 import CodePane from '../../components/CodePane.vue';
 import ProjectFileLink from '../../store/models/ProjectFileLink';
+import ThePreview from '../../components/ThePreview.vue';
 
 @Component({
   components: {
@@ -50,12 +51,24 @@ export default class TheFileExplorer extends Vue {
 
   private newFilename = '';
 
-  @Prop()
-  private didPressNewFile!: boolean;
+  private didPressNewFile = false;
 
   @Watch('didPressNewFile')
   handleDidPressNewFile() {
     this.openNewFileInputField();
+  }
+
+  mounted() {
+    document.addEventListener('keydown', (e) => {
+      if ((window.navigator.platform.match('Mac') ? e.metaKey : e.ctrlKey) && e.keyCode === 83) {
+        e.preventDefault();
+        (this.$root.$refs.Preview as ThePreview).showPreview();
+      } else if ((window.navigator.platform.match('Mac') ? e.metaKey : e.ctrlKey) && e.keyCode === 190) {
+        e.preventDefault();
+        this.didPressNewFile = !this.didPressNewFile;
+        console.log(this.didPressNewFile);
+      }
+    }, false);
   }
 
   private openNewFileInputField() {
