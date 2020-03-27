@@ -13,14 +13,11 @@
         @choose-file="chooseFile"
         @delete-file="deleteFile"
       />
-      <input
-        v-if="showNewFileInput"
-        ref="newFileInput"
-        type="text"
-        class="form-group-input"
-        v-model="newFilename"
-        @keyup="addFile"
-      >
+      <NewFileInput
+        :showNewFileInput="showNewFileInput"
+        :currentProject="currentProject"
+        @disable-new-file-input="showNewFileInput = false"
+      />
     </div>
 
     <HowToUse />
@@ -31,12 +28,10 @@
 import Vue from 'vue';
 import { Component } from 'vue-property-decorator';
 import FileModel from '@/store/models/FileModel';
-import FileType from '@/store/models/FileType';
-import CodePane from '@/components/CodePane.vue';
 import ProjectFileLink from '@/store/models/ProjectFileLink';
 import ThePreview from '@/components/ThePreview.vue';
 import { Files, AddFileButton } from './Components';
-import { ProjectTitle, HowToUse } from './Pages';
+import { ProjectTitle, HowToUse, NewFileInput } from './Pages';
 
 @Component({
   components: {
@@ -44,12 +39,11 @@ import { ProjectTitle, HowToUse } from './Pages';
     Files,
     ProjectTitle,
     HowToUse,
+    NewFileInput,
   },
 })
 export default class TheFileExplorer extends Vue {
   private showNewFileInput = false;
-
-  private newFilename = '';
 
   mounted() {
     document.addEventListener('keydown', (e) => {
@@ -67,32 +61,8 @@ export default class TheFileExplorer extends Vue {
     this.showNewFileInput = true;
     // FIXME: sloppy solution, just for functionality
     setTimeout(() => {
-      (this.$refs.newFileInput as HTMLElement).focus();
+      (document.getElementById('new-file-input') as HTMLElement).focus();
     });
-  }
-
-  private addFile(event: KeyboardEvent) {
-    if (event.keyCode === 13) {
-      this.showNewFileInput = false;
-      const fileType = this.newFilename.split('.')[1];
-      if (fileType) {
-        const fileTypeShortcut = (this.$store.state.fileExplorer.state.fileTypes as Array<FileType>)
-          .filter((storeFileType) => storeFileType.shortcut === fileType)[0];
-        if (fileTypeShortcut) {
-          this.$store.dispatch('fileExplorer/addFile', {
-            name: this.newFilename,
-            type: fileTypeShortcut.codeMirrorName,
-            project: this.currentProject.projectName,
-            code: fileTypeShortcut.defaultCode,
-          } as FileModel);
-          (this.$root.$refs.CodePane as CodePane).editor.focus();
-        }
-      }
-      this.newFilename = '';
-    } else if (event.keyCode === 27) {
-      this.showNewFileInput = false;
-      this.newFilename = '';
-    }
   }
 
   private deleteFile(filename: string) {
@@ -131,12 +101,6 @@ export default class TheFileExplorer extends Vue {
   }
 
   #files {
-    input {
-      background-color: #282A36;
-      color: #9497B0;
-      border: 1px solid #282A36;
-    }
-
     .title {
       display: flex;
       align-items: center;
