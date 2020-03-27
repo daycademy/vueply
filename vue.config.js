@@ -5,6 +5,9 @@ module.exports = {
     ? '/vueply/'
     : '/',
   configureWebpack: {
-    plugins: [new BundleAnalyzerPlugin()],
+    plugins: process.env.NODE_ENV === 'production'
+      && process.env.BUNDLE_ANALYZE !== 'undefined'
+      ? [new BundleAnalyzerPlugin()]
+      : [],
   },
 };
