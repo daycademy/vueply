@@ -6,7 +6,7 @@ module.exports = {
     : '/',
   configureWebpack: {
     plugins: process.env.NODE_ENV === 'production'
-      && process.env.BUNDLE_ANALYZE !== 'undefined'
+      && process.env.BUNDLE_ANALYZE
       ? [new BundleAnalyzerPlugin()]
       : [],
   },

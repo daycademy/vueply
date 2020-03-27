@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
+    "build": "set BUNDLE_ANALYZE=false&&vue-cli-service build",
     "build:analyze": "set NODE_ENV=production&&set BUNDLE_ANALYZE=true&&vue-cli-service build",
     "test:unit": "vue-cli-service test:unit",
     "lint": "vue-cli-service lint"
