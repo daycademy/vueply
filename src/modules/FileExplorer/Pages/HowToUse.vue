@@ -1,9 +1,10 @@
 <template>
   <div id="how-to-use" v-if="isOSXDevice">
     <p v-for="hotkey in cmdCombinationHotkeys" :key="hotkey.combination">
-      <span v-if="isOSXDevice()">Cmd</span>
-      <span v-else>Strg</span>
-      + <span>{{ hotkey.combination }}</span> {{ hotkey.description }}
+      <span class="description">{{ hotkey.description }}</span><br />
+      <span v-if="isOSXDevice()" class="hotkey">Cmd</span>
+      <span v-else class="hotkey">Strg</span>
+      + <span class="hotkey">{{ hotkey.combination }}</span>
     </p>
   </div>
 </template>
@@ -17,11 +18,11 @@ export default class HowToUse extends Vue {
   private cmdCombinationHotkeys = [
     {
       combination: 'S',
-      description: 'in a File to run',
+      description: 'Run a project:',
     },
     {
       combination: '.',
-      description: 'to create a new File',
+      description: 'Create a new file:',
     },
   ];
 
@@ -32,8 +33,8 @@ export default class HowToUse extends Vue {
 <style lang="scss">
 #how-to-use {
   position: absolute;
-  left: 0.5em;
-  bottom: 0.5em;
+  left: 1em;
+  bottom: 1em;
 
   p {
     color: #9598AF;
@@ -45,9 +46,15 @@ export default class HowToUse extends Vue {
     }
 
     span {
-      background-color: #282A36;
-      padding: 4px 8px;
-      border-radius: 4px;
+      &.description {
+        font-weight: 300;
+      }
+
+      &.hotkey {
+        background-color: #282A36;
+        padding: 4px 8px;
+        border-radius: 4px;
+      }
     }
   }
 }
