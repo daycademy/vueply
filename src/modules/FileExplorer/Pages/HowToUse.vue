@@ -12,6 +12,7 @@
 <script lang="ts">
 import Vue from 'vue';
 import Component from 'vue-class-component';
+import ThePreview from '../../../components/ThePreview.vue';
 
 @Component({})
 export default class HowToUse extends Vue {
@@ -27,6 +28,18 @@ export default class HowToUse extends Vue {
   ];
 
   private isOSXDevice = (): boolean => navigator.platform.toUpperCase().indexOf('MAC') >= 0;
+
+  mounted() {
+    document.addEventListener('keydown', (e) => {
+      if ((window.navigator.platform.match('Mac') ? e.metaKey : e.ctrlKey) && e.keyCode === 83) {
+        e.preventDefault();
+        (this.$root.$refs.Preview as ThePreview).showPreview();
+      } else if ((window.navigator.platform.match('Mac') ? e.metaKey : e.ctrlKey) && e.keyCode === 190) {
+        e.preventDefault();
+        this.$emit('open-input-field');
+      }
+    }, false);
+  }
 }
 </script>
 

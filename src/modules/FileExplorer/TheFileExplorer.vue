@@ -20,7 +20,9 @@
       />
     </div>
 
-    <HowToUse />
+    <HowToUse
+      @open-input-field="openNewFileInputField()"
+    />
   </section>
 </template>
 
@@ -44,18 +46,6 @@ import { ProjectTitle, HowToUse, NewFileInput } from './Pages';
 })
 export default class TheFileExplorer extends Vue {
   private showNewFileInput = false;
-
-  mounted() {
-    document.addEventListener('keydown', (e) => {
-      if ((window.navigator.platform.match('Mac') ? e.metaKey : e.ctrlKey) && e.keyCode === 83) {
-        e.preventDefault();
-        (this.$root.$refs.Preview as ThePreview).showPreview();
-      } else if ((window.navigator.platform.match('Mac') ? e.metaKey : e.ctrlKey) && e.keyCode === 190) {
-        e.preventDefault();
-        this.openNewFileInputField();
-      }
-    }, false);
-  }
 
   private openNewFileInputField() {
     this.showNewFileInput = true;
