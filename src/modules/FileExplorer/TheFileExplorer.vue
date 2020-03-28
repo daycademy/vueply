@@ -67,6 +67,7 @@ export default class TheFileExplorer extends Vue {
 
   private deleteFile(filename: string) {
     this.$store.dispatch('fileExplorer/deleteFile', filename);
+    (this.$root.$refs.Preview as ThePreview).showPreview();
   }
 
   private chooseFile(filename: string) {
