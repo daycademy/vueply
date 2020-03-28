@@ -76,4 +76,4 @@ See also the list of [contributors](https://github.com/daycademy/vueply/contribu
 
 ## License
 
-_Coming Soon_
+This project is licensed under [Attribution-ShareAlike 4.0 International](https://creativecommons.org/)
