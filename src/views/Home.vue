@@ -5,13 +5,13 @@
         <TheFileExplorer />
       </v-col>
       <v-col c="6" class="left u-no-padding">
-        <CodePane
+        <TheCodePane
           :currentProject="currentProject"
           :currentFile="currentFile"
           :mode="currentFile.type"
           @input="updateCode"
           :value="currentFile.code"
-        ></CodePane>
+        ></TheCodePane>
       </v-col>
       <v-col c="4" class="right u-no-padding">
         <ThePreview />
@@ -21,15 +21,15 @@
 </template>
 
 <script>
-import CodePane from '@/components/CodePane.vue';
 import ThePreview from '@/components/ThePreview.vue';
+import TheCodePane from '@/modules/CodePane/TheCodePane.vue';
 import TheFileExplorer from '@/modules/FileExplorer/TheFileExplorer.vue';
 
 export default {
   name: 'Home',
 
   components: {
-    CodePane,
+    TheCodePane,
     ThePreview,
     TheFileExplorer,
   },
