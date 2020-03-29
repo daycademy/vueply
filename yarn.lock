@@ -9322,10 +9322,10 @@ vm-browserify@^1.0.1:
   resolved "https://registry.yarnpkg.com/vm-browserify/-/vm-browserify-1.1.2.tgz#78641c488b8e6ca91a75f511e7a3b32a86e5dda0"
   integrity sha512-2ham8XPWTONajOR0ohOKOHXkm3+gaBmGut3SRuu75xLd/RRaY6vqgh8NBYYk7+RW3u5AtzPQZG8F10LHkl0lAQ==
 
-vue-cirrus@^0.5.22:
-  version "0.5.23"
-  resolved "https://registry.yarnpkg.com/vue-cirrus/-/vue-cirrus-0.5.23.tgz#d16bef569c176875eeef04332b5fda68d4ab6202"
-  integrity sha512-OVOQG9YdidC9PV1WuCUZzY0EXYNBmzyebcF0PRoCaOz31aDNaHcbVyOQu9WOFLVXgRJCAB2oWIBB0Ir5Ncv5Zw==
+vue-cirrus@^0.5.24:
+  version "0.5.24"
+  resolved "https://registry.yarnpkg.com/vue-cirrus/-/vue-cirrus-0.5.24.tgz#04f5b7d82ae37ec02199482cb5a91a7396580dc6"
+  integrity sha512-1mSp8236IeJIHjOOxkvzCKl6yvag/SCeyLFWQH0HwTWx3ENt7FenIMqOiQKIWU1S+bGyDg9wPIgFI78M/7RmgA==
   dependencies:
     vue "^2.5.22"
 
