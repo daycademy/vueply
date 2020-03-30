@@ -7,7 +7,7 @@
       :class="`file${selectedFile === file.name ? ' selected' : ''}`"
     >
       <i :class="`icon fab ${icons[file.type].icon}`"></i> {{ file.name }}
-      <i class="delete-icon fas fa-trash" @click="deleteFile($event, file.name)"></i>
+      <FileMenu @click="deleteFile($event, file.name)" />
     </p>
   </div>
 </template>
@@ -15,6 +15,7 @@
 <script lang="ts">
 import Vue from 'vue';
 import { Component, Prop } from 'vue-property-decorator';
+import FileMenu from './FileMenu.vue';
 import FileModel from '../../../store/models/FileModel';
 
 @Component({
@@ -35,6 +36,9 @@ import FileModel from '../../../store/models/FileModel';
         },
       },
     };
+  },
+  components: {
+    FileMenu,
   },
 })
 export default class Files extends Vue {
@@ -76,6 +80,10 @@ export default class Files extends Vue {
     }
   }
 
+  .icon {
+    margin-right: 0.25rem;
+  }
+
   .file {
     margin-top: 0;
     margin-bottom: 0;
@@ -84,19 +92,13 @@ export default class Files extends Vue {
     padding-left: 1em;
     cursor: pointer;
     color: #9497B0;
-
-    .delete-icon {
-      visibility: hidden;
-      float: right;
-      margin: 0.5em;
-      margin-right: 1.25em;
-      color: rgb(94, 96, 113);
-    }
+    display: flex;
+    align-items: center;
 
     &:hover {
       background-color: #3E4153;
 
-      .delete-icon {
+      .file-menu {
         visibility: visible;
       }
     }
@@ -105,7 +107,7 @@ export default class Files extends Vue {
       color: #fff;
       background-color: #282A36;
 
-      .delete-icon {
+      .file-menu {
         visibility: visible;
       }
     }
