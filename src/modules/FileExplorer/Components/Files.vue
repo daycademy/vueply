@@ -7,7 +7,10 @@
       :class="`file${selectedFile === file.name ? ' selected' : ''}`"
     >
       <i :class="`icon fab ${icons[file.type].icon}`"></i> {{ file.name }}
-      <FileMenu @click="deleteFile($event, file.name)" />
+      <FileMenu
+        @clickDownload="$emit('clickDownloadFile', file.name, file.code)"
+        @click="deleteFile($event, file.name)"
+      />
     </p>
   </div>
 </template>

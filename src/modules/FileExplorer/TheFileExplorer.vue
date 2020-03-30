@@ -12,6 +12,7 @@
         :files="files"
         @choose-file="chooseFile"
         @delete-file="deleteFile"
+        @clickDownloadFile="downloadFile"
       />
       <NewFileInput
         :showNewFileInput="showNewFileInput"
@@ -32,6 +33,7 @@ import { Component } from 'vue-property-decorator';
 import FileModel from '@/store/models/FileModel';
 import ProjectFileLink from '@/store/models/ProjectFileLink';
 import ThePreview from '@/components/ThePreview.vue';
+import download from '@/core/download';
 import { Files, AddFileButton } from './Components';
 import { ProjectTitle, HowToUse, NewFileInput } from './Pages';
 
@@ -46,6 +48,10 @@ import { ProjectTitle, HowToUse, NewFileInput } from './Pages';
 })
 export default class TheFileExplorer extends Vue {
   private showNewFileInput = false;
+
+  private downloadFile = (filename: string, code: string) => {
+    download(filename, code);
+  }
 
   private openNewFileInputField() {
     this.showNewFileInput = true;

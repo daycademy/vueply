@@ -13,7 +13,11 @@
       </template>
       <v-dropdown-item>
         <i class="icon fas fa-pen"></i>
-        <span>Umbenennen</span>
+        <span>Rename</span>
+      </v-dropdown-item>
+      <v-dropdown-item @click="$emit('clickDownload')">
+        <i class="icon fas fa-file-download"></i>
+        <span>Download File</span>
       </v-dropdown-item>
       <v-dropdown-item @click="$emit('click', $event)">
         <i class="icon fas fa-trash"></i>
