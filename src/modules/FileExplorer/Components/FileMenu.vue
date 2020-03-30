@@ -2,12 +2,22 @@
   <div class="file-menu">
     <v-dropdown>
       <template v-slot:button>
-        <v-btn dropdown color="transparent" size="small">
+        <v-btn
+          @click="stopPropagation($event)"
+          dropdown
+          color="transparent"
+          size="small"
+        >
           <i class="fas fa-ellipsis-h"></i>
         </v-btn>
       </template>
       <v-dropdown-item>
-        <i class="delete-icon fas fa-trash"></i>
+        <i class="icon fas fa-pen"></i>
+        <span>Umbenennen</span>
+      </v-dropdown-item>
+      <v-dropdown-item @click="$emit('click', $event)">
+        <i class="icon fas fa-trash"></i>
+        <span>Delete File</span>
       </v-dropdown-item>
     </v-dropdown>
   </div>
@@ -16,7 +26,11 @@
 <script lang="ts">
 import Vue from 'vue';
 
-export default class FileMenu extends Vue {}
+export default class FileMenu extends Vue {
+  private stopPropagation = (event: MouseEvent) => {
+    event.stopPropagation();
+  }
+}
 </script>
 
 <style lang="scss">
