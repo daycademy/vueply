@@ -14,7 +14,7 @@ const updateSelectedFile = (context: ActionContext<FileState, RootState>, name: 
 
 const deleteFile = (context: ActionContext<State<FileState>, RootState>, name: string) => {
   context.commit('deleteFile', name);
-  if (context.state.state.files.length !== 0) {
+  if (context.state.state.selectedFile === name) {
     context.commit('updateSelectedFile', context.state.state.files[0].name);
   }
 };
