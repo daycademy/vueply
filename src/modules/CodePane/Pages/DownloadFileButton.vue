@@ -2,7 +2,7 @@
   <v-btn
     size="small"
     color="transparent"
-    @click="download(currentFile.name, currentFile.code)"
+    @click="downloadFile(currentFile.name, currentFile.code)"
   >
     <i class="fas fa-file-download"></i>
   </v-btn>
@@ -12,23 +12,15 @@
 import Vue from 'vue';
 import { Component, Prop } from 'vue-property-decorator';
 import FileModel from '@/store/models/FileModel';
+import download from '@/core/download';
 
 @Component({})
 export default class DownloadFileButton extends Vue {
   @Prop()
   private currentFile!: FileModel;
 
-  private download = (filename: string, text: string) => {
-    const element = document.createElement('a');
-    element.setAttribute('href', `data:text/plain;charset=utf-8,${encodeURIComponent(text)}`);
-    element.setAttribute('download', filename);
-
-    element.style.display = 'none';
-    document.body.appendChild(element);
-
-    element.click();
-
-    document.body.removeChild(element);
+  private downloadFile = (filename: string, code: string) => {
+    download(filename, code);
   }
 }
 </script>
