@@ -41,7 +41,13 @@ export default class NewFileInput extends Vue {
             project: this.currentProject.projectName,
             code: fileTypeShortcut.defaultCode,
           } as FileModel);
-          (this.$root.$refs.CodePane as CodePane).editor.focus();
+
+          const { editor } = this.$root.$refs.CodePane as CodePane;
+          editor.focus();
+          // FIXME: sloppy solution, just for functionality
+          setTimeout(() => {
+            editor.setCursor(editor.lineCount(), 0);
+          });
         }
       }
       this.newFilename = '';

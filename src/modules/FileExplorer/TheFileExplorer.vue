@@ -69,7 +69,12 @@ export default class TheFileExplorer extends Vue {
 
   private chooseFile(filename: string) {
     this.$store.dispatch('fileExplorer/updateSelectedFile', filename);
-    (this.$root.$refs.CodePane as CodePane).editor.focus();
+    const { editor } = this.$root.$refs.CodePane as CodePane;
+    editor.focus();
+    // FIXME: sloppy solution, just for functionality
+    setTimeout(() => {
+      editor.setCursor(editor.lineCount(), 0);
+    });
   }
 
   private get currentProject(): ProjectFileLink {
