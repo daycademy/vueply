@@ -36,6 +36,7 @@ import ThePreview from '@/components/ThePreview.vue';
 import download from '@/core/download';
 import { Files, AddFileButton } from './Components';
 import { ProjectTitle, HowToUse, NewFileInput } from './Pages';
+import CodePane from '../CodePane/TheCodePane.vue';
 
 @Component({
   components: {
@@ -68,6 +69,7 @@ export default class TheFileExplorer extends Vue {
 
   private chooseFile(filename: string) {
     this.$store.dispatch('fileExplorer/updateSelectedFile', filename);
+    (this.$root.$refs.CodePane as CodePane).editor.focus();
   }
 
   private get currentProject(): ProjectFileLink {
