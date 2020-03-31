@@ -20,53 +20,53 @@
   </section>
 </template>
 
-<script>
+<script lang="ts">
+import Vue from 'vue';
+import { Component } from 'vue-property-decorator';
 import ThePreview from '@/components/ThePreview.vue';
 import TheCodePane from '@/modules/CodePane/TheCodePane.vue';
 import TheFileExplorer from '@/modules/FileExplorer/TheFileExplorer.vue';
+import ProjectFileLink from '../store/models/ProjectFileLink';
 
-export default {
-  name: 'Home',
-
+@Component({
   components: {
     TheCodePane,
     ThePreview,
     TheFileExplorer,
   },
-
+})
+export default class Home extends Vue {
   mounted() {
     const paramProject = this.$route.params.project;
     if (paramProject) {
-      const filteredProjects = this.$store.state.project.projectFilesLink
-        .filter((projectFileLink) => projectFileLink.projectName === paramProject.toLowerCase());
+      const filteredProjects: ProjectFileLink[] = this.$store.state.project.projectFilesLink
+        .filter((projectFileLink: ProjectFileLink) => projectFileLink.projectName
+          === paramProject.toLowerCase());
       if (filteredProjects.length > 0) {
         this.$store.dispatch('setProject', paramProject);
       }
     }
-  },
+  }
 
-  methods: {
-    updateCode(changedCode) {
-      const selectedFile = this.currentFile;
-      selectedFile.code = changedCode;
-    },
-  },
+  private updateCode(changedCode: string) {
+    const selectedFile = this.currentFile;
+    selectedFile.code = changedCode;
+  }
 
-  computed: {
-    currentProject() {
-      return this.$store.state.project.currentProject;
-    },
-    currentFile() {
-      const projectFiles = this.$store.getters['fileExplorer/projectFiles'](this.currentProject);
-      for (let i = 0; i < projectFiles.length; i += 1) {
-        if (projectFiles[i].name === this.$store.state.fileExplorer.state.selectedFile) {
-          return projectFiles[i];
-        }
+  private get currentProject() {
+    return this.$store.state.project.currentProject;
+  }
+
+  private get currentFile() {
+    const projectFiles = this.$store.getters['fileExplorer/projectFiles'](this.currentProject);
+    for (let i = 0; i < projectFiles.length; i += 1) {
+      if (projectFiles[i].name === this.$store.state.fileExplorer.state.selectedFile) {
+        return projectFiles[i];
       }
-      return null;
-    },
-  },
-};
+    }
+    return null;
+  }
+}
 </script>
 
 <style lang="scss">
