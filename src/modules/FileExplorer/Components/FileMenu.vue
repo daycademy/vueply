@@ -15,7 +15,7 @@
         <i class="icon fas fa-pen"></i>
         <span>Rename</span>
       </v-dropdown-item>
-      <v-dropdown-item @click="$emit('clickDownload')">
+      <v-dropdown-item @click="$emit('click-download')">
         <i class="icon fas fa-file-download"></i>
         <span>Download File</span>
       </v-dropdown-item>

@@ -12,7 +12,7 @@
         :files="files"
         @choose-file="chooseFile"
         @delete-file="deleteFile"
-        @clickDownloadFile="downloadFile"
+        @click-download-file="downloadFile"
       />
       <NewFileInput
         :showNewFileInput="showNewFileInput"
