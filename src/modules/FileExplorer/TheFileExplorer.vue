@@ -15,8 +15,8 @@
         @click-download-file="downloadFile"
       />
       <NewFileInput
-        :showNewFileInput="showNewFileInput"
-        :currentProject="currentProject"
+        :show-new-file-input="showNewFileInput"
+        :current-project="currentProject"
         @disable-new-file-input="showNewFileInput = false"
       />
     </div>
