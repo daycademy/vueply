@@ -34,6 +34,17 @@ export default {
     TheFileExplorer,
   },
 
+  mounted() {
+    const paramProject = this.$route.params.project;
+    if (paramProject) {
+      const filteredProjects = this.$store.state.project.projectFilesLink
+        .filter((projectFileLink) => projectFileLink.projectName === paramProject.toLowerCase());
+      if (filteredProjects.length > 0) {
+        this.$store.dispatch('setProject', paramProject);
+      }
+    }
+  },
+
   methods: {
     updateCode(changedCode) {
       const selectedFile = this.currentFile;
