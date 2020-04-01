@@ -12,7 +12,7 @@
 <script lang="ts">
 import Vue from 'vue';
 import Component from 'vue-class-component';
-import ThePreview from '../../../components/ThePreview.vue';
+import ThePreview from '@/components/ThePreview.vue';
 
 @Component({})
 export default class HowToUse extends Vue {

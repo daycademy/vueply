@@ -1,6 +1,6 @@
 <template>
   <div id="code-pane">
-    <DownloadFileButton :currentFile="currentFile" />
+    <DownloadFileButton :current-file="currentFile" />
   </div>
 </template>
 
