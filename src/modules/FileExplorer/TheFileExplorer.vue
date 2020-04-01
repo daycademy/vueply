@@ -51,7 +51,7 @@ export default class TheFileExplorer extends Vue {
   private showNewFileInput = false;
 
   private downloadFile = (filename: string, code: string, type: string) => {
-    const transformedCode = transform(type, code);
+    const transformedCode = transform(type, code, this.files);
     download(filename, transformedCode);
   }
 

@@ -13,6 +13,7 @@ import Vue from 'vue';
 import { Component, Prop } from 'vue-property-decorator';
 import FileModel from '@/store/models/FileModel';
 import { download, transform } from '@/core/download';
+import ProjectFileLink from '@/store/models/ProjectFileLink';
 
 @Component({})
 export default class DownloadFileButton extends Vue {
@@ -22,8 +23,20 @@ export default class DownloadFileButton extends Vue {
   private downloadFile() {
     const { name, code, type } = this.currentFile;
 
-    const transformedCode = transform(type, code);
+    const transformedCode = transform(type, code, this.files);
     download(name, transformedCode);
+  }
+
+  private get currentProject(): ProjectFileLink {
+    return this.$store.state.project.projectFilesLink
+      .filter(
+        (projectFileLink: ProjectFileLink) => projectFileLink.projectName
+          === this.$store.state.project.currentProject,
+      )[0];
+  }
+
+  private get files(): Array<FileModel> {
+    return this.$store.getters['fileExplorer/projectFiles'](this.currentProject.projectName);
   }
 }
 </script>
