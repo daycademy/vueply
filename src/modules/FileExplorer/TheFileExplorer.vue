@@ -33,7 +33,7 @@ import { Component } from 'vue-property-decorator';
 import FileModel from '@/store/models/FileModel';
 import ProjectFileLink from '@/store/models/ProjectFileLink';
 import ThePreview from '@/components/ThePreview.vue';
-import download from '@/core/download';
+import { download, transform } from '@/core/download';
 import { Files, AddFileButton } from './Components';
 import { ProjectTitle, HowToUse, NewFileInput } from './Pages';
 import CodePane from '../CodePane/TheCodePane.vue';
@@ -50,8 +50,9 @@ import CodePane from '../CodePane/TheCodePane.vue';
 export default class TheFileExplorer extends Vue {
   private showNewFileInput = false;
 
-  private downloadFile = (filename: string, code: string) => {
-    download(filename, code);
+  private downloadFile = (filename: string, code: string, type: string) => {
+    const transformedCode = transform(type, code);
+    download(filename, transformedCode);
   }
 
   private openNewFileInputField() {
