@@ -1,6 +1,6 @@
 <template>
   <section id="file-explorer">
-    <ProjectTitle :current-project="currentProject" />
+    <ProjectTitle :current-project="myCurrentProject" />
     <v-divider />
     <div id="files">
       <div class="title">
@@ -9,14 +9,14 @@
       </div>
       <Files
         :selected-file="$store.state.fileExplorer.state.selectedFile"
-        :files="files"
+        :files="myFiles"
         @choose-file="chooseFile"
         @delete-file="deleteFile"
         @click-download-file="downloadFile"
       />
       <NewFileInput
         :show-new-file-input="showNewFileInput"
-        :current-project="currentProject"
+        :current-project="myCurrentProject"
         @disable-new-file-input="showNewFileInput = false"
       />
     </div>
@@ -34,6 +34,7 @@ import FileModel from '@/store/models/FileModel';
 import ProjectFileLink from '@/store/models/ProjectFileLink';
 import ThePreview from '@/components/ThePreview.vue';
 import { download, transform } from '@/core/download';
+import { files, currentProject } from '@/core/storeUtils';
 import { Files, AddFileButton } from './Components';
 import { ProjectTitle, HowToUse, NewFileInput } from './Pages';
 import CodePane from '../CodePane/TheCodePane.vue';
@@ -51,7 +52,8 @@ export default class TheFileExplorer extends Vue {
   private showNewFileInput = false;
 
   private downloadFile = (filename: string, code: string, type: string) => {
-    const transformedCode = transform(type, code, this.files);
+    const projectFiles = files(this.$store, currentProject(this.$store));
+    const transformedCode = transform(type, code, projectFiles);
     download(filename, transformedCode);
   }
 
@@ -78,16 +80,12 @@ export default class TheFileExplorer extends Vue {
     });
   }
 
-  private get currentProject(): ProjectFileLink {
-    return this.$store.state.project.projectFilesLink
-      .filter(
-        (projectFileLink: ProjectFileLink) => projectFileLink.projectName
-          === this.$store.state.project.currentProject,
-      )[0];
+  private get myCurrentProject(): ProjectFileLink {
+    return currentProject(this.$store);
   }
 
-  private get files(): Array<FileModel> {
-    return this.$store.getters['fileExplorer/projectFiles'](this.currentProject.projectName);
+  private get myFiles(): Array<FileModel> {
+    return files(this.$store, currentProject(this.$store));
   }
 }
 </script>
