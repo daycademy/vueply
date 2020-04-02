@@ -11,7 +11,7 @@
           <i class="fas fa-ellipsis-h"></i>
         </v-btn>
       </template>
-      <v-dropdown-item>
+      <v-dropdown-item @click="$emit('click-rename')">
         <i class="icon fas fa-pen"></i>
         <span>Rename</span>
       </v-dropdown-item>

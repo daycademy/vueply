@@ -10,6 +10,7 @@
       <FileMenu
         @click-download="$emit('click-download-file', file.name, file.code, file.type)"
         @click-delete="deleteFile($event, file.name)"
+        @click-rename="$emit('click-rename', file.name)"
       />
     </p>
   </div>
