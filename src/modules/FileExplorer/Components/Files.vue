@@ -9,7 +9,7 @@
       <i :class="`icon fab ${icons[file.type].icon}`"></i> {{ file.name }}
       <FileMenu
         @click-download="$emit('click-download-file', file.name, file.code, file.type)"
-        @click="deleteFile($event, file.name)"
+        @click-delete="deleteFile($event, file.name)"
       />
     </p>
   </div>

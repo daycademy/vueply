@@ -19,7 +19,7 @@
         <i class="icon fas fa-file-download"></i>
         <span>Download File</span>
       </v-dropdown-item>
-      <v-dropdown-item @click="$emit('click', $event)">
+      <v-dropdown-item @click="$emit('click-delete', $event)">
         <i class="icon fas fa-trash"></i>
         <span>Delete File</span>
       </v-dropdown-item>
