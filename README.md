@@ -62,7 +62,9 @@ _Coming Soon_
 
 ## 💡 Contributing
 
-_Coming Soon_
+Want to file a bug, contribute some code, or improve documentation? Excellent! Read up on our [guidelines for contributing](https://github.com/daycademy/vueply/blob/master/CONTRIBUTING.md) and then check out one of our issues or feature requests.
+
+You can find all contributors [here](https://github.com/daycademy/vueply/blob/master/CONTRIBUTORS.md).
 
 ## 🎨 Versioning
 
