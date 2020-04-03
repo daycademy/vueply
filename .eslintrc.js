@@ -16,6 +16,11 @@ module.exports = {
     'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
     'no-param-reassign': 0,
     'no-useless-escape': 'off',
+    'import/no-extraneous-dependencies': ['error', {
+      devDependencies: [
+        'src/modules/**/Tests/**'
+      ],
+    }],
   },
   overrides: [
     {
