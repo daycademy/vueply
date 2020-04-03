@@ -13,7 +13,6 @@
         @choose-file="chooseFile"
         @delete-file="deleteFile"
         @click-download-file="downloadFile"
-        @click-rename="renameFile"
       />
       <NewFileInput
         :show-new-file-input="showNewFileInput"
@@ -25,10 +24,6 @@
     <HowToUse
       @open-input-field="openNewFileInputField()"
     />
-
-    <v-snackbar v-model="snackbar" position="bottomCenter" color="primary">
-      Coming Soon!
-    </v-snackbar>
   </section>
 </template>
 
@@ -62,10 +57,6 @@ export default class TheFileExplorer extends Vue {
     const projectFiles = files(this.$store, currentProject(this.$store));
     const transformedCode = transform(type, code, projectFiles);
     download(filename, transformedCode);
-  }
-
-  private renameFile() {
-    this.snackbar = !this.snackbar;
   }
 
   private openNewFileInputField() {

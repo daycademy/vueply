@@ -10,7 +10,6 @@
       <FileMenu
         @click-download="$emit('click-download-file', file.name, file.code, file.type)"
         @click-delete="deleteFile($event, file.name)"
-        @click-rename="$emit('click-rename', file.name)"
       />
     </p>
   </div>
@@ -51,6 +50,9 @@ export default class Files extends Vue {
 
   @Prop()
   private selectedFile!: string;
+
+  @Prop()
+  private showRenameField!: boolean;
 
   private deleteFile(event: MouseEvent, filename: string) {
     event.stopPropagation();
