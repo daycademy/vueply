@@ -46,9 +46,21 @@ yarn serve
 
 ## 🧪 Running the tests
 
-_Coming Soon_
+You can run all tests by executing:
+
+```sh
+npm run test:unit
+OR
+yarn test:unit
+```
+
+Make sure that basic tests are in `./test` directory and modules tests are in their corresponding `./modules/**/Tests` directory.
+
+**NOTICE: Tests are not finished yet. Help for tests, is wanted!**
 
 ### Coding style tests
+
+_Coming Soon_
 
 ## 🚀 Deployment
 
