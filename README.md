@@ -66,6 +66,11 @@ _Coming Soon_
 
 _Coming Soon_
 
+## 💬 Translations
+
+* _English_ - [Florian Woelki](https://github.com/FlorianWoelki/)
+* _German_ - [Florian Woelki](https://github.com/FlorianWoelki/)
+
 ## 🏗 Built with
 
 * [Vue.js](http://vuejs.org/)
