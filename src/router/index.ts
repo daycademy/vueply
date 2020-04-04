@@ -1,5 +1,5 @@
 import Vue from 'vue';
-import VueRouter from 'vue-router';
+import VueRouter, { Route } from 'vue-router';
 import RouterView from '../views/RouterView.vue';
 import Home from '../views/Home.vue';
 
@@ -11,7 +11,7 @@ const routes = [
   {
     path: '/:lang',
     component: RouterView,
-    beforeEnter(to: any, _from: any, next: any) {
+    beforeEnter(to: Route, _from: Route, next: Function) {
       const { lang } = to.params;
       if (!['en', 'de'].includes(lang)) {
         return next('de');
