@@ -16,20 +16,21 @@ import ThePreview from '@/components/ThePreview.vue';
 
 @Component({})
 export default class HowToUse extends Vue {
-  private cmdCombinationHotkeys = [
-    {
-      combination: 'S',
-      description: 'run the project',
-    },
-    {
-      combination: '.',
-      description: 'create a new file',
-    },
-  ];
+  private cmdCombinationHotkeys: [Record<string, string>] = [{}];
 
   private isOSXDevice = (): boolean => navigator.platform.toUpperCase().indexOf('MAC') >= 0;
 
   mounted() {
+    this.cmdCombinationHotkeys.pop();
+    this.cmdCombinationHotkeys.push({
+      combination: 'S',
+      description: this.$t('run_project_hotkey').toString(),
+    });
+    this.cmdCombinationHotkeys.push({
+      combination: '.',
+      description: this.$t('create_file_hotkey').toString(),
+    });
+
     document.addEventListener('keydown', (e) => {
       if ((window.navigator.platform.match('Mac') ? e.metaKey : e.ctrlKey) && e.keyCode === 83) {
         e.preventDefault();

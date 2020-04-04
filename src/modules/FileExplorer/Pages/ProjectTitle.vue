@@ -1,6 +1,6 @@
 <template>
   <p class="project-title">
-    {{ currentProject.displayName }} Project
+    {{ currentProject.displayName }} {{ $t('project_title') }}
     <SettingsDropdown
       :projects="$store.state.project.projectFilesLink"
       @choose-project="chooseProject"

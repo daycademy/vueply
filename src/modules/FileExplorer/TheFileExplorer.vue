@@ -4,7 +4,7 @@
     <v-divider />
     <div id="files">
       <div class="title">
-        <p>FILES</p>
+        <p>{{ $t('files_name') }}</p>
         <AddFileButton @click="openNewFileInputField" />
       </div>
       <Files

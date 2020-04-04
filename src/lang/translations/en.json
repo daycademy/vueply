@@ -1,4 +1,8 @@
 {
-  "translation1": "Translation 1",
-  "translation2": "Translation 2"
+  "run_project_hotkey": "run the project",
+  "create_file_hotkey": "create a new file",
+  "project_title": "Project",
+  "download_file": "Download File",
+  "delete_file": "Delete File",
+  "files_name": "FILES"
 }
