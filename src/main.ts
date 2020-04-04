@@ -1,10 +1,9 @@
 import Vue from 'vue';
 import VueCirrus from 'vue-cirrus';
-import VueI18n from 'vue-i18n';
 import store from './store';
 import App from './App.vue';
+import i18n from './i18n';
 import router from './router';
-import messages from './lang';
 
 import 'codemirror/mode/javascript/javascript';
 import 'codemirror/mode/htmlmixed/htmlmixed';
@@ -14,13 +13,6 @@ import 'codemirror/addon/scroll/simplescrollbars';
 import 'vue-cirrus/dist/vue-cirrus.css';
 
 Vue.use(VueCirrus);
-
-Vue.use(VueI18n);
-export const i18n = new VueI18n({
-  locale: 'en',
-  fallbackLocale: 'en',
-  messages,
-});
 
 Vue.config.productionTip = false;
 
