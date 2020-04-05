@@ -1,15 +1,15 @@
 import VueCirrus from 'vue-cirrus';
 import { expect } from 'chai';
 import { createLocalVue, shallowMount, Wrapper } from '@vue/test-utils';
-import DownloadFileButton from '@/modules/FileExplorer/Components/AddFileButton.vue';
+import AddFileButton from '@/modules/FileExplorer/Components/AddFileButton.vue';
 
 describe('FileExplorer => AddFileButton.vue', () => {
   let localVue;
-  let wrapper: Wrapper<DownloadFileButton>;
+  let wrapper: Wrapper<AddFileButton>;
   beforeEach(() => {
     localVue = createLocalVue();
     localVue.use(VueCirrus);
-    wrapper = shallowMount(DownloadFileButton, { localVue });
+    wrapper = shallowMount(AddFileButton, { localVue });
   });
 
   it('renders correctly', () => {
@@ -18,7 +18,7 @@ describe('FileExplorer => AddFileButton.vue', () => {
 
   it('emit click event', () => {
     const button = wrapper.find('v-btn-stub');
-    button.trigger('click');
-    expect(wrapper.emitted().click);
+    button.vm.$emit('click');
+    return expect(wrapper.emitted().click).to.be.not.undefined;
   });
 });
