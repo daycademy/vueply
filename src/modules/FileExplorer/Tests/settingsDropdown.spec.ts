@@ -10,7 +10,23 @@ describe('FileExplorer => SettingsDropdown.vue', () => {
   beforeEach(() => {
     localVue = createLocalVue();
     localVue.use(VueCirrus);
-    wrapper = shallowMount(SettingsDropdown, { localVue });
+    wrapper = shallowMount(SettingsDropdown, {
+      localVue,
+      propsData: {
+        projects: [
+          {
+            displayName: 'JavaScript',
+            fileTypes: ['text/html', 'css', 'javascript'],
+            projectName: 'javascript',
+          },
+          {
+            displayName: 'Vue',
+            fileTypes: ['text/x-vue'],
+            projectName: 'vue',
+          },
+        ] as Array<ProjectFileLink>,
+      },
+    });
   });
 
   it('renders correctly', () => {
@@ -18,20 +34,6 @@ describe('FileExplorer => SettingsDropdown.vue', () => {
   });
 
   it('renders valid length of projects', () => {
-    wrapper.setProps({
-      projects: [
-        {
-          displayName: 'JavaScript',
-          fileTypes: ['text/html', 'css', 'javascript'],
-          projectName: 'javascript',
-        },
-        {
-          displayName: 'Vue',
-          fileTypes: ['text/x-vue'],
-          projectName: 'vue',
-        },
-      ] as Array<ProjectFileLink>,
-    });
-    // TODO: add test
+    expect(wrapper.findAll('v-dropdown-item-stub').length).equal(2);
   });
 });
