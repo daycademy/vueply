@@ -7,7 +7,7 @@ import ProjectFileLink from '@/store/models/ProjectFileLink';
 
 describe('FileExplorer => SettingsDropdown.vue', () => {
   let localVue;
-  let wrapper: any;
+  let wrapper: Wrapper<SettingsDropdown>;
   beforeEach(() => {
     localVue = createLocalVue();
     localVue.use(VueCirrus);
@@ -45,8 +45,10 @@ describe('FileExplorer => SettingsDropdown.vue', () => {
   });
 
   it('chooseProject gets called on dropdown item click', async () => {
-    sinon.spy(wrapper.vm, 'chooseProject');
+    /* eslint-disable-next-line */
+    sinon.spy((wrapper.vm as any), 'chooseProject');
     wrapper.find('v-dropdown-item-stub').vm.$emit('click');
+    /* eslint-disable-next-line */
     expect((wrapper.vm as any).chooseProject.callCount).to.equal(1);
   });
 });
