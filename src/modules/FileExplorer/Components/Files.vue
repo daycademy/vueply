@@ -51,9 +51,6 @@ export default class Files extends Vue {
   @Prop()
   private selectedFile!: string;
 
-  @Prop()
-  private showRenameField!: boolean;
-
   private deleteFile(event: MouseEvent, filename: string) {
     event.stopPropagation();
     this.$emit('delete-file', filename);
