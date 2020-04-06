@@ -16,4 +16,16 @@ describe('FileExplorer => FileMenu.vue', () => {
   it('renders correctly', () => {
     expect(wrapper.html()).to.be.a('string').and.satisfy((text: string) => text.startsWith('<div class="file-menu">'));
   });
+
+  it('emit click download event', () => {
+    const dropdownItem = wrapper.findAll('v-dropdown-item-stub').at(0);
+    dropdownItem.vm.$emit('click');
+    return expect(wrapper.emitted()['click-download']).to.be.not.undefined;
+  });
+
+  it('emit click delete event', () => {
+    const dropdownItem = wrapper.findAll('v-dropdown-item-stub').at(1);
+    dropdownItem.vm.$emit('click');
+    return expect(wrapper.emitted()['click-delete']).to.be.not.undefined;
+  });
 });
