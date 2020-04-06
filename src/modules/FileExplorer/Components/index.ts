@@ -1,3 +1,4 @@
 export { default as AddFileButton } from './AddFileButton.vue';
-export { default as Files } from './Files.vue';
+export { default as File } from './File.vue';
+export { default as FileMenu } from './FileMenu.vue';
 export { default as SettingsDropdown } from './SettingsDropdown.vue';

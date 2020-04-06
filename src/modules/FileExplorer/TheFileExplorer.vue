@@ -7,13 +7,38 @@
         <p>{{ $t('files_name') }}</p>
         <AddFileButton @click="openNewFileInputField" />
       </div>
+      <div class="file-list">
+        <File
+          v-for="file in myFiles"
+          :key="file.name"
+          :class="`file${
+            $store.state.fileExplorer.state.selectedFile === file.name
+            ? ' selected' : ''
+          }`"
+          :filename="file.name"
+          :fileType="file.type"
+          @click="chooseFile(file.name)"
+        >
+          <FileMenu
+            @click-download="downloadFile(file.name, file.code, file.type)"
+            @click-delete="deleteFile($event, file.name)"
+          />
+        </File>
+      </div>
+      <!--
       <Files
         :selected-file="$store.state.fileExplorer.state.selectedFile"
         :files="myFiles"
         @choose-file="chooseFile"
         @delete-file="deleteFile"
         @click-download-file="downloadFile"
-      />
+      >
+        <FileMenu
+          @click-download="$emit('click-download-file', file.name, file.code, file.type)"
+          @click-delete="deleteFile($event, file.name)"
+        />
+      </Files>
+      -->
       <NewFileInput
         :show-new-file-input="showNewFileInput"
         :current-project="myCurrentProject"
@@ -35,14 +60,15 @@ import ProjectFileLink from '@/store/models/ProjectFileLink';
 import ThePreview from '@/components/ThePreview.vue';
 import { download, transform } from '@/core/download';
 import { files, currentProject } from '@/core/storeUtils';
-import { Files, AddFileButton } from './Components';
+import { File, AddFileButton, FileMenu } from './Components';
 import { ProjectTitle, HowToUse, NewFileInput } from './Pages';
 import CodePane from '../CodePane/TheCodePane.vue';
 
 @Component({
   components: {
     AddFileButton,
-    Files,
+    File,
+    FileMenu,
     ProjectTitle,
     HowToUse,
     NewFileInput,
@@ -67,7 +93,8 @@ export default class TheFileExplorer extends Vue {
     });
   }
 
-  private deleteFile(filename: string) {
+  private deleteFile(event: MouseEvent, filename: string) {
+    event.stopPropagation();
     this.$store.dispatch('fileExplorer/deleteFile', filename);
     (this.$root.$refs.Preview as ThePreview).showPreview();
   }
