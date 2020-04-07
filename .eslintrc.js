@@ -18,7 +18,8 @@ module.exports = {
     'no-useless-escape': 'off',
     'import/no-extraneous-dependencies': ['error', {
       devDependencies: [
-        'src/modules/**/Tests/**'
+        'src/modules/**/Tests/**',
+        'tests/**/**',
       ],
     }],
   },
