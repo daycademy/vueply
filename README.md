@@ -10,6 +10,8 @@
 
 :star: Star us on GitHub — it helps!
 
+[![Daycademy](https://circleci.com/gh/daycademy/vueply.svg?style=svg)](https://app.circleci.com/pipelines/github/daycademy/vueply)
+
 Vueply is a full functional JavaScript / Vue playground in the browser. Everything is simply stored on the server and really easy to use. It is a minimal IDE for easy prototyping in the web.
 
 <img src="https://i.imgur.com/artPEwU.png" alt="preview" />
