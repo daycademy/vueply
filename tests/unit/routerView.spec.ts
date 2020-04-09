@@ -18,9 +18,11 @@ describe('RouterView.vue', () => {
     wrapper = shallowMount(RouterView, { localVue, router, store });
   });
 
-  it('renders a child component via routing', () => {
-    router.push('/de');
+  it('renders default route view', () => {
+    const $route = {
+      name: 'home',
+    };
 
-    return expect(wrapper.find(RouterView).exists()).to.be.true;
+    expect(wrapper.vm.$route.name).eq($route.name);
   });
 });
