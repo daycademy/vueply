@@ -25,20 +25,6 @@
           />
         </File>
       </div>
-      <!--
-      <Files
-        :selected-file="$store.state.fileExplorer.state.selectedFile"
-        :files="myFiles"
-        @choose-file="chooseFile"
-        @delete-file="deleteFile"
-        @click-download-file="downloadFile"
-      >
-        <FileMenu
-          @click-download="$emit('click-download-file', file.name, file.code, file.type)"
-          @click-delete="deleteFile($event, file.name)"
-        />
-      </Files>
-      -->
       <NewFileInput
         :show-new-file-input="showNewFileInput"
         :current-project="myCurrentProject"
