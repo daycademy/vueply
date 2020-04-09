@@ -28,4 +28,14 @@ describe('FileExplorer => NewFileInput.vue', () => {
   it('renders correctly', () => {
     expect(wrapper.html()).to.be.a('string').and.satisfy((text: string) => text.startsWith('<input data-'));
   });
+
+  it('escape key emits "disabled-new-file-input"', () => {
+    wrapper.trigger('keyup.esc');
+    return expect(wrapper.emitted()['disable-new-file-input']).to.be.not.undefined;
+  });
+
+  it('enter key emits "disabled-new-file-input"', () => {
+    wrapper.trigger('keyup.enter');
+    return expect(wrapper.emitted()['disable-new-file-input']).to.be.not.undefined;
+  });
 });
