@@ -6,8 +6,8 @@
       </v-col>
       <v-col c="6" class="left u-no-padding">
         <TheCodePane
-          :currentProject="currentProject"
-          :currentFile="currentFile"
+          :current-project="currentProject"
+          :current-file="currentFile"
           :mode="currentFile.type"
           @input="updateCode"
           :value="currentFile.code"
