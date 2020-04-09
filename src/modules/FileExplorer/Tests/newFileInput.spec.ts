@@ -1,6 +1,6 @@
 import VueCirrus from 'vue-cirrus';
 import { expect } from 'chai';
-import { createLocalVue, shallowMount, Wrapper } from '@vue/test-utils';
+import { createLocalVue, mount, Wrapper } from '@vue/test-utils';
 import NewFileInput from '@/modules/FileExplorer/Pages/NewFileInput.vue';
 import i18n from '@/i18n';
 import ProjectFileLink from '@/store/models/ProjectFileLink';
@@ -11,7 +11,7 @@ describe('FileExplorer => NewFileInput.vue', () => {
   beforeEach(() => {
     localVue = createLocalVue();
     localVue.use(VueCirrus);
-    wrapper = shallowMount(NewFileInput, {
+    wrapper = mount(NewFileInput, {
       localVue,
       i18n,
       propsData: {

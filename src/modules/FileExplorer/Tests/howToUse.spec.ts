@@ -1,6 +1,6 @@
 import VueCirrus from 'vue-cirrus';
 import { expect } from 'chai';
-import { createLocalVue, shallowMount, Wrapper } from '@vue/test-utils';
+import { createLocalVue, mount, Wrapper } from '@vue/test-utils';
 import HowToUse from '@/modules/FileExplorer/Pages/HowToUse.vue';
 import i18n from '@/i18n';
 
@@ -10,7 +10,7 @@ describe('FileExplorer => HowToUse.vue', () => {
   beforeEach(() => {
     localVue = createLocalVue();
     localVue.use(VueCirrus);
-    wrapper = shallowMount(HowToUse, {
+    wrapper = mount(HowToUse, {
       localVue,
       i18n,
     });
