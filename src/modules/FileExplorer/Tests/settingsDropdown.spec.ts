@@ -1,7 +1,7 @@
 import VueCirrus from 'vue-cirrus';
 import { expect } from 'chai';
 import sinon from 'sinon';
-import { createLocalVue, shallowMount, Wrapper } from '@vue/test-utils';
+import { createLocalVue, mount, Wrapper } from '@vue/test-utils';
 import SettingsDropdown from '@/modules/FileExplorer/Components/SettingsDropdown.vue';
 import ProjectFileLink from '@/store/models/ProjectFileLink';
 
@@ -11,7 +11,7 @@ describe('FileExplorer => SettingsDropdown.vue', () => {
   beforeEach(() => {
     localVue = createLocalVue();
     localVue.use(VueCirrus);
-    wrapper = shallowMount(SettingsDropdown, {
+    wrapper = mount(SettingsDropdown, {
       localVue,
       propsData: {
         projects: [
@@ -31,11 +31,11 @@ describe('FileExplorer => SettingsDropdown.vue', () => {
   });
 
   it('renders correctly', () => {
-    expect(wrapper.html()).to.be.a('string').and.satisfy((text: string) => text.startsWith('<v-dropdown-stub'));
+    expect(wrapper.html()).to.be.a('string').and.satisfy((text: string) => text.startsWith('<div class="list-dropdown">'));
   });
 
   it('renders valid length of projects', () => {
-    expect(wrapper.findAll('v-dropdown-item-stub').length).equal(2);
+    expect(wrapper.findAll('li').length).equal(2);
   });
 
   it('emits an event with one argument', () => {
@@ -47,7 +47,7 @@ describe('FileExplorer => SettingsDropdown.vue', () => {
   it('chooseProject gets called on dropdown item click', async () => {
     /* eslint-disable-next-line */
     sinon.spy((wrapper.vm as any), 'chooseProject');
-    wrapper.find('v-dropdown-item-stub').vm.$emit('click');
+    wrapper.find('li').vm.$emit('click');
     /* eslint-disable-next-line */
     expect((wrapper.vm as any).chooseProject.callCount).to.equal(1);
   });
