@@ -5,8 +5,8 @@ import { expect } from 'chai';
 import i18n from '@/i18n';
 import store from '@/store';
 import ProjectFileLink from '@/store/models/ProjectFileLink';
-import ProjectTitle from '../Pages/ProjectTitle.vue';
-import SettingsDropdown from '../Components/SettingsDropdown.vue';
+import ProjectTitle from '../../Pages/ProjectTitle.vue';
+import SettingsDropdown from '../../Components/SettingsDropdown.vue';
 
 describe('FileExplorer => ProjectTitle', () => {
   let localVue;
