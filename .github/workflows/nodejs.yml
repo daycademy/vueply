@@ -24,7 +24,7 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - run: npm ci
-    - run: npm run test:unit --watch false
+    - run: yarn --frozen-lockfile
+    - run: yarn test:unit --watch false
       env:
         CI: true
