@@ -29,6 +29,7 @@ try {
 }
 <\/script>`);
 
+  document.write('<script src="https://kit.fontawesome.com/5b323b6f9f.js" crossorigin="anonymous"><\/script>');
   document.write('</body>');
   document.write('</html>');
   document.close();
@@ -43,7 +44,6 @@ const translateIntoVue = (frame: Window, code: string): boolean => {
   if (!templateMatch || !javascriptMatch || !cssMatch) {
     return false;
   }
-
 
   const templateCode = templateMatch[0].replace(/\s*\n+\s*/g, ' ').replace(/>\s+/g, '>').replace(/\s+</g, '<');
   const jsCode = javascriptMatch[0].replace('<script>', '').replace('<\/script>', '');
