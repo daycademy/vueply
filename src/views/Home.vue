@@ -44,6 +44,8 @@ export default class Home extends Vue {
           === paramProject.toLowerCase());
       if (filteredProjects.length > 0) {
         this.$store.dispatch('setProject', paramProject);
+        const projectFiles = this.$store.getters['fileExplorer/projectFiles'](paramProject);
+        this.$store.dispatch('fileExplorer/updateSelectedFile', projectFiles[0].name);
       }
     }
   }
