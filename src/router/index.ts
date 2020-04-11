@@ -9,7 +9,7 @@ Vue.use(VueRouter);
 
 const routes = [
   {
-    path: '/:lang',
+    path: '/:lang/:project?',
     component: RouterViewWrapper,
     beforeEnter(to: Route, _from: Route, next: Function) {
       const { lang } = to.params;
