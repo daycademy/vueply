@@ -25,7 +25,11 @@ export default class ThePreview extends Vue {
     const frame = window.frames[0];
     const originalLog = frame.console.log;
     frame.console.log = (message, ...args: [string]) => {
-      frame.document.getElementsByTagName('body')[0].innerHTML += `<p>${message}</p>`;
+      frame.document.getElementsByTagName('body')[0].innerHTML += `<p>
+  <div style="height: 1px; background-color: #eee; margin: 1em 0;"></div>
+  <i class="fas fa-terminal" style="color: #aaa; font-size: 14px; margin-right: 1em;"></i>
+  ${message}
+</p>`;
       originalLog.apply(message, args);
     };
   }
