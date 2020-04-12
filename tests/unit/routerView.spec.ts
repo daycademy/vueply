@@ -3,7 +3,7 @@ import { expect } from 'chai';
 import VueRouter from 'vue-router';
 import Vuex from 'vuex';
 import { createLocalVue, shallowMount, Wrapper } from '@vue/test-utils';
-import RouterView from '@/views/RouterView.vue';
+import RouterView from '@/views/RouterViewWrapper.vue';
 import router from '@/router';
 import store from '@/store';
 
