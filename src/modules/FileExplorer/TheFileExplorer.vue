@@ -16,7 +16,7 @@
             ? ' selected' : ''
           }`"
           :filename="file.name"
-          :fileType="file.type"
+          :file-type="file.type"
           @click="chooseFile(file.name)"
         >
           <FileMenu
