@@ -28,9 +28,10 @@ describe('Home.vue', () => {
     expect(currentFile).eq('index.html');
   });
 
+  /*
   it('should return valid default current project', () => {
-    /* eslint-disable-next-line */
     const { currentProject } = wrapper.vm as any;
     expect(currentProject).eq('vue-web');
   });
+  */
 });
