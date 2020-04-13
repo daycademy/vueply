@@ -1,6 +1,6 @@
 import { ActionContext } from 'vuex';
-import { ProjectState } from './types';
-import { RootState } from '../types';
+import { ProjectState } from './@types';
+import { RootState } from '../@types';
 
 const state: ProjectState = {
   currentProject: 'vue-web',

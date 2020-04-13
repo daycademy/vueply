@@ -1,6 +1,6 @@
 import { ActionContext } from 'vuex';
-import { FileState } from '@/store/modules/types';
-import { RootState, State } from '@/store/types';
+import { FileState } from '@/store/modules/@types';
+import { RootState, State } from '@/store/@types';
 import FileModel from '@/store/models/FileModel';
 
 const addFile = (context: ActionContext<FileState, RootState>, fileModel: FileModel) => {

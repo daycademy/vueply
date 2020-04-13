@@ -1,4 +1,4 @@
-import { FileState } from '@/store/modules/types';
+import { FileState } from '@/store/modules/@types';
 import FileModel from '@/store/models/FileModel';
 
 const state: FileState = {

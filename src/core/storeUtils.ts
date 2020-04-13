@@ -1,7 +1,7 @@
 import ProjectFileLink from '@/store/models/ProjectFileLink';
 import { Store } from 'vuex';
 import FileModel from '@/store/models/FileModel';
-import { RootState } from '@/store/types';
+import { RootState } from '@/store/@types';
 
 export const files = (store: Store<RootState>,
   currentProject: ProjectFileLink): Array<FileModel> => store

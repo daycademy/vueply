@@ -1,4 +1,4 @@
-import { FileState, ProjectState } from './modules/types';
+import { FileState, ProjectState } from './modules/@types';
 
 export interface RootState {
   files: FileState;

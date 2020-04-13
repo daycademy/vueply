@@ -1,6 +1,6 @@
-import { FileState } from '@/store/modules/types';
+import { FileState } from '@/store/modules/@types';
 import FileModel from '@/store/models/FileModel';
-import { State } from '@/store/types';
+import { State } from '@/store/@types';
 
 const addFile = ({ state }: State<FileState>, fileModel: FileModel) => {
   state.files.push(fileModel);
