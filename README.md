@@ -62,11 +62,37 @@ Make sure that basic tests are in `./test` directory and modules tests are in th
 
 ### Coding style tests
 
-_Coming Soon_
+You can run the coding style tests by executing the command:
+
+```sh
+npm run lint
+OR
+yarn lint
+```
+
+If you make a pull request, make sure you lint your files correctly.
+
+You can force the linter to lint for you by executing:
+
+```sh
+npm run lint --fix
+OR
+yarn lint --fix
+```
 
 ## 🚀 Deployment
 
-_Coming Soon_
+This is a front-end only project **yet**. So you can easily run the following command:
+
+```sh
+npm run build
+OR
+yarn build
+```
+
+you can deploy the project to a valid html site. After that, you can simply put these files in the directory in your serve of your choice.
+
+Have fun using it and keep an eye on updates. ;)
 
 ## 💬 Translations
 
