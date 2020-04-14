@@ -60,7 +60,8 @@ const translateIntoJavaScript = (
   cssCode: string,
 ): boolean => {
   const templateCode = htmlCode.replace(/\s*\n+\s*/g, ' ').replace(/>\s+/g, '>').replace(/\s+</g, '<');
-  const jsCode = javascriptCode.replace(/`/g, '\\`');
+  let jsCode = javascriptCode.replace(/`/g, '\'');
+  jsCode = jsCode.replace(/\('\${/g, '(').replace(/}/g, ' + \'').replace(/\${/g, '\' + ');
   /* eslint-disable-next-line */
   const script = 'var template = `<template>' + templateCode + '</template>`;' + 'var js =`' + jsCode + '`;';
   return writeToDoc(frame.document, cssCode, script);
