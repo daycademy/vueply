@@ -1,3 +1,7 @@
+function escapeRegExp(string: string) {
+  return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); // $& means the whole matched string
+}
+
 const writeToDoc = (document: Document, cssCode: string, script: string): boolean => {
   const lib = 'https://cdn.jsdelivr.net/npm/vue@2.6.11';
   document.write('<!DOCTYPE html>');
@@ -60,8 +64,17 @@ const translateIntoJavaScript = (
   cssCode: string,
 ): boolean => {
   const templateCode = htmlCode.replace(/\s*\n+\s*/g, ' ').replace(/>\s+/g, '>').replace(/\s+</g, '<');
-  let jsCode = javascriptCode.replace(/`/g, '\'');
-  jsCode = jsCode.replace(/\('\${/g, '(').replace(/}/g, ' + \'').replace(/\${/g, '\' + ');
+  let jsCode = javascriptCode;
+
+  const templateLiteralMatches = javascriptCode.match(/`(.*?)`/g);
+  if (templateLiteralMatches) {
+    templateLiteralMatches.forEach((templateLiteral) => {
+      const ntl = templateLiteral.replace(/`/g, '\'').replace(/\('\${/g, '(').replace(/}/g, ' + \'').replace(/\${/g, '\' + ');
+      const regex = new RegExp(escapeRegExp(templateLiteral), 'g');
+      jsCode = jsCode.replace(regex, ntl);
+    });
+  }
+
   /* eslint-disable-next-line */
   const script = 'var template = `<template>' + templateCode + '</template>`;' + 'var js =`' + jsCode + '`;';
   return writeToDoc(frame.document, cssCode, script);
