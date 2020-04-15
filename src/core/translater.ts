@@ -57,16 +57,9 @@ const translateIntoVue = (frame: Window, code: string): boolean => {
   return writeToDoc(frame.document, cssCode, script);
 };
 
-const translateIntoJavaScript = (
-  frame: Window,
-  htmlCode: string,
-  javascriptCode: string,
-  cssCode: string,
-): boolean => {
-  const templateCode = htmlCode.replace(/\s*\n+\s*/g, ' ').replace(/>\s+/g, '>').replace(/\s+</g, '<');
-  let jsCode = javascriptCode;
-
+function transformTemplateLiterals(javascriptCode: string): string {
   const templateLiteralMatches = javascriptCode.match(/`(.*?)`/g);
+  let jsCode = javascriptCode;
   if (templateLiteralMatches) {
     templateLiteralMatches.forEach((templateLiteral) => {
       const ntl = templateLiteral.replace(/`/g, '\'').replace(/\('\${/g, '(').replace(/}/g, ' + \'').replace(/\${/g, '\' + ');
@@ -74,6 +67,17 @@ const translateIntoJavaScript = (
       jsCode = jsCode.replace(regex, ntl);
     });
   }
+  return jsCode;
+}
+
+const translateIntoJavaScript = (
+  frame: Window,
+  htmlCode: string,
+  javascriptCode: string,
+  cssCode: string,
+): boolean => {
+  const templateCode = htmlCode.replace(/\s*\n+\s*/g, ' ').replace(/>\s+/g, '>').replace(/\s+</g, '<');
+  const jsCode = transformTemplateLiterals(javascriptCode);
 
   /* eslint-disable-next-line */
   const script = 'var template = `<template>' + templateCode + '</template>`;' + 'var js =`' + jsCode + '`;';
