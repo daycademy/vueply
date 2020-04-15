@@ -56,6 +56,16 @@ export default class ThePreview extends Vue {
         let mainJavascriptFile: string = javascriptFiles.filter((file: FileModel) => file.name === 'index.js')[0].code;
         // Get all other file names by regexing
         const otherFileNamesRegex = mainJavascriptFile.match(/import\s*['"].*['"]/gm);
+
+        const importStatement = mainJavascriptFile.match(/import \{(.*?)\} from ["'](.*?)["']/g)![0];
+        const matchedFilename = importStatement.match(/["'](.*?)["']/g)![0].replace(/'/g, '');
+        const matchedExport = importStatement.match(/\{(.*?)\}/g)![0].replace(/\{/g, '').replace(/\}/g, '').trim();
+        const matchedFile: FileModel = projectFiles
+          .filter((projectFile: FileModel) => projectFile.name === matchedFilename)[0];
+        const fileCode = matchedFile.code;
+        const newCode = fileCode.match(new RegExp(`export const ${matchedExport}(.*)`, 'gs'))![0].replace(/export/g, '');
+        console.log(newCode);
+
         if (otherFileNamesRegex) {
           // Loop through found import statements
           otherFileNamesRegex.forEach((otherFileNameRegex) => {
