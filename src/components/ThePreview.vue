@@ -10,7 +10,7 @@
 <script lang="ts">
 import Vue from 'vue';
 import { Component } from 'vue-property-decorator';
-import translater from '../core/translater';
+import translater from '../core/translater/translater';
 import FileModel from '../store/models/FileModel';
 
 @Component({})
