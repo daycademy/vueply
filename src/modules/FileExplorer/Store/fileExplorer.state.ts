@@ -105,7 +105,7 @@ button {
       name: 'index.css',
       type: 'css',
       project: 'javascript',
-      code: `h1 {
+      code: `div {
   color: red;
 }`,
     },
@@ -113,7 +113,7 @@ button {
       name: 'index.js',
       type: 'javascript',
       project: 'javascript',
-      code: `import 'my-import-file.js';
+      code: `import { test } from 'my-import-file.js';
 
 console.log(123);
 test();`,
@@ -122,7 +122,7 @@ test();`,
       name: 'my-import-file.js',
       type: 'javascript',
       project: 'javascript',
-      code: `const test = () => {
+      code: `export const test = () => {
   console.log('In the awesome test function');
 };`,
     },
