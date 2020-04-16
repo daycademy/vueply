@@ -1,3 +1,5 @@
+import FileModel from '@/store/models/FileModel';
+
 function escapeRegExp(string: string) {
   return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); // $& means the whole matched string
 }
@@ -8,20 +10,22 @@ const writeToDoc = (document: Document, cssCode: string, script: string): boolea
   document.write('<html>');
   document.write('<head>');
   document.write(`<style type="text/css">${cssCode}<\/style>`);
+  document.write('<script src="https://unpkg.com/@babel/standalone@7.9.5/babel.min.js"><\/script>');
   document.write(`<script src=${lib} type="text/javascript"><\/script>`);
   document.write('</head>');
   document.write('<body>');
   document.write('<div id="app"></div>');
   document.write(`<script type="text/javascript">${script}<\/script>`);
   document.write(`<script type="text/javascript">
+
 function handleJs(js) {
-  js = js.replace('export default', 'return');
+  // js = js.replace('export default', 'return');
   return (new Function(js))();
 }
 
 function mergeJs(js, template) {
   const jsObj = handleJs(js);
-  const vueObj = Object.assign({template}, jsObj, {el: '#app'}); 
+  const vueObj = Object.assign({template}, js.code, {el: '#app'}); 
   return new Vue(vueObj);
 }
 
@@ -84,7 +88,47 @@ const translateIntoJavaScript = (
   return writeToDoc(frame.document, cssCode, script);
 };
 
+function replaceNormalImportStatements(
+  mainJavascriptFile: string,
+  projectFiles: Array<FileModel>,
+): string {
+  const otherFileNamesRegex = mainJavascriptFile.match(/import\s*['"].*['"]/gm);
+
+  if (otherFileNamesRegex) {
+    // Loop through found import statements
+    otherFileNamesRegex.forEach((otherFileNameRegex) => {
+      // Replace single and double quotes with nothing and select the filename
+      const otherFileName = otherFileNameRegex.replace(/["']/g, '').split(' ')[1];
+      // Filter the project files and get the file by the import statement filename
+      const file: FileModel = projectFiles
+        .filter((projectFile: FileModel) => projectFile.name === otherFileName)[0];
+      // Replace import statement in main javascript file with file code
+      const importRegex = new RegExp(`import ['"]${file.name}['"]`, 'gm');
+      mainJavascriptFile = mainJavascriptFile.replace(importRegex, file.code);
+    });
+  }
+  return mainJavascriptFile;
+}
+
+const transpileAndExecute = (
+  frame: Window,
+  htmlCode: string,
+  javascriptCode: string,
+  cssCode: string,
+  projectFiles: Array<FileModel>,
+): boolean => {
+  let mainJavascriptFile = javascriptCode;
+
+  // Get all other file names (normal imports)
+  mainJavascriptFile = replaceNormalImportStatements(mainJavascriptFile, projectFiles);
+
+  return translateIntoJavaScript(
+    frame, htmlCode, mainJavascriptFile, cssCode,
+  );
+};
+
 export default {
   translateIntoJavaScript,
   translateIntoVue,
+  transpileAndExecute,
 };

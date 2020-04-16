@@ -53,35 +53,17 @@ export default class ThePreview extends Vue {
       // If multiple javascript files are in one project
       if (javascriptFiles.length !== 1) {
         // Get the `index.js` file from the web project
-        let mainJavascriptFile: string = javascriptFiles.filter((file: FileModel) => file.name === 'index.js')[0].code;
-        // Get all other file names by regexing
-        const otherFileNamesRegex = mainJavascriptFile.match(/import\s*['"].*['"]/gm);
+        const mainJavascriptFile: string = javascriptFiles.filter((file: FileModel) => file.name === 'index.js')[0].code;
 
-        const importStatement = mainJavascriptFile.match(/import \{(.*?)\} from ["'](.*?)["']/g)![0];
-        const matchedFilename = importStatement.match(/["'](.*?)["']/g)![0].replace(/'/g, '');
-        const matchedExport = importStatement.match(/\{(.*?)\}/g)![0].replace(/\{/g, '').replace(/\}/g, '').trim();
-        const matchedFile: FileModel = projectFiles
-          .filter((projectFile: FileModel) => projectFile.name === matchedFilename)[0];
-        const fileCode = matchedFile.code;
-        const newCode = fileCode.match(new RegExp(`export const ${matchedExport}(.*)`, 'gs'))![0].replace(/export/g, '');
-        console.log(newCode);
+        translater.translateIntoJavaScript(
+          window.frames[0], htmlCode, mainJavascriptFile, cssCode,
+        );
 
-        if (otherFileNamesRegex) {
-          // Loop through found import statements
-          otherFileNamesRegex.forEach((otherFileNameRegex) => {
-            // Replace single and double quotes with nothing and select the filename
-            const otherFileName = otherFileNameRegex.replace(/["']/g, '').split(' ')[1];
-            // Filter the project files and get the file by the import statement filename
-            const file: FileModel = projectFiles
-              .filter((projectFile: FileModel) => projectFile.name === otherFileName)[0];
-            // Replace import statement in main javascript file with file code
-            const importRegex = new RegExp(`import ['"]${file.name}['"]`, 'gm');
-            mainJavascriptFile = mainJavascriptFile.replace(importRegex, file.code);
-          });
-          translater.translateIntoJavaScript(
-            window.frames[0], htmlCode, mainJavascriptFile, cssCode,
-          );
-        }
+        /*
+        translater.transpileAndExecute(
+          window.frames[0], htmlCode, mainJavascriptFile, cssCode, javascriptFiles,
+        );
+        */
       } else {
         // Translate just the first found javascript file
         translater.translateIntoJavaScript(
