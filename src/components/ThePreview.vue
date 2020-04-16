@@ -52,18 +52,9 @@ export default class ThePreview extends Vue {
 
       // If multiple javascript files are in one project
       if (javascriptFiles.length !== 1) {
-        // Get the `index.js` file from the web project
-        const mainJavascriptFile: string = javascriptFiles.filter((file: FileModel) => file.name === 'index.js')[0].code;
-
-        translater.translateIntoJavaScript(
-          window.frames[0], htmlCode, mainJavascriptFile, cssCode,
+        translater.translateFilesIntoJavaScript(
+          window.frames[0], htmlCode, javascriptFiles, cssCode,
         );
-
-        /*
-        translater.transpileAndExecute(
-          window.frames[0], htmlCode, mainJavascriptFile, cssCode, javascriptFiles,
-        );
-        */
       } else {
         // Translate just the first found javascript file
         translater.translateIntoJavaScript(

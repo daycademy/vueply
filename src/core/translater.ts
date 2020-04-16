@@ -1,10 +1,11 @@
 import FileModel from '@/store/models/FileModel';
 
-function escapeRegExp(string: string) {
-  return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); // $& means the whole matched string
-}
-
-const writeToDoc = (document: Document, cssCode: string, script: string): boolean => {
+const writeToDoc = (
+  document: Document,
+  cssCode: string,
+  script: string,
+  isJs: boolean,
+): boolean => {
   const lib = 'https://cdn.jsdelivr.net/npm/vue@2.6.11';
   document.write('<!DOCTYPE html>');
   document.write('<html>');
@@ -16,16 +17,60 @@ const writeToDoc = (document: Document, cssCode: string, script: string): boolea
   document.write('<body>');
   document.write('<div id="app"></div>');
   document.write(`<script type="text/javascript">${script}<\/script>`);
-  document.write(`<script type="text/javascript">
+  if (isJs) {
+    document.write(`<script type="text/javascript">
+function handleJs(files) {
+  let transpiledFiles = files.map(({ filename, content }) => \`
+    {
+      filename: "\${ filename }",
+      func: function (require, exports) {
+        \${ Babel.transform(content, { presets: ['env']}).code }
+      },
+      exports: {}
+    }
+  \`);
 
-function handleJs(js) {
+  let code = \`
+    const modules = [\${ transpiledFiles.join(',') }];
+    const require = function(file) {
+      const module = modules.find(({ filename }) => filename === file);
+
+      if (!module) {
+        throw new Error('Demoit can not find "' + file + '" file.');
+      }
+      module.func(require, module.exports);
+      return module.exports;
+    };
+    modules[\${ 0 }].func(require, modules[\${ 0 }].exports);
+  \`;
   // js = js.replace('export default', 'return');
+  // js = Babel.transform(js, { presets: ['env']}).code;
+  return (new Function(code))();
+}
+
+function mergeJs(files, template) {
+  const jsCode = handleJs(files);
+  const vueObj = Object.assign({template}, jsCode, {el: '#app'}); 
+  return new Vue(vueObj);
+}
+
+try {
+  mergeJs(files, template);
+} catch (err) {
+  console.log(err);
+  document.getElementsByTagName('body')[0].innerHTML = '<p style="color:red">' + err + '</p>';
+}
+<\/script>`);
+  } else {
+    document.write(`<script type="text/javascript">
+function handleJs(js) {
+  js = js.replace('export default', 'return');
   return (new Function(js))();
 }
 
 function mergeJs(js, template) {
   const jsObj = handleJs(js);
-  const vueObj = Object.assign({template}, js.code, {el: '#app'}); 
+  const vueObj = Object.assign({template}, jsObj, {el: '#app'}); 
   return new Vue(vueObj);
 }
 
@@ -36,6 +81,7 @@ try {
   document.getElementsByTagName('body')[0].innerHTML = '<p style="color:red">' + err + '</p>';
 }
 <\/script>`);
+  }
 
   document.write('<script src="https://kit.fontawesome.com/5b323b6f9f.js" crossorigin="anonymous"><\/script>');
   document.write('</body>');
@@ -58,21 +104,8 @@ const translateIntoVue = (frame: Window, code: string): boolean => {
   const cssCode = cssMatch[0].replace('<style>', '').replace('<\/style>', '');
   /* eslint-disable-next-line */
   const script = 'var template = `' + templateCode + '`;' + 'var js =`' + jsCode + '`;';
-  return writeToDoc(frame.document, cssCode, script);
+  return writeToDoc(frame.document, cssCode, script, false);
 };
-
-function transformTemplateLiterals(javascriptCode: string): string {
-  const templateLiteralMatches = javascriptCode.match(/`(.*?)`/g);
-  let jsCode = javascriptCode;
-  if (templateLiteralMatches) {
-    templateLiteralMatches.forEach((templateLiteral) => {
-      const ntl = templateLiteral.replace(/`/g, '\'').replace(/\('\${/g, '(').replace(/}/g, ' + \'').replace(/\${/g, '\' + ');
-      const regex = new RegExp(escapeRegExp(templateLiteral), 'g');
-      jsCode = jsCode.replace(regex, ntl);
-    });
-  }
-  return jsCode;
-}
 
 const translateIntoJavaScript = (
   frame: Window,
@@ -81,54 +114,39 @@ const translateIntoJavaScript = (
   cssCode: string,
 ): boolean => {
   const templateCode = htmlCode.replace(/\s*\n+\s*/g, ' ').replace(/>\s+/g, '>').replace(/\s+</g, '<');
-  const jsCode = transformTemplateLiterals(javascriptCode);
+  const jsCode = javascriptCode.replace(/`/g, '\\`');
 
   /* eslint-disable-next-line */
   const script = 'var template = `<template>' + templateCode + '</template>`;' + 'var js =`' + jsCode + '`;';
-  return writeToDoc(frame.document, cssCode, script);
+  return writeToDoc(frame.document, cssCode, script, false);
 };
 
-function replaceNormalImportStatements(
-  mainJavascriptFile: string,
-  projectFiles: Array<FileModel>,
-): string {
-  const otherFileNamesRegex = mainJavascriptFile.match(/import\s*['"].*['"]/gm);
-
-  if (otherFileNamesRegex) {
-    // Loop through found import statements
-    otherFileNamesRegex.forEach((otherFileNameRegex) => {
-      // Replace single and double quotes with nothing and select the filename
-      const otherFileName = otherFileNameRegex.replace(/["']/g, '').split(' ')[1];
-      // Filter the project files and get the file by the import statement filename
-      const file: FileModel = projectFiles
-        .filter((projectFile: FileModel) => projectFile.name === otherFileName)[0];
-      // Replace import statement in main javascript file with file code
-      const importRegex = new RegExp(`import ['"]${file.name}['"]`, 'gm');
-      mainJavascriptFile = mainJavascriptFile.replace(importRegex, file.code);
-    });
-  }
-  return mainJavascriptFile;
-}
-
-const transpileAndExecute = (
+const translateFilesIntoJavaScript = (
   frame: Window,
   htmlCode: string,
-  javascriptCode: string,
+  javascriptFiles: Array<FileModel>,
   cssCode: string,
-  projectFiles: Array<FileModel>,
 ): boolean => {
-  let mainJavascriptFile = javascriptCode;
+  const templateCode = htmlCode.replace(/\s*\n+\s*/g, ' ').replace(/>\s+/g, '>').replace(/\s+</g, '<');
 
-  // Get all other file names (normal imports)
-  mainJavascriptFile = replaceNormalImportStatements(mainJavascriptFile, projectFiles);
+  let jsFiles = '[';
+  javascriptFiles.forEach((javascriptFile) => {
+    jsFiles += `
+  {
+    filename: \`${javascriptFile.name}\`,
+    content: \`${javascriptFile.code.replace(/`/g, '\\`').replace(/\${/g, '\\${')}\`
+  },
+`;
+  });
+  jsFiles += '];';
 
-  return translateIntoJavaScript(
-    frame, htmlCode, mainJavascriptFile, cssCode,
-  );
+  /* eslint-disable-next-line */
+  const script = 'var template = `<template>' + templateCode + '</template>`;' + 'var files = ' + jsFiles + ';';
+  return writeToDoc(frame.document, cssCode, script, true);
 };
 
 export default {
   translateIntoJavaScript,
   translateIntoVue,
-  transpileAndExecute,
+  translateFilesIntoJavaScript,
 };
