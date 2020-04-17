@@ -99,14 +99,29 @@ button {
       name: 'index.html',
       type: 'text/html',
       project: 'javascript',
-      code: '<div>test</div>',
+      code: `<div id="home">
+  <h1>My test button</h1>
+  <button id="test-btn">Click</button>
+</div>
+`,
     },
     {
       name: 'index.css',
       type: 'css',
       project: 'javascript',
-      code: `div {
-  color: red;
+      code: `@import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
+
+h1 {
+  font-family: "Montserrat";
+}
+
+button {
+  padding: 10px 20px;
+  border-color: transparent;
+  border-radius: 5px;
+  font-size: 15px;
+  background-color: #27AE60;
+  color: white;
 }`,
     },
     {
@@ -115,7 +130,11 @@ button {
       project: 'javascript',
       code: `import { test } from 'my-import-file.js';
 
-console.log(123);
+setTimeout(() => {
+  document.getElementById('test-btn').addEventListener('click', () => {
+    console.log('Button clicked');
+  });
+});
 test();`,
     },
     {
