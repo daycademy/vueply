@@ -12,7 +12,6 @@ const writeToDoc = (
   document.write('<!DOCTYPE html>');
   document.write('<html>');
   document.write('<head>');
-  console.log(script);
   document.write(`<style type="text/css">${cssCode}<\/style>`);
   document.write('<script src="https://unpkg.com/@babel/standalone@7.9.5/babel.min.js"><\/script>');
   document.write(`<script src=${lib} type="text/javascript"><\/script>`);
