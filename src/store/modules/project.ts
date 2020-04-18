@@ -16,6 +16,11 @@ const state: ProjectState = {
       fileTypes: ['text/html', 'css', 'javascript'],
     },
     {
+      displayName: 'JavaScript Single',
+      projectName: 'javascript-single',
+      fileTypes: ['text/html', 'css', 'javascript'],
+    },
+    {
       displayName: 'JavaScript Multi',
       projectName: 'javascript-multi',
       fileTypes: ['text/html', 'css', 'javascript'],

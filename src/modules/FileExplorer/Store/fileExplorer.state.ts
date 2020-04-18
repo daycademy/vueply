@@ -140,6 +140,45 @@ test();`,
   console.log('In the awesome test function');
 };`,
     },
+    {
+      name: 'index.html',
+      type: 'text/html',
+      project: 'javascript-single',
+      code: `<div id="home">
+  <button id="test-btn">Click for event</button>
+</div>
+`,
+    },
+    {
+      name: 'index.css',
+      type: 'css',
+      project: 'javascript-single',
+      code: `@import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
+
+h1 {
+  font-family: "Montserrat";
+}
+
+button {
+  padding: 10px 20px;
+  border-color: transparent;
+  border-radius: 5px;
+  font-size: 15px;
+  background-color: #27AE60;
+  color: white;
+}`,
+    },
+    {
+      name: 'index.js',
+      type: 'javascript',
+      project: 'javascript-single',
+      code: `console.log('Awesome javascript single');
+
+document.getElementById('test-btn').addEventListener('click', () => {
+  console.log('Button clicked!');
+});
+`,
+    },
   ),
   fileTypes: [
     {
