@@ -23,19 +23,11 @@ function handleJs(files) {
     };
     modules[\${ 0 }].func(require, modules[\${ 0 }].exports);
   \`;
-  // js = js.replace('export default', 'return');
-  // js = Babel.transform(js, { presets: ['env']}).code;
-  return (new Function(code))();
-}
-
-function mergeJs(files, template) {
-  const jsCode = handleJs(files);
-  const vueObj = Object.assign({template}, jsCode, {el: '#app'}); 
-  return new Vue(vueObj);
+  return code;
 }
 
 try {
-  mergeJs(files, template);
+  (new Function(handleJs(files)))();
 } catch (err) {
   console.log(err);
   document.getElementsByTagName('body')[0].innerHTML = '<p style="color:red">' + err + '</p>';

@@ -7,6 +7,7 @@ const writeToDoc = (
   cssCode: string,
   script: string,
   isJs: boolean,
+  template?: string,
 ): boolean => {
   const lib = 'https://cdn.jsdelivr.net/npm/vue@2.6.11';
   document.write('<!DOCTYPE html>');
@@ -17,7 +18,8 @@ const writeToDoc = (
   document.write(`<script src=${lib} type="text/javascript"><\/script>`);
   document.write('</head>');
   document.write('<body>');
-  document.write('<div id="app"></div>');
+  if (!template) document.write('<div id="app"></div>');
+  else document.write(template);
   document.write(`<script type="text/javascript">${script}<\/script>`);
   if (isJs) {
     document.write(`<script type="text/javascript">${jsCompiler}<\/script>`);
@@ -83,8 +85,8 @@ const translateFilesIntoJavaScript = (
   jsFiles += '];';
 
   /* eslint-disable-next-line */
-  const script = 'var template = `<template>' + templateCode + '</template>`;' + 'var files = ' + jsFiles + ';';
-  return writeToDoc(frame.document, cssCode, script, true);
+  const script = 'var files = ' + jsFiles + ';';
+  return writeToDoc(frame.document, cssCode, script, true, templateCode);
 };
 
 export default {
