@@ -42,15 +42,13 @@ export default class ThePreview extends Vue {
   showPreview() {
     const projectFiles = this.$store.getters['fileExplorer/projectFiles'](this.currentProject);
 
-    if (this.currentProject !== 'vue') {
-      const allHtmlFiles: Array<FileModel> = projectFiles.filter((projectFile: FileModel) => projectFile.type === 'text/html');
-      const allCssFiles: Array<FileModel> = projectFiles.filter((projectFile: FileModel) => projectFile.type === 'css');
-      const htmlCode: string = allHtmlFiles.length !== 0 ? allHtmlFiles[0].code : '';
-      const cssCode = allCssFiles.map((cssFile) => cssFile.code).join(' ');
-
-      // Get all javascript files
-      const javascriptFiles: Array<FileModel> = projectFiles.filter((projectFile: FileModel) => projectFile.type === 'javascript');
-
+    const allHtmlFiles: Array<FileModel> = projectFiles.filter((projectFile: FileModel) => projectFile.type === 'text/html');
+    const allCssFiles: Array<FileModel> = projectFiles.filter((projectFile: FileModel) => projectFile.type === 'css');
+    const htmlCode: string = allHtmlFiles.length !== 0 ? allHtmlFiles[0].code : '';
+    const cssCode = allCssFiles.map((cssFile) => cssFile.code).join(' ');
+    // Get all javascript files
+    const javascriptFiles: Array<FileModel> = projectFiles.filter((projectFile: FileModel) => projectFile.type === 'javascript');
+    if (this.currentProject === 'javascript') {
       // If multiple javascript files are in one project
       if (javascriptFiles.length !== 1) {
         translater.translateFilesIntoJavaScript(
@@ -62,6 +60,11 @@ export default class ThePreview extends Vue {
           window.frames[0], htmlCode, javascriptFiles[0].code, cssCode,
         );
       }
+    } else if (this.currentProject === 'vue-web') {
+      // Translate just the first found javascript file
+      translater.translateIntoWebVue(
+        window.frames[0], htmlCode, javascriptFiles[0].code, cssCode,
+      );
     } else {
       translater.translateIntoVue(window.frames[0], projectFiles[0].code);
     }

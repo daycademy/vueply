@@ -54,6 +54,20 @@ const translateIntoVue = (frame: Window, code: string): boolean => {
   return writeToDoc(frame.document, cssCode, script, false);
 };
 
+const translateIntoWebVue = (
+  frame: Window,
+  htmlCode: string,
+  javascriptCode: string,
+  cssCode: string,
+): boolean => {
+  const templateCode = htmlCode.replace(/\s*\n+\s*/g, ' ').replace(/>\s+/g, '>').replace(/\s+</g, '<');
+  const jsCode = javascriptCode.replace(/`/g, '\\`');
+
+  /* eslint-disable-next-line */
+  const script = 'var template = `<template>' + templateCode + '</template>`;' + 'var js =`' + jsCode + '`;';
+  return writeToDoc(frame.document, cssCode, script, false);
+};
+
 const translateIntoJavaScript = (
   frame: Window,
   htmlCode: string,
@@ -93,5 +107,6 @@ const translateFilesIntoJavaScript = (
 export default {
   translateIntoJavaScript,
   translateIntoVue,
+  translateIntoWebVue,
   translateFilesIntoJavaScript,
 };
