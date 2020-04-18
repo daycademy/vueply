@@ -98,7 +98,7 @@ button {
     {
       name: 'index.html',
       type: 'text/html',
-      project: 'javascript',
+      project: 'javascript-multi',
       code: `<div id="home">
   <h1>My test button</h1>
   <button id="test-btn">Click</button>
@@ -108,7 +108,7 @@ button {
     {
       name: 'index.css',
       type: 'css',
-      project: 'javascript',
+      project: 'javascript-multi',
       code: `@import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
 
 h1 {
@@ -127,20 +127,15 @@ button {
     {
       name: 'index.js',
       type: 'javascript',
-      project: 'javascript',
+      project: 'javascript-multi',
       code: `import { test } from 'my-import-file.js';
 
-setTimeout(() => {
-  document.getElementById('test-btn').addEventListener('click', () => {
-    console.log('Button clicked');
-  });
-});
 test();`,
     },
     {
       name: 'my-import-file.js',
       type: 'javascript',
-      project: 'javascript',
+      project: 'javascript-multi',
       code: `export const test = () => {
   console.log('In the awesome test function');
 };`,

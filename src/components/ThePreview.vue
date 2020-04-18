@@ -48,7 +48,7 @@ export default class ThePreview extends Vue {
     const cssCode = allCssFiles.map((cssFile) => cssFile.code).join(' ');
     // Get all javascript files
     const javascriptFiles: Array<FileModel> = projectFiles.filter((projectFile: FileModel) => projectFile.type === 'javascript');
-    if (this.currentProject === 'javascript') {
+    if (this.currentProject.startsWith('javascript')) {
       // If multiple javascript files are in one project
       if (javascriptFiles.length !== 1) {
         translater.translateFilesIntoJavaScript(
