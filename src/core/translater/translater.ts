@@ -8,6 +8,7 @@ const writeToDoc = (
   script: string,
   isJs: boolean,
   template?: string,
+  singleFile = false,
 ): boolean => {
   const lib = 'https://cdn.jsdelivr.net/npm/vue@2.6.11';
   document.write('<!DOCTYPE html>');
@@ -21,10 +22,12 @@ const writeToDoc = (
   if (!template) document.write('<div id="app"></div>');
   else document.write(template);
   document.write(`<script type="text/javascript">${script}<\/script>`);
-  if (isJs) {
-    document.write(`<script type="text/javascript">${jsCompiler}<\/script>`);
-  } else {
-    document.write(`<script type="text/javascript">${vueCompiler}<\/script>`);
+  if (!singleFile) {
+    if (isJs) {
+      document.write(`<script type="text/javascript">${jsCompiler}<\/script>`);
+    } else {
+      document.write(`<script type="text/javascript">${vueCompiler}<\/script>`);
+    }
   }
 
   document.write('<script src="https://kit.fontawesome.com/5b323b6f9f.js" crossorigin="anonymous"><\/script>');
@@ -60,9 +63,7 @@ const translateIntoJavaScript = (
   const templateCode = htmlCode.replace(/\s*\n+\s*/g, ' ').replace(/>\s+/g, '>').replace(/\s+</g, '<');
   const jsCode = javascriptCode.replace(/`/g, '\\`');
 
-  /* eslint-disable-next-line */
-  const script = 'var template = `<template>' + templateCode + '</template>`;' + 'var js =`' + jsCode + '`;';
-  return writeToDoc(frame.document, cssCode, script, false);
+  return writeToDoc(frame.document, cssCode, jsCode, true, templateCode, true);
 };
 
 const translateFilesIntoJavaScript = (
