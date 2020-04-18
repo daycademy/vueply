@@ -2,7 +2,8 @@
   <iframe
     id="preview"
     name="result"
-    sandbox="allow-forms allow-popups allow-scripts allow-same-origin"
+    sandbox="allow-forms allow-modals allow-pointer-lock
+      allow-popups allow-scripts allow-same-origin"
     frameBorder="0"
   ></iframe>
 </template>
