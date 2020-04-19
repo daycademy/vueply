@@ -7,6 +7,7 @@
     "build": "set BUNDLE_ANALYZE=false&&vue-cli-service build",
     "build:analyze": "set NODE_ENV=production&&set BUNDLE_ANALYZE=true&&vue-cli-service build",
     "test:unit": "vue-cli-service test:unit --watch --recursive 'src/modules/**/Tests/*.spec.ts' 'src/modules/**/Tests/**/*.spec.ts' 'tests/unit/**.spec.ts'",
+    "test:unit:single": "vue-cli-service test:unit",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
