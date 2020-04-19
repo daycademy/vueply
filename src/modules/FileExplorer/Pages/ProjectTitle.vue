@@ -26,7 +26,9 @@ export default class ProjectTitle extends Vue {
   private chooseProject(project: string) {
     this.$store.dispatch('setProject', project);
     const projectFiles = this.$store.getters['fileExplorer/projectFiles'](project);
-    this.$store.dispatch('fileExplorer/updateSelectedFile', projectFiles[0].name);
+    if (projectFiles && projectFiles.length > 0) {
+      this.$store.dispatch('fileExplorer/updateSelectedFile', projectFiles[0].name);
+    }
   }
 }
 </script>
