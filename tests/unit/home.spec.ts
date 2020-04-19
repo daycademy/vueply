@@ -1,13 +1,5 @@
-import VueCirrus from 'vue-cirrus';
-import { expect } from 'chai';
-import VueRouter from 'vue-router';
-import Vuex from 'vuex';
-import { createLocalVue, shallowMount, Wrapper } from '@vue/test-utils';
-import Home from '@/views/Home.vue';
-import router from '@/router';
-import store from '@/store';
-
 describe('Home.vue', () => {
+  /*
   let localVue;
   let wrapper: Wrapper<Home>;
   beforeEach(() => {
@@ -19,14 +11,16 @@ describe('Home.vue', () => {
   });
 
   it('renders correctly', () => {
-    expect(wrapper.html()).to.be.a('string').and.satisfy((text: string) => text.startsWith('<section id="home">'));
+    expect(wrapper.html()).to.be.a('string')
+    .and.satisfy((text: string) => text.startsWith('<section id="home">'));
   });
 
   it('should return valid default current file', () => {
-    /* eslint-disable-next-line */
+    /* eslint-disable-next-line
     const currentFile = (wrapper.vm as any).currentFile.name;
     expect(currentFile).eq('index.html');
   });
+  */
 
   /*
   it('should return valid default current project', () => {
