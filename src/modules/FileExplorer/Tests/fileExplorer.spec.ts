@@ -1,20 +1,19 @@
+import Vue from 'vue';
 import VueCirrus from 'vue-cirrus';
 import Vuex from 'vuex';
-import { mount, Wrapper, createLocalVue } from '@vue/test-utils';
+import { mount, Wrapper } from '@vue/test-utils';
 import { expect } from 'chai';
 import i18n from '@/i18n';
 import store from '@/store';
 import TheFileExplorer from '../TheFileExplorer.vue';
 
+Vue.use(VueCirrus);
+Vue.use(Vuex);
+
 describe('FileExplorer', () => {
-  let localVue;
   let wrapper: Wrapper<TheFileExplorer>;
   beforeEach(() => {
-    localVue = createLocalVue();
-    localVue.use(VueCirrus);
-    localVue.use(Vuex);
     wrapper = mount(TheFileExplorer, {
-      localVue,
       i18n,
       store,
     });
