@@ -145,6 +145,8 @@ test();`,
       type: 'text/html',
       project: 'javascript-single',
       code: `<div id="home">
+  <h1>JavaScript Variables</h1>
+  <hr />
   <button id="test-btn">Click for event</button>
 </div>
 `,
@@ -156,10 +158,18 @@ test();`,
       code: `@import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
 
 h1 {
-  font-family: "Montserrat";
+  font-family: 'Montserrat';
+}
+
+hr {
+  border-top: 1px solid #ddd;
+  margin-left: 0;
+  margin-bottom: 2em;
+  width: 10em;
 }
 
 button {
+  font-family: 'Montserrat';
   padding: 10px 20px;
   border-color: transparent;
   border-radius: 5px;
