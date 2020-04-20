@@ -100,7 +100,8 @@ button {
       type: 'text/html',
       project: 'javascript-multi',
       code: `<div id="home">
-  <h1>My test button</h1>
+  <h1>JavaScript Imports</h1>
+  <hr />
   <button id="test-btn">Click</button>
 </div>
 `,
@@ -112,17 +113,26 @@ button {
       code: `@import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
 
 h1 {
-  font-family: "Montserrat";
+  font-family: 'Montserrat';
+}
+
+hr {
+  border-top: 1px solid #ddd;
+  margin-left: 0;
+  margin-bottom: 2em;
+  width: 10em;
 }
 
 button {
+  font-family: 'Montserrat';
   padding: 10px 20px;
   border-color: transparent;
   border-radius: 5px;
   font-size: 15px;
   background-color: #27AE60;
   color: white;
-}`,
+}
+`,
     },
     {
       name: 'index.js',
@@ -130,7 +140,8 @@ button {
       project: 'javascript-multi',
       code: `import { test } from 'my-import-file.js';
 
-test();`,
+test();
+`,
     },
     {
       name: 'my-import-file.js',
@@ -138,7 +149,8 @@ test();`,
       project: 'javascript-multi',
       code: `export const test = () => {
   console.log('In the awesome test function');
-};`,
+};
+`,
     },
     {
       name: 'index.html',
@@ -176,7 +188,8 @@ button {
   font-size: 15px;
   background-color: #27AE60;
   color: white;
-}`,
+}
+`,
     },
     {
       name: 'index.js',
