@@ -66,7 +66,7 @@ export default class HowToUse extends Vue {
       }
 
       &.hotkey {
-        background-color: #282A36;
+        background-color: #282c34;
         padding: 4px 8px;
         border-radius: 4px;
       }
