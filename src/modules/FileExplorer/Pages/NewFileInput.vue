@@ -61,8 +61,8 @@ export default class NewFileInput extends Vue {
 
 <style lang="scss" scoped>
 input {
-  background-color: #282A36;
+  background-color: #282c34;
   color: #9497B0 !important;
-  border: 1px solid #282A36 !important;
+  border: 1px solid #282c34 !important;
 }
 </style>
