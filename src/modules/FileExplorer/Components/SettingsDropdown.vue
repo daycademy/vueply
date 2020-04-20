@@ -37,7 +37,7 @@ export default class SettingsDropdown extends Vue {
   margin-right: 7px;
 
   .menu {
-    background-color: #333545;
+    background-color: #282c34;
 
     li a {
       color: #fff;

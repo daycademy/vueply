@@ -70,7 +70,7 @@ export default class File extends Vue {
   align-items: center;
 
   &:hover {
-    background-color: #3E4153;
+    background-color: #282c34;
 
     .file-menu {
       visibility: visible;
@@ -79,7 +79,7 @@ export default class File extends Vue {
 
   &.selected {
     color: #fff;
-    background-color: #282A36;
+    background-color: #282c34;
 
     .file-menu {
       visibility: visible;

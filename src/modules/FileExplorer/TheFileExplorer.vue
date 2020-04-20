@@ -109,7 +109,7 @@ export default class TheFileExplorer extends Vue {
 #file-explorer {
   height: 100%;
   width: 100%;
-  background-color: #333545;
+  background-color: #1d2026;
 
   p.project-title, #files .title p {
     color: white;
