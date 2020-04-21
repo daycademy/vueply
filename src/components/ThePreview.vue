@@ -1,11 +1,16 @@
 <template>
-  <iframe
-    id="preview"
-    name="result"
-    sandbox="allow-forms allow-modals allow-pointer-lock
-      allow-popups allow-scripts allow-same-origin"
-    frameBorder="0"
-  ></iframe>
+  <section id="the-preview">
+    <iframe
+      id="preview"
+      name="result"
+      sandbox="allow-forms allow-modals allow-pointer-lock
+        allow-popups allow-scripts allow-same-origin"
+      frameBorder="0"
+    ></iframe>
+    <div id="play-btn">
+      <i class="fas fa-play-circle" aria-hidden="true"></i>
+    </div>
+  </section>
 </template>
 
 <script lang="ts">
@@ -40,6 +45,14 @@ export default class ThePreview extends Vue {
   }
 
   showPreview() {
+    const playBtn = document.getElementById('play-btn');
+    if (playBtn) {
+      playBtn.classList.toggle('play-animation');
+      setTimeout(() => {
+        playBtn.classList.toggle('play-animation');
+      }, 750);
+    }
+
     const projectFiles = this.$store.getters['fileExplorer/projectFiles'](this.currentProject);
 
     const allHtmlFiles: Array<FileModel> = projectFiles.filter((projectFile: FileModel) => projectFile.type === 'text/html');
@@ -73,6 +86,25 @@ export default class ThePreview extends Vue {
 </script>
 
 <style lang="scss">
+#the-preview {
+  width: 100%;
+  height: 100%;
+
+  #play-btn {
+    opacity: 0;
+    position: absolute;
+    top: 40%;
+    right: calc(33.33333333% / 2 - 4%);
+    font-size: 102px;
+    transition: visibility 0s linear 300ms, opacity 750ms;
+    color: #ccc;
+
+    &.play-animation {
+      opacity: 1;
+      transition: visibility 0s linear 0s, opacity 750ms;
+    }
+  }
+}
 #preview {
   width: 100%;
   height: 100%;
