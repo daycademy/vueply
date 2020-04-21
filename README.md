@@ -14,7 +14,7 @@
 
 Vueply is a full functional JavaScript / Vue playground in the browser. Everything is simply stored on the server and really easy to use. It is a minimal IDE for easy prototyping in the web.
 
-<img src="https://i.imgur.com/artPEwU.png" alt="preview" />
+<img src="https://i.imgur.com/gyUm4Ne.png" alt="preview" />
 
 ## 💥 Getting Started
 
@@ -93,6 +93,13 @@ yarn build
 you can deploy the project to a valid html site. After that, you can simply put these files in the directory in your serve of your choice.
 
 Have fun using it and keep an eye on updates. ;)
+
+## 🗺 Things we want to do
+
+- [ ] Renaming Files
+- [ ] Live Coding
+- [ ] TypeScript Support
+- [ ] Python Support
 
 ## 💬 Translations
 
