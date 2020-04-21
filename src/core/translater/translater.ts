@@ -21,13 +21,19 @@ const writeToDoc = (
   document.write('<body>');
   if (!template) document.write('<div id="app"></div>');
   else document.write(template);
-  document.write(`<script type="text/javascript">${script}<\/script>`);
   if (!singleFile) {
+    document.write(`<script type="text/javascript">${script}<\/script>`);
     if (isJs) {
       document.write(`<script type="text/javascript">${jsCompiler}<\/script>`);
     } else {
       document.write(`<script type="text/javascript">${vueCompiler}<\/script>`);
     }
+  } else {
+    document.write(`<script type="text/javascript">
+;(function() {
+  ${script}
+})()
+<\/script>`);
   }
 
   document.write('<script src="https://kit.fontawesome.com/5b323b6f9f.js" crossorigin="anonymous"><\/script>');
