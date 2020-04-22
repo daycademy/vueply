@@ -70,7 +70,8 @@ export default class ThePreview extends Vue {
       } else {
         // Translate just the first found javascript file
         translater.translateIntoJavaScript(
-          window.frames[0], htmlCode, javascriptFiles[0].code, cssCode,
+          window.frames[0], htmlCode, javascriptFiles[0].code,
+          cssCode, this.$route.query.headline as string,
         );
       }
     } else if (this.currentProject === 'vue-web') {

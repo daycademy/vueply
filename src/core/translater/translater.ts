@@ -79,8 +79,21 @@ const translateIntoJavaScript = (
   htmlCode: string,
   javascriptCode: string,
   cssCode: string,
+  header = '',
 ): boolean => {
-  const templateCode = htmlCode.replace(/\s*\n+\s*/g, ' ').replace(/>\s+/g, '>').replace(/\s+</g, '<');
+  let templateCode = htmlCode;
+  if (header && templateCode.search('<h1 id="headline">')) {
+    const headline = templateCode.substring(
+      templateCode.search('<h1 id="headline">'), templateCode.search('</h1>'),
+    ).split('>');
+    if (headline) {
+      const regexp = new RegExp(headline[1], 'g');
+      templateCode = templateCode.replace(regexp, header);
+    }
+    templateCode = templateCode.replace(/\s*\n+\s*/g, ' ').replace(/>\s+/g, '>').replace(/\s+</g, '<');
+  } else {
+    templateCode = htmlCode.replace(/\s*\n+\s*/g, ' ').replace(/>\s+/g, '>').replace(/\s+</g, '<');
+  }
   const jsCode = javascriptCode.replace(/`/g, '\\`');
 
   return writeToDoc(frame.document, cssCode, jsCode, true, templateCode, true);
