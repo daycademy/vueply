@@ -157,7 +157,7 @@ test();
       type: 'text/html',
       project: 'javascript-single',
       code: `<div id="home">
-  <h1>JavaScript Variables</h1>
+  <h1 id="headline">JavaScript Variables</h1>
   <hr />
   <button id="test-btn">Click for event</button>
 </div>
