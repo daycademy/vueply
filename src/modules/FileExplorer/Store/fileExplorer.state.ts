@@ -102,7 +102,6 @@ button {
       code: `<div id="home">
   <h1>JavaScript Imports</h1>
   <hr />
-  <button id="test-btn">Click</button>
 </div>
 `,
     },
@@ -121,16 +120,6 @@ hr {
   margin-left: 0;
   margin-bottom: 2em;
   width: 10em;
-}
-
-button {
-  font-family: 'Montserrat';
-  padding: 10px 20px;
-  border-color: transparent;
-  border-radius: 5px;
-  font-size: 15px;
-  background-color: #27AE60;
-  color: white;
 }
 `,
     },
