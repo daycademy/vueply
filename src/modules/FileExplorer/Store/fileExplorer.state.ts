@@ -219,6 +219,28 @@ document.getElementById('test-btn').addEventListener('click', () => {
       shortcut: 'css',
       defaultCode: '/* Insert your code here ... */',
     },
+    {
+      codeMirrorName: 'text/x-vue',
+      shortcut: 'vue',
+      defaultCode: `<template>
+  <h4>Vue File</h4>
+</template>
+
+<script>
+export default {
+  mounted() {
+    console.log('Componented mounted');
+  },
+};
+</script>
+
+<style>
+h4 {
+  font-family: 'Montserrat';
+}
+</style>
+`,
+    },
   ],
 };
 
