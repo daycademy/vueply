@@ -20,7 +20,7 @@ const state: FileState = {
       code: `@import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
 
 h1 {
-  font-family: "Montserrat";
+  font-family: 'Montserrat';
 }
 
 button {
@@ -37,7 +37,7 @@ button {
       type: 'javascript',
       project: 'vue-web',
       code: `export default {
-  name: "HelloWorld",
+  name: 'HelloWorld',
   data() {
     return {
       count: 0,
@@ -82,7 +82,7 @@ export default {
 @import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
 
 h1 {
-  font-family: "Montserrat";
+  font-family: 'Montserrat';
 }
 
 button {
