@@ -60,6 +60,8 @@ export default class CodePane extends Vue {
       value: this.value,
       mode: this.mode,
       lineNumbers: true,
+      matchTags: true,
+      matchBrackets: true,
       theme: 'one-dark',
       tabSize: 2,
       scrollbarStyle: 'overlay',
