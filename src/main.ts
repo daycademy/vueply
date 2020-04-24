@@ -12,6 +12,7 @@ import 'codemirror/mode/vue/vue';
 import 'codemirror/addon/scroll/simplescrollbars';
 import 'codemirror/addon/edit/matchbrackets';
 import 'codemirror/addon/edit/matchtags';
+import 'codemirror/addon/edit/closebrackets';
 import 'vue-cirrus/dist/vue-cirrus.css';
 
 Vue.use(VueCirrus);
