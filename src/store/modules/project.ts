@@ -25,6 +25,11 @@ const state: ProjectState = {
       projectName: 'javascript-multi',
       fileTypes: ['text/html', 'css', 'javascript'],
     },
+    {
+      displayName: 'TypeScript',
+      projectName: 'typescript',
+      fileTypes: ['text/html', 'css', 'text/typescript'],
+    },
   ],
 };
 

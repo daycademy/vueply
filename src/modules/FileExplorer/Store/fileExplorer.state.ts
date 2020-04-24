@@ -191,11 +191,53 @@ document.getElementById('test-btn').addEventListener('click', () => {
 });
 `,
     },
+    {
+      name: 'index.html',
+      type: 'text/html',
+      project: 'typescript',
+      code: `<div id="home">
+  <h1 id="headline">TypeScript</h1>
+  <hr />
+</div>
+`,
+    },
+    {
+      name: 'index.css',
+      type: 'css',
+      project: 'typescript',
+      code: `@import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
+
+h1 {
+  font-family: 'Montserrat';
+}
+
+hr {
+  border-top: 1px solid #ddd;
+  margin-left: 0;
+  margin-bottom: 2em;
+  width: 10em;
+}
+`,
+    },
+    {
+      name: 'index.ts',
+      type: 'text/typescript',
+      project: 'typescript',
+      code: `const str: string = 'Hello World';
+
+console.log(str);
+`,
+    },
   ),
   fileTypes: [
     {
       codeMirrorName: 'javascript',
       shortcut: 'js',
+      defaultCode: '/* Insert your code here ... */',
+    },
+    {
+      codeMirrorName: 'text/typescript',
+      shortcut: 'ts',
       defaultCode: '/* Insert your code here ... */',
     },
     {

@@ -25,6 +25,9 @@ import { Component, Prop } from 'vue-property-decorator';
         'text/x-vue': {
           icon: 'fa-vuejs',
         },
+        'text/typescript': {
+          icon: 'fa-js-square ts',
+        },
       },
     };
   },
@@ -48,6 +51,10 @@ export default class File extends Vue {
   }
   &.fa-js-square {
     color: #F1C40F;
+
+    &.ts {
+      color: #2980B9;
+    }
   }
   &.fa-vuejs {
     color: #2ECC71;
