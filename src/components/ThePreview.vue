@@ -75,7 +75,7 @@ export default class ThePreview extends Vue {
         );
       }
     } else if (this.currentProject === 'typescript') {
-      const typescriptFiles: Array<FileModel> = projectFiles.filter((projectFile: FileModel) => projectFile.type === 'typescript');
+      const typescriptFiles: Array<FileModel> = projectFiles.filter((projectFile: FileModel) => projectFile.type === 'text/typescript');
       translater.translateIntoTypeScript(
         window.frames[0], htmlCode, typescriptFiles, cssCode,
       );
