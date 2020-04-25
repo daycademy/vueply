@@ -223,9 +223,19 @@ hr {
       name: 'index.ts',
       type: 'text/typescript',
       project: 'typescript',
-      code: `const str: string = 'Hello World';
+      code: `import { weirdNumber } from 'weirdNumber.ts';
+
+const str: string = 'Hello World';
 
 console.log(str);
+console.log(weirdNumber);
+`,
+    },
+    {
+      name: 'weirdNumber.ts',
+      type: 'text/typescript',
+      project: 'typescript',
+      code: `export const weirdNumber = 1729;
 `,
     },
   ),
