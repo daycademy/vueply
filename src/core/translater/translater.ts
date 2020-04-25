@@ -123,9 +123,34 @@ const translateFilesIntoJavaScript = (
   return writeToDoc(frame.document, cssCode, script, true, templateCode);
 };
 
+const translateIntoTypeScript = (
+  frame: Window,
+  htmlCode: string,
+  typescriptFiles: Array<FileModel>,
+  cssCode: string,
+) => {
+  const templateCode = htmlCode.replace(/\s*\n+\s*/g, ' ').replace(/>\s+/g, '>').replace(/\s+</g, '<');
+
+  let tsFiles = '[';
+  typescriptFiles.forEach((tsFile) => {
+    tsFiles += `
+  {
+    filename: \`${tsFile.name}\`,
+    content: \`${tsFile.code.replace(/`/g, '\\`').replace(/\${/g, '\\${')}\`
+  },
+`;
+  });
+  tsFiles += '];';
+
+  /* eslint-disable-next-line */
+  const script = 'var files = ' + tsFiles + ';';
+  return writeToDoc(frame.document, cssCode, script, false, templateCode);
+};
+
 export default {
   translateIntoJavaScript,
   translateIntoVue,
   translateIntoWebVue,
   translateFilesIntoJavaScript,
+  translateIntoTypeScript,
 };
