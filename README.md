@@ -94,11 +94,10 @@ you can deploy the project to a valid html site. After that, you can simply put 
 
 Have fun using it and keep an eye on updates. ;)
 
-## 🗺 Things we want to do
+## 🗺 Big Topics we want to do
 
-- [ ] Renaming Files
 - [ ] Live Coding
-- [ ] TypeScript Support
+- [X] TypeScript Support
 - [ ] Python Support
 
 ## 💬 Translations
