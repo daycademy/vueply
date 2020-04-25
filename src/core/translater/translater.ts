@@ -1,12 +1,13 @@
 import FileModel from '@/store/models/FileModel';
 import jsCompiler from './jsCompiler.iframe';
 import vueCompiler from './vueCompiler.iframe';
+import tsCompiler from './tsCompiler.iframe';
 
 const writeToDoc = (
   document: Document,
   cssCode: string,
   script: string,
-  isJs: boolean,
+  projectType: string,
   template?: string,
   singleFile = false,
 ): boolean => {
@@ -23,10 +24,13 @@ const writeToDoc = (
   else document.write(template);
   if (!singleFile) {
     document.write(`<script type="text/javascript">${script}<\/script>`);
-    if (isJs) {
+    if (projectType === 'javascript') {
       document.write(`<script type="text/javascript">${jsCompiler}<\/script>`);
-    } else {
+    } else if (projectType === 'vue') {
       document.write(`<script type="text/javascript">${vueCompiler}<\/script>`);
+    } else if (projectType === 'typescript') {
+      document.write('<script src="https://cdnjs.cloudflare.com/ajax/libs/typescript/3.9.0-beta/typescript.min.js"><\/script>');
+      document.write(`<script type="text/javascript">${tsCompiler}<\/script>`);
     }
   } else {
     document.write(`<script type="text/javascript">
@@ -57,7 +61,7 @@ const translateIntoVue = (frame: Window, code: string): boolean => {
   const cssCode = cssMatch[0].replace('<style>', '').replace('<\/style>', '');
   /* eslint-disable-next-line */
   const script = 'var template = `' + templateCode + '`;' + 'var js =`' + jsCode + '`;';
-  return writeToDoc(frame.document, cssCode, script, false);
+  return writeToDoc(frame.document, cssCode, script, 'vue');
 };
 
 const translateIntoWebVue = (
@@ -71,7 +75,7 @@ const translateIntoWebVue = (
 
   /* eslint-disable-next-line */
   const script = 'var template = `<template>' + templateCode + '</template>`;' + 'var js =`' + jsCode + '`;';
-  return writeToDoc(frame.document, cssCode, script, false);
+  return writeToDoc(frame.document, cssCode, script, 'vue');
 };
 
 const translateIntoJavaScript = (
@@ -96,7 +100,7 @@ const translateIntoJavaScript = (
   }
   const jsCode = javascriptCode.replace(/`/g, '\\`');
 
-  return writeToDoc(frame.document, cssCode, jsCode, true, templateCode, true);
+  return writeToDoc(frame.document, cssCode, jsCode, 'javascript', templateCode, true);
 };
 
 const translateFilesIntoJavaScript = (
@@ -120,7 +124,7 @@ const translateFilesIntoJavaScript = (
 
   /* eslint-disable-next-line */
   const script = 'var files = ' + jsFiles + ';';
-  return writeToDoc(frame.document, cssCode, script, true, templateCode);
+  return writeToDoc(frame.document, cssCode, script, 'javascript', templateCode);
 };
 
 const translateIntoTypeScript = (
@@ -144,7 +148,7 @@ const translateIntoTypeScript = (
 
   /* eslint-disable-next-line */
   const script = 'var files = ' + tsFiles + ';';
-  return writeToDoc(frame.document, cssCode, script, false, templateCode);
+  return writeToDoc(frame.document, cssCode, script, 'typescript', templateCode);
 };
 
 export default {
