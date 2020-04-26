@@ -223,10 +223,15 @@ hr {
       name: 'index.ts',
       type: 'text/typescript',
       project: 'typescript',
-      code: `import { weirdNumber } from 'weirdNumber.ts';
+      code: `import { weirdNumber, Entity } from 'weirdNumber.ts';
 
 const str: string = 'Hello World';
+const entity: Entity = {
+  name: 'Florian',
+  age: 1729,
+};
 
+console.log(entity.name);
 console.log(str);
 console.log(weirdNumber);
 `,
@@ -235,7 +240,12 @@ console.log(weirdNumber);
       name: 'weirdNumber.ts',
       type: 'text/typescript',
       project: 'typescript',
-      code: `export const weirdNumber = 1729;
+      code: `export const weirdNumber: number = 1729;
+
+export interface Entity {
+  name: string;
+  age: number;
+}
 `,
     },
   ),
