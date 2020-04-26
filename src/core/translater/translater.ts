@@ -132,8 +132,21 @@ const translateIntoTypeScript = (
   htmlCode: string,
   typescriptFiles: Array<FileModel>,
   cssCode: string,
+  header = '',
 ) => {
-  const templateCode = htmlCode.replace(/\s*\n+\s*/g, ' ').replace(/>\s+/g, '>').replace(/\s+</g, '<');
+  let templateCode = htmlCode;
+  if (header && templateCode.search('<h1 id="headline">')) {
+    const headline = templateCode.substring(
+      templateCode.search('<h1 id="headline">'), templateCode.search('</h1>'),
+    ).split('>');
+    if (headline) {
+      const regexp = new RegExp(headline[1], 'g');
+      templateCode = templateCode.replace(regexp, header);
+    }
+    templateCode = templateCode.replace(/\s*\n+\s*/g, ' ').replace(/>\s+/g, '>').replace(/\s+</g, '<');
+  } else {
+    templateCode = htmlCode.replace(/\s*\n+\s*/g, ' ').replace(/>\s+/g, '>').replace(/\s+</g, '<');
+  }
 
   let tsFiles = '[';
   typescriptFiles.forEach((tsFile) => {
