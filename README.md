@@ -90,7 +90,7 @@ OR
 yarn build
 ```
 
-you can deploy the project to a valid html site. After that, you can simply put these files in the directory in your serve of your choice.
+you can deploy the project to a valid html site. After that, you can simply put these files in the directory of your choice.
 
 Have fun using it and keep an eye on updates. ;)
 
