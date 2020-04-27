@@ -85,6 +85,9 @@ export default class ThePreview extends Vue {
       translater.translateIntoWebVue(
         window.frames[0], htmlCode, javascriptFiles[0].code, cssCode,
       );
+    } else if (this.currentProject === 'markdown') {
+      const markdownFile: Array<FileModel> = projectFiles.filter((projectFile: FileModel) => projectFile.type === 'text/x-markdown');
+      translater.translateIntoMarkdown(window.frames[0], markdownFile[0].code);
     } else {
       translater.translateIntoVue(window.frames[0], projectFiles[0].code);
     }

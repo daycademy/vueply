@@ -2,6 +2,7 @@ import FileModel from '@/store/models/FileModel';
 import jsCompiler from './jsCompiler.iframe';
 import vueCompiler from './vueCompiler.iframe';
 import tsCompiler from './tsCompiler.iframe';
+import markdownCompiler from './markdown.iframe';
 
 const writeToDoc = (
   document: Document,
@@ -31,6 +32,9 @@ const writeToDoc = (
     } else if (projectType === 'typescript') {
       document.write('<script src="https://cdnjs.cloudflare.com/ajax/libs/typescript/3.9.0-beta/typescript.min.js"><\/script>');
       document.write(`<script type="text/javascript">${tsCompiler}<\/script>`);
+    } else if (projectType === 'markdown') {
+      document.write('<script src="https://cdnjs.cloudflare.com/ajax/libs/markdown-it/10.0.0/markdown-it.min.js"><\/script>');
+      document.write(`<script type="text/javascript">${markdownCompiler}<\/script>`);
     }
   } else {
     document.write(`<script type="text/javascript">
@@ -164,10 +168,16 @@ const translateIntoTypeScript = (
   return writeToDoc(frame.document, cssCode, script, 'typescript', templateCode);
 };
 
+const translateIntoMarkdown = (frame: Window, file: string) => {
+  const code = `var markdown = \`${file}\``;
+  return writeToDoc(frame.document, '', code, 'markdown');
+};
+
 export default {
   translateIntoJavaScript,
   translateIntoVue,
   translateIntoWebVue,
   translateFilesIntoJavaScript,
   translateIntoTypeScript,
+  translateIntoMarkdown,
 };
