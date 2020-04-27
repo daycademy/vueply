@@ -9,6 +9,7 @@ import 'codemirror/mode/javascript/javascript';
 import 'codemirror/mode/htmlmixed/htmlmixed';
 import 'codemirror/mode/css/css';
 import 'codemirror/mode/vue/vue';
+import 'codemirror/mode/markdown/markdown';
 import 'codemirror/addon/scroll/simplescrollbars';
 import 'codemirror/addon/edit/matchbrackets';
 import 'codemirror/addon/edit/matchtags';
