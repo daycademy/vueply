@@ -30,6 +30,11 @@ const state: ProjectState = {
       projectName: 'typescript',
       fileTypes: ['text/html', 'css', 'text/typescript'],
     },
+    {
+      displayName: 'Markdown',
+      projectName: 'markdown',
+      fileTypes: ['text/x-markdown'],
+    },
   ],
 };
 

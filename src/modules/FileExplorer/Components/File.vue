@@ -28,6 +28,9 @@ import { Component, Prop } from 'vue-property-decorator';
         'text/typescript': {
           icon: 'fa-js-square ts',
         },
+        'text/x-markdown': {
+          icon: 'fa-markdown',
+        },
       },
     };
   },
@@ -42,6 +45,10 @@ export default class File extends Vue {
 </script>
 
 <style lang="scss" scoped>
+.icon {
+  margin-right: 0.25rem;
+}
+
 .fab {
   &.fa-html5 {
     color: #E67E22;
@@ -59,10 +66,10 @@ export default class File extends Vue {
   &.fa-vuejs {
     color: #2ECC71;
   }
-}
-
-.icon {
-  margin-right: 0.25rem;
+  &.fa-markdown {
+    margin-right: 0.5em;
+    color: #95A5A6;
+  }
 }
 
 .file {

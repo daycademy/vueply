@@ -248,6 +248,15 @@ export interface Entity {
 }
 `,
     },
+    {
+      name: 'file.md',
+      type: 'text/x-markdown',
+      project: 'markdown',
+      code: `## Awesome Markdown
+
+#### Markdown Test
+`,
+    },
   ),
   fileTypes: [
     {
@@ -290,6 +299,13 @@ h4 {
   font-family: 'Montserrat';
 }
 </style>
+`,
+    },
+    {
+      codeMirrorName: 'text/x-markdown',
+      shortcut: 'md',
+      defaultCode: `Markdown Basics
+================
 `,
     },
   ],
