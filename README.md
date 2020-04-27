@@ -99,7 +99,7 @@ Have fun using it and keep an eye on updates. ;)
 - [ ] Live Coding
 - [X] TypeScript Support
 - [ ] Python Support
-- [ ] Markdown Support
+- [X] Markdown Support
 
 ## 💬 Translations
 
