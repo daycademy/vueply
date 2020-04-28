@@ -27,6 +27,7 @@ import ThePreview from '@/components/ThePreview.vue';
 import TheCodePane from '@/modules/CodePane/TheCodePane.vue';
 import TheFileExplorer from '@/modules/FileExplorer/TheFileExplorer.vue';
 import ProjectFileLink from '../store/models/ProjectFileLink';
+import FileModel from '../store/models/FileModel';
 
 @Component({
   components: {
@@ -47,6 +48,20 @@ export default class Home extends Vue {
         const projectFiles = this.$store.getters['fileExplorer/projectFiles'](paramProject);
         this.$store.dispatch('fileExplorer/updateSelectedFile', projectFiles[0].name);
       }
+    }
+
+    let homeworkTask = this.$route.query.hw;
+    if (homeworkTask) {
+      homeworkTask = (homeworkTask as string).replace(/\\n/g, '\n');
+      console.log(homeworkTask);
+      const file = {
+        name: 'homework.md',
+        type: 'text/x-markdown',
+        project: this.currentProject,
+        code: homeworkTask,
+      } as FileModel;
+      this.$store.dispatch('fileExplorer/addFile', file);
+      this.$store.dispatch('fileExplorer/updateSelectedFile', file.name);
     }
   }
 
