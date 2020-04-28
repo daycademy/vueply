@@ -53,7 +53,6 @@ export default class Home extends Vue {
     let homeworkTask = this.$route.query.hw;
     if (homeworkTask) {
       homeworkTask = (homeworkTask as string).replace(/\\n/g, '\n');
-      console.log(homeworkTask);
       const file = {
         name: 'homework.md',
         type: 'text/x-markdown',
