@@ -5,6 +5,7 @@ function renderMarkdown(code) {
     linkify: true,
     typographer: true
   });
+  md.use(window.markdownitTaskLists);
   var result = md.render(code);
   return result;
 }

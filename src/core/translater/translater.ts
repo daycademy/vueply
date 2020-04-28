@@ -3,6 +3,7 @@ import jsCompiler from './jsCompiler.iframe';
 import vueCompiler from './vueCompiler.iframe';
 import tsCompiler from './tsCompiler.iframe';
 import markdownCompiler from './markdown.iframe';
+import markdownitTaskList from './markdownitTaskList';
 
 const writeToDoc = (
   document: Document,
@@ -34,6 +35,7 @@ const writeToDoc = (
       document.write(`<script type="text/javascript">${tsCompiler}<\/script>`);
     } else if (projectType === 'markdown') {
       document.write('<script src="https://cdnjs.cloudflare.com/ajax/libs/markdown-it/10.0.0/markdown-it.min.js"><\/script>');
+      document.write(`<script>${markdownitTaskList}<\/script>`);
       document.write(`<script type="text/javascript">${markdownCompiler}<\/script>`);
     }
   } else {
