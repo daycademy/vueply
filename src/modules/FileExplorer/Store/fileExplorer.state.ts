@@ -255,6 +255,9 @@ export interface Entity {
       code: `## Awesome Markdown
 
 #### Markdown Test
+
+- [ ] Wash Dishes
+- [X] Do homework
 `,
     },
   ),
