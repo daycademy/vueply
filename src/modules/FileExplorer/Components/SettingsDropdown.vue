@@ -5,7 +5,12 @@
         <i class="icon fas fa-cog"></i>
       </a>
     </v-btn>
-    <v-modal m-id="settings-modal" :title="$t('settings_modal_title')" zoomOut>
+    <v-modal
+      m-id="settings-modal"
+      :title="$t('settings_modal_title')"
+      :close-target="`#${$route.path}`"
+      zoomOut
+    >
       <p>
         Lorem ipsum dolor, sit amet consectetur adipisicing elit.
         Explicabo ducimus dolorem excepturi facere architecto, quam commodi,
