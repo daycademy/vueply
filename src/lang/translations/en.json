@@ -4,5 +4,6 @@
   "project_title": "Project",
   "download_file": "Download File",
   "delete_file": "Delete File",
-  "files_name": "FILES"
+  "files_name": "FILES",
+  "settings_modal_title": "Settings"
 }
