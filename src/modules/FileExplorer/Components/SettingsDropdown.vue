@@ -11,12 +11,22 @@
       :close-target="`#${$route.path}`"
       zoomOut
     >
-      <p>
-        Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-        Explicabo ducimus dolorem excepturi facere architecto, quam commodi,
-        tenetur corrupti a eveniet laborum labore distinctio doloremque
-        eaque repellendus ab, culpa rem temporibus?
-      </p>
+      <v-row>
+        <v-col c="4">
+          <p>Project:</p>
+        </v-col>
+        <v-col c="6" o="2">
+          <v-btn>Test</v-btn>
+        </v-col>
+      </v-row>
+      <v-row>
+        <v-col c="4">
+          <p>Theme:</p>
+        </v-col>
+        <v-col c="6" o="2">
+          <v-btn>Test</v-btn>
+        </v-col>
+      </v-row>
     </v-modal>
     <!--
     <v-dropdown>
@@ -57,6 +67,15 @@ export default class SettingsDropdown extends Vue {
 .settings-dropdown {
   margin-left: auto;
   margin-right: 7px;
+
+  .modal-content {
+    width: 50%;
+  }
+
+  .row {
+    align-items: center;
+    justify-content: center;
+  }
 
   button {
     font-size: 14px;
