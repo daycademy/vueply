@@ -16,7 +16,10 @@
         <li
           v-for="project in projects"
           :key="project.displayName"
-        >{{ project.displayName }}</li>
+        >
+          <i :class="`fab ${$store.getters.findIcon(project.icon).icon}`"></i>
+          {{ project.displayName }}
+        </li>
       </ul>
     </v-modal>
   </div>

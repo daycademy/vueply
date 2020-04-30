@@ -34,31 +34,37 @@ const state: ProjectState = {
     {
       displayName: 'Vue',
       projectName: 'vue',
+      icon: 'text/x-vue',
       fileTypes: ['text/x-vue'],
     },
     {
       displayName: 'Web Vue',
       projectName: 'vue-web',
+      icon: 'text/x-vue',
       fileTypes: ['text/html', 'css', 'javascript'],
     },
     {
       displayName: 'JavaScript Single',
       projectName: 'javascript-single',
+      icon: 'javascript',
       fileTypes: ['text/html', 'css', 'javascript'],
     },
     {
       displayName: 'JavaScript Multi',
       projectName: 'javascript-multi',
+      icon: 'javascript',
       fileTypes: ['text/html', 'css', 'javascript'],
     },
     {
       displayName: 'TypeScript',
       projectName: 'typescript',
+      icon: 'text/typescript',
       fileTypes: ['text/html', 'css', 'text/typescript'],
     },
     {
       displayName: 'Markdown',
       projectName: 'markdown',
+      icon: 'text/x-markdown',
       fileTypes: ['text/x-markdown'],
     },
   ],
