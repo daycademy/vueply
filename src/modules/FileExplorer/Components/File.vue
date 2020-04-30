@@ -1,6 +1,6 @@
 <template>
   <p @click="$emit('click', $event)">
-    <i :class="`icon fab ${icons[fileType].icon}`"></i> {{ filename }}
+    <i :class="`icon fab ${$store.getters.findIcon(fileType).icon}`"></i> {{ filename }}
     <slot></slot>
   </p>
 </template>
@@ -9,38 +9,17 @@
 import Vue from 'vue';
 import { Component, Prop } from 'vue-property-decorator';
 
-@Component({
-  data() {
-    return {
-      icons: {
-        'text/html': {
-          icon: 'fa-html5',
-        },
-        css: {
-          icon: 'fa-css3-alt',
-        },
-        javascript: {
-          icon: 'fa-js-square',
-        },
-        'text/x-vue': {
-          icon: 'fa-vuejs',
-        },
-        'text/typescript': {
-          icon: 'fa-js-square ts',
-        },
-        'text/x-markdown': {
-          icon: 'fa-markdown',
-        },
-      },
-    };
-  },
-})
+@Component({})
 export default class File extends Vue {
   @Prop({ type: String, required: true })
   private filename!: string;
 
   @Prop({ type: String, required: true })
   private fileType!: string;
+
+  mounted() {
+    console.log(this.$store.getters);
+  }
 }
 </script>
 

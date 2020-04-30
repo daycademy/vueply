@@ -8,7 +8,13 @@ export interface FileState {
   fileTypes: Array<FileType>;
 }
 
+export interface Icon {
+  icon: string;
+  fileType: string;
+}
+
 export interface ProjectState {
   currentProject: string;
+  icons: Array<Icon>;
   projectFilesLink: Array<ProjectFileLink>;
 }
