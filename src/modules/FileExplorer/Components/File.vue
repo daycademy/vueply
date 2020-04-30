@@ -16,10 +16,6 @@ export default class File extends Vue {
 
   @Prop({ type: String, required: true })
   private fileType!: string;
-
-  mounted() {
-    console.log(this.$store.getters);
-  }
 }
 </script>
 
