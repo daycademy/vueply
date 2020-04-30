@@ -1,14 +1,17 @@
 import Vue from 'vue';
 import VueCirrus from 'vue-cirrus';
 import Vuex from 'vuex';
+import VueRouter from 'vue-router';
 import { mount, Wrapper } from '@vue/test-utils';
 import { expect } from 'chai';
 import i18n from '@/i18n';
 import store from '@/store';
+import router from '@/router';
 import TheFileExplorer from '../TheFileExplorer.vue';
 
 Vue.use(VueCirrus);
 Vue.use(Vuex);
+Vue.use(VueRouter);
 
 describe('FileExplorer', () => {
   let wrapper: Wrapper<TheFileExplorer>;
@@ -16,6 +19,7 @@ describe('FileExplorer', () => {
     wrapper = mount(TheFileExplorer, {
       i18n,
       store,
+      router,
     });
   });
 
