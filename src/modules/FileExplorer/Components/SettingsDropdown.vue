@@ -11,39 +11,14 @@
       :close-target="`#${$route.path}`"
       zoomOut
     >
-      <v-row>
-        <v-col c="4">
-          <p>Project:</p>
-        </v-col>
-        <v-col c="6" o="2">
-          <v-btn>Test</v-btn>
-        </v-col>
-      </v-row>
-      <v-row>
-        <v-col c="4">
-          <p>Theme:</p>
-        </v-col>
-        <v-col c="6" o="2">
-          <v-btn>Test</v-btn>
-        </v-col>
-      </v-row>
+      <h5>Project</h5>
+      <ul class="projects">
+        <li
+          v-for="project in projects"
+          :key="project.displayName"
+        >{{ project.displayName }}</li>
+      </ul>
     </v-modal>
-    <!--
-    <v-dropdown>
-      <template v-slot:button>
-        <v-btn size="small" color="transparent" dropdown>
-          <i class="icon fas fa-cog"></i>
-        </v-btn>
-      </template>
-      <v-dropdown-item
-        v-for="project in projects"
-        :key="project.projectName"
-        @click="chooseProject(project.projectName)"
-      >
-        {{ project.displayName }}
-      </v-dropdown-item>
-    </v-dropdown>
-    -->
   </div>
 </template>
 
@@ -72,9 +47,17 @@ export default class SettingsDropdown extends Vue {
     width: 50%;
   }
 
-  .row {
-    align-items: center;
-    justify-content: center;
+  .projects {
+    list-style: none;
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 0;
+    display: flex;
+    flex-wrap: wrap;
+
+    li {
+      flex: 0 0 33.333333%;
+    }
   }
 
   button {
