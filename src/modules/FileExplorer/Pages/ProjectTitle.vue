@@ -21,7 +21,7 @@ import SettingsDropdown from '../Components/SettingsDropdown.vue';
   },
 })
 export default class ProjectTitle extends Vue {
-  @Prop()
+  @Prop({})
   private currentProject!: ProjectFileLink;
 
   private chooseProject(project: string) {

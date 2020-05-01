@@ -50,8 +50,8 @@ export default class SettingsDropdown extends Vue {
   @Prop({})
   private projects!: Array<ProjectFileLink>;
 
-  @Prop({ type: String, required: true })
-  private currentProject!: string;
+  @Prop({ required: true })
+  private currentProject!: ProjectFileLink;
 
   private chooseProject(project: string): void {
     this.$emit('choose-project', project);
