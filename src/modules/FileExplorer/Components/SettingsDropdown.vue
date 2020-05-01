@@ -16,6 +16,7 @@
         <li
           v-for="project in projects"
           :key="project.displayName"
+          @click="chooseProject(project.projectName)"
         >
           <i :class="`fab ${$store.getters.findIcon(project.icon).icon}`"></i>
           <span>{{ project.displayName | shortName }}</span>
