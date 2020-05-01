@@ -18,7 +18,7 @@
           :key="project.displayName"
         >
           <i :class="`fab ${$store.getters.findIcon(project.icon).icon}`"></i>
-          {{ project.displayName }}
+          <span>{{ project.displayName | shortName }}</span>
         </li>
       </ul>
     </v-modal>
@@ -30,7 +30,13 @@ import Vue from 'vue';
 import { Component, Prop } from 'vue-property-decorator';
 import ProjectFileLink from '@/store/models/ProjectFileLink';
 
-@Component({})
+@Component({
+  filters: {
+    shortName(value: string): string {
+      return value.replace('JavaScript', 'JS');
+    },
+  },
+})
 export default class SettingsDropdown extends Vue {
   @Prop({})
   private projects!: Array<ProjectFileLink>;
@@ -59,7 +65,26 @@ export default class SettingsDropdown extends Vue {
     flex-wrap: wrap;
 
     li {
-      flex: 0 0 33.333333%;
+      cursor: pointer;
+      position: relative;
+      flex: 0 0 calc(33.333333% - 0.5em);
+      margin-right: 0.5em;
+      background-color: #ecf0f1;
+      border-radius: 0.5em;
+      display: flex;
+      padding: 1em;
+      font-size: 18px;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+
+      i {
+        position: absolute;
+        top: 5%;
+        left: 5%;
+        font-size: 64px;
+        color: rgba(0, 0, 0, 0.05);
+      }
     }
   }
 
