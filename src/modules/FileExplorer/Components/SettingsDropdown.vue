@@ -18,7 +18,7 @@
           :key="project.displayName"
           @click="chooseProject(project.projectName)"
           :style="currentProject.displayName === project.displayName
-            ? { backgroundColor: project.projectColor, color: '#fff' }
+            ? { backgroundColor: project.color, color: '#fff' }
             : null"
         >
           <i
