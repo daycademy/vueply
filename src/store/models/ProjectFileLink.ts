@@ -7,10 +7,13 @@ export default class ProjectFileLink {
 
   icon: string;
 
+  projectColor: string;
+
   constructor() {
     this.displayName = '';
     this.projectName = '';
     this.fileTypes = [];
     this.icon = '';
+    this.projectColor = '';
   }
 }

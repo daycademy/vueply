@@ -17,9 +17,16 @@
           v-for="project in projects"
           :key="project.displayName"
           @click="chooseProject(project.projectName)"
-          :class="currentProject.displayName === project.displayName ? 'selected' : ''"
+          :style="currentProject.displayName === project.displayName
+            ? { backgroundColor: project.projectColor, color: '#fff' }
+            : null"
         >
-          <i :class="`fab ${$store.getters.findIcon(project.icon).icon}`"></i>
+          <i
+            :class="`fab ${$store.getters.findIcon(project.icon).icon}`"
+            :style="currentProject.displayName === project.displayName
+              ? { color: 'rgba(255, 255, 255, 0.3)' }
+              : null"
+          ></i>
           <span>{{ project.displayName | shortName }}</span>
         </li>
       </ul>
@@ -82,15 +89,6 @@ export default class SettingsDropdown extends Vue {
       align-items: center;
       justify-content: center;
       text-align: center;
-
-      &.selected {
-        background-color: #34495e;
-        color: #fff;
-
-        i {
-          color: rgba(255, 255, 255, 0.25);
-        }
-      }
 
       i {
         position: absolute;
