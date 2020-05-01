@@ -2,6 +2,7 @@
   <p class="project-title">
     {{ currentProject.displayName }} {{ $t('project_title') }}
     <SettingsDropdown
+      :current-project="currentProject"
       :projects="$store.state.project.projectFilesLink"
       @choose-project="chooseProject"
     />

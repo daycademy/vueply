@@ -17,6 +17,7 @@
           v-for="project in projects"
           :key="project.displayName"
           @click="chooseProject(project.projectName)"
+          :class="currentProject.displayName === project.displayName ? 'selected' : ''"
         >
           <i :class="`fab ${$store.getters.findIcon(project.icon).icon}`"></i>
           <span>{{ project.displayName | shortName }}</span>
@@ -41,6 +42,9 @@ import ProjectFileLink from '@/store/models/ProjectFileLink';
 export default class SettingsDropdown extends Vue {
   @Prop({})
   private projects!: Array<ProjectFileLink>;
+
+  @Prop({ type: String, required: true })
+  private currentProject!: string;
 
   private chooseProject(project: string): void {
     this.$emit('choose-project', project);
@@ -78,6 +82,15 @@ export default class SettingsDropdown extends Vue {
       align-items: center;
       justify-content: center;
       text-align: center;
+
+      &.selected {
+        background-color: #34495e;
+        color: #fff;
+
+        i {
+          color: rgba(255, 255, 255, 0.25);
+        }
+      }
 
       i {
         position: absolute;
