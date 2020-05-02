@@ -61,6 +61,7 @@ export default class CodePane extends Vue {
   @Watch('currentView')
   onCurrentViewChange() {
     this.editor.getWrapperElement().style.height = this.currentView === 'horizontal' ? '100vh' : '50vh';
+    (this.$root.$refs.Preview as ThePreview).showPreview();
   }
 
   mounted() {
