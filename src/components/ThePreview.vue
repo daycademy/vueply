@@ -104,12 +104,13 @@ export default class ThePreview extends Vue {
 #the-preview {
   width: 100%;
   height: 100%;
+  position: relative;
 
   #play-btn {
     opacity: 0;
     position: absolute;
-    top: 40%;
-    right: calc(33.33333333% / 2 - 4%);
+    top: calc(50% - 102px);
+    right: calc(50% - 102px + 5%);
     font-size: 102px;
     transition: visibility 0s linear 300ms, opacity 750ms;
     color: #ccc;
