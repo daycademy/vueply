@@ -12,7 +12,7 @@
       zoomOut
     >
       <h5>Project</h5>
-      <ul class="projects">
+      <ul>
         <li
           v-for="project in projects"
           :key="project.displayName"
@@ -30,6 +30,19 @@
           <span>{{ project.displayName | shortName }}</span>
         </li>
       </ul>
+
+      <h5>View</h5>
+      <ul>
+        <li
+          v-for="(view, index) in views"
+          :key="index"
+          :class="currentSelectedView === index ? 'selected' : null"
+          @click="chooseView(index)"
+        >
+          <i :class="`fas fa-grip-${view}`"></i>
+          <span>{{ view | capitalize }}</span>
+        </li>
+      </ul>
     </v-modal>
   </div>
 </template>
@@ -44,6 +57,9 @@ import ProjectFileLink from '@/store/models/ProjectFileLink';
     shortName(value: string): string {
       return value.replace('JavaScript', 'JS');
     },
+    capitalize(value: string): string {
+      return value.charAt(0).toUpperCase() + value.slice(1);
+    },
   },
 })
 export default class SettingsDropdown extends Vue {
@@ -53,8 +69,17 @@ export default class SettingsDropdown extends Vue {
   @Prop({ required: true })
   private currentProject!: ProjectFileLink;
 
+  private views = ['horizontal', 'vertical'];
+
+  private currentSelectedView = 0;
+
   private chooseProject(project: string): void {
     this.$emit('choose-project', project);
+  }
+
+  private chooseView(value: number): void {
+    this.currentSelectedView = value;
+    this.$emit('choose-view', this.views[value]);
   }
 }
 </script>
@@ -68,7 +93,7 @@ export default class SettingsDropdown extends Vue {
     width: 50%;
   }
 
-  .projects {
+  ul {
     list-style: none;
     margin-left: 0;
     margin-right: 0;
@@ -96,6 +121,15 @@ export default class SettingsDropdown extends Vue {
         left: 5%;
         font-size: 64px;
         color: rgba(0, 0, 0, 0.05);
+      }
+
+      &.selected {
+        background-color: #718093;
+        color: #fff;
+
+        i {
+          color: rgba(255, 255, 255, 0.1);
+        }
       }
     }
   }
