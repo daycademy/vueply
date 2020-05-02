@@ -1,6 +1,6 @@
 <template>
   <section id="home">
-    <v-row class="u-no-padding">
+    <v-row v-if="$store.state.project.currentView === 'horizontal'" class="u-no-padding">
       <v-col c="2" class="u-no-padding">
         <TheFileExplorer />
       </v-col>
@@ -8,12 +8,29 @@
         <TheCodePane
           :current-project="currentProject"
           :current-file="currentFile"
+          :current-view="$store.state.project.currentView"
           :mode="currentFile.type"
           @input="updateCode"
           :value="currentFile.code"
         ></TheCodePane>
       </v-col>
       <v-col c="4" class="right u-no-padding">
+        <ThePreview />
+      </v-col>
+    </v-row>
+    <v-row v-else class="u-no-padding">
+      <v-col c="2" class="u-no-padding">
+        <TheFileExplorer />
+      </v-col>
+      <v-col c="10" class="u-no-padding">
+        <TheCodePane
+          :current-project="currentProject"
+          :current-file="currentFile"
+          :current-view="$store.state.project.currentView"
+          :mode="currentFile.type"
+          @input="updateCode"
+          :value="currentFile.code"
+        ></TheCodePane>
         <ThePreview />
       </v-col>
     </v-row>

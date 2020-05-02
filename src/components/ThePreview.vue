@@ -38,6 +38,11 @@ export default class ThePreview extends Vue {
 </p>`;
       originalLog.apply(message, args);
     };
+
+    const preview = document.getElementById('the-preview');
+    if (preview && frame && this.$store.state.project.currentView === 'vertical') {
+      preview.style.height = '50vh';
+    }
   }
 
   private get currentProject(): string {

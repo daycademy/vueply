@@ -30,6 +30,9 @@ export default class CodePane extends Vue {
   @Prop()
   private currentFile!: FileModel;
 
+  @Prop()
+  private currentView!: string;
+
   editor!: CodeMirror.Editor;
 
   @Watch('mode')
@@ -55,6 +58,11 @@ export default class CodePane extends Vue {
     (this.$root.$refs.Preview as ThePreview).showPreview();
   }
 
+  @Watch('currentView')
+  onCurrentViewChange() {
+    this.editor.getWrapperElement().style.height = this.currentView === 'horizontal' ? '100vh' : '50vh';
+  }
+
   mounted() {
     const editor = CodeMirror(this.$el as HTMLElement, {
       value: this.value,
@@ -70,7 +78,7 @@ export default class CodePane extends Vue {
 
     window.addEventListener('load', () => {
       editor.getWrapperElement().style.fontSize = '16px';
-      editor.getWrapperElement().style.height = '100vh';
+      editor.getWrapperElement().style.height = this.currentView === 'horizontal' ? '100vh' : '50vh';
       editor.refresh();
     });
 
