@@ -5,6 +5,7 @@
       :current-project="currentProject"
       :projects="$store.state.project.projectFilesLink"
       @choose-project="chooseProject"
+      @choose-view="chooseView"
     />
   </p>
 </template>
@@ -30,6 +31,10 @@ export default class ProjectTitle extends Vue {
     if (projectFiles && projectFiles.length > 0) {
       this.$store.dispatch('fileExplorer/updateSelectedFile', projectFiles[0].name);
     }
+  }
+
+  private chooseView(view: string): void {
+    this.$store.dispatch('setView', view);
   }
 }
 </script>

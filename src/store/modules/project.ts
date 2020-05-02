@@ -4,6 +4,7 @@ import { RootState } from '../@types';
 
 const state: ProjectState = {
   currentProject: 'vue-web',
+  currentView: 'horizontal',
   icons: [
     {
       icon: 'fa-html5',
@@ -87,11 +88,17 @@ const actions = {
   setProject(context: ActionContext<ProjectState, RootState>, project: string) {
     context.commit('setProject', project);
   },
+  setView(context: ActionContext<ProjectState, RootState>, view: string) {
+    context.commit('setView', view);
+  },
 };
 
 const mutations = {
   setProject(projectState: ProjectState, project: string) {
     projectState.currentProject = project;
+  },
+  setView(projectState: ProjectState, view: string) {
+    projectState.currentView = view;
   },
 };
 

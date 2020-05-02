@@ -15,6 +15,7 @@ export interface Icon {
 
 export interface ProjectState {
   currentProject: string;
+  currentView: string;
   icons: Array<Icon>;
   projectFilesLink: Array<ProjectFileLink>;
 }
