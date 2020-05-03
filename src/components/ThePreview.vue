@@ -21,6 +21,10 @@ import FileModel from '../store/models/FileModel';
 
 @Component({})
 export default class ThePreview extends Vue {
+  private amountOfPrints = 0;
+
+  private isTerminated = false;
+
   created() {
     this.$root.$refs.Preview = this;
   }
@@ -31,12 +35,26 @@ export default class ThePreview extends Vue {
     const frame = window.frames[0];
     const originalLog = frame.console.log;
     frame.console.log = (message, ...args: [string]) => {
+      if (this.isTerminated) {
+        return;
+      }
+      if (this.amountOfPrints >= 50) {
+        frame.document.getElementsByTagName('body')[0].innerHTML += `<p>
+  <div style="height: 1px; background-color: #eee; margin: 1em 0;"></div>
+  <i class="fas fa-terminal" style="color: #aaa; font-size: 14px; margin-right: 1em;"></i>
+  -- terminated
+</p>`;
+        this.isTerminated = true;
+        return;
+      }
+
       frame.document.getElementsByTagName('body')[0].innerHTML += `<p>
   <div style="height: 1px; background-color: #eee; margin: 1em 0;"></div>
   <i class="fas fa-terminal" style="color: #aaa; font-size: 14px; margin-right: 1em;"></i>
   ${message}
 </p>`;
       originalLog.apply(message, args);
+      this.amountOfPrints += 1;
     };
 
     const preview = document.getElementById('the-preview');
@@ -50,6 +68,8 @@ export default class ThePreview extends Vue {
   }
 
   showPreview() {
+    this.amountOfPrints = 0;
+
     const playBtn = document.getElementById('play-btn');
     if (playBtn) {
       playBtn.classList.toggle('play-animation');
