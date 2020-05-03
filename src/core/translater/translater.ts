@@ -104,9 +104,8 @@ const translateIntoJavaScript = (
   } else {
     templateCode = htmlCode.replace(/\s*\n+\s*/g, ' ').replace(/>\s+/g, '>').replace(/\s+</g, '<');
   }
-  const jsCode = javascriptCode.replace(/`/g, '\\`');
 
-  return writeToDoc(frame.document, cssCode, jsCode, 'javascript', templateCode, true);
+  return writeToDoc(frame.document, cssCode, javascriptCode, 'javascript', templateCode, true);
 };
 
 const translateFilesIntoJavaScript = (
