@@ -36,7 +36,7 @@ const writeToDoc = (
       document.write('<script src="https://cdnjs.cloudflare.com/ajax/libs/typescript/3.9.0-beta/typescript.min.js"><\/script>');
       document.write(`<script type="text/javascript">${tsCompiler}<\/script>`);
     } else if (projectType === 'markdown') {
-      document.write('<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.2/styles/default.min.css">');
+      document.write('<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.2/styles/github-gist.min.css">');
       document.write('<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.2/highlight.min.js"><\/script>');
       document.write('<script src="https://cdnjs.cloudflare.com/ajax/libs/markdown-it/10.0.0/markdown-it.min.js"><\/script>');
       document.write(`<script>${markdownitTaskList}<\/script>`);
