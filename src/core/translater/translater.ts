@@ -183,7 +183,7 @@ const translateIntoTypeScript = (
 
 const translateIntoMarkdown = (frame: Window, file: string) => {
   const code = `var markdown = \`${file}\``;
-  const css = `@import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
+  const css = `@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
 
 html, body {
   font-family: 'Montserrat';
