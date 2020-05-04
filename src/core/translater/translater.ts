@@ -188,6 +188,11 @@ const translateIntoMarkdown = (frame: Window, file: string) => {
 html, body {
   font-family: 'Montserrat';
 }
+blockquote {
+  padding: 0 1em;
+  color: #6a737d;
+  border-left: 0.25em solid #dfe2e5;
+}
 `;
   return writeToDoc(frame.document, css, code, 'markdown');
 };
