@@ -20,4 +20,16 @@ table tr {
 table th, table td {
   padding: 6px 13px;
   border: 1px solid #dfe2e5;
-}`;
+}
+pre {
+  padding: 16px;
+  overflow: auto;
+  font-size: 14px;
+  line-height: 1.45;
+  background-color: #f6f8fa;
+  border-radius: 3px;
+  word-wrap: normal;
+  word-break: normal;
+  margin-bottom: 0;
+}
+`;
