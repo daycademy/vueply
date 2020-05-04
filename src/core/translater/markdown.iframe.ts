@@ -3,7 +3,16 @@ function renderMarkdown(code) {
   var md = window.markdownit({
     html: true,
     linkify: true,
-    typographer: true
+    typographer: true,
+    highlight: function (str, lang) {
+      if (lang && hljs.getLanguage(lang)) {
+        try {
+          return hljs.highlight(lang, str).value;
+        } catch (__) {}
+      }
+  
+      return '';
+    }
   });
   md.use(window.markdownitTaskLists);
   var result = md.render(code);
