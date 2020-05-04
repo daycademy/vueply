@@ -193,6 +193,19 @@ blockquote {
   color: #6a737d;
   border-left: 0.25em solid #dfe2e5;
 }
+table {
+  display: block;
+  width: 100%;
+  overflow: auto;
+}
+table tr {
+  background-color: #fff;
+  border-top: 1px solid #c6cbd1;
+}
+table th, table td {
+  padding: 6px 13px;
+  border: 1px solid #dfe2e5;
+}
 `;
   return writeToDoc(frame.document, css, code, 'markdown');
 };
