@@ -32,4 +32,11 @@ pre {
   word-break: normal;
   margin-bottom: 0;
 }
+code {
+  padding: .2em .4em;
+  margin: 0;
+  font-size: 16px;
+  background-color: rgba(27, 31, 35, .05);
+  border-radius: 3px;
+}
 `;
