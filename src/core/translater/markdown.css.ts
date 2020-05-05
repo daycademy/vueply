@@ -32,6 +32,12 @@ pre {
   word-break: normal;
   margin-bottom: 0;
 }
+pre code {
+  padding: 0;
+  margin: 0;
+  background-color: rgba(27, 31, 35, 0);
+  border-radius: 0px;
+}
 code {
   padding: .2em .4em;
   margin: 0;
