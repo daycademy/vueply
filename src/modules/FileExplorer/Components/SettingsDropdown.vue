@@ -12,7 +12,7 @@
       zoomOut
     >
       <h5>Project</h5>
-      <ul>
+      <ul class="projects">
         <li
           v-for="project in projects"
           :key="project.displayName"
