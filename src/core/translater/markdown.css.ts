@@ -1,7 +1,9 @@
-export default `@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
-
+export default `
 html, body {
-  font-family: 'Montserrat';
+  font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji;
+  font-size: 16px;
+  line-height: 1.5;
+  word-wrap: break-word;
 }
 blockquote {
   padding: 0 1em;
