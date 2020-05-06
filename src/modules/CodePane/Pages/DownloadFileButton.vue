@@ -17,10 +17,10 @@ import { files, currentProject } from '@/core/storeUtils';
 
 @Component({})
 export default class DownloadFileButton extends Vue {
-  @Prop()
+  @Prop({ type: Object as () => FileModel, required: true })
   private currentFile!: FileModel;
 
-  private downloadFile() {
+  private downloadFile(): void {
     const { name, code, type } = this.currentFile;
 
     const projectFiles = files(this.$store, currentProject(this.$store));
