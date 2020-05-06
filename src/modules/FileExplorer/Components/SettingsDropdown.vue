@@ -63,13 +63,13 @@ import ProjectFileLink from '@/store/models/ProjectFileLink';
   },
 })
 export default class SettingsDropdown extends Vue {
-  @Prop({})
+  @Prop({ type: Array as () => Array<ProjectFileLink>, required: true })
   private projects!: Array<ProjectFileLink>;
 
-  @Prop({ required: true })
+  @Prop({ type: Object as () => ProjectFileLink, required: true })
   private currentProject!: ProjectFileLink;
 
-  private views = ['horizontal', 'vertical'];
+  private views: Array<string> = ['horizontal', 'vertical'];
 
   private currentSelectedView = 0;
 
