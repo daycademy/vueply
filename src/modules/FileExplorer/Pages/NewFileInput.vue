@@ -21,13 +21,13 @@ import CodePane from '@/modules/CodePane/TheCodePane.vue';
 export default class NewFileInput extends Vue {
   private newFilename = '';
 
-  @Prop()
+  @Prop({ type: Object as () => ProjectFileLink, required: true })
   private currentProject!: ProjectFileLink;
 
-  @Prop()
+  @Prop({ type: Boolean, required: true })
   private showNewFileInput!: boolean;
 
-  private addFile(event: KeyboardEvent) {
+  private addFile(event: KeyboardEvent): void {
     if (event.keyCode === 13) {
       this.$emit('disable-new-file-input');
       const fileType = this.newFilename.split('.')[1];
