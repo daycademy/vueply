@@ -18,32 +18,32 @@ import DownloadFileButton from './Pages/DownloadFileButton.vue';
   },
 })
 export default class CodePane extends Vue {
-  @Prop()
+  @Prop({ type: String, required: true })
   private value!: string;
 
-  @Prop({ default: 'text/html' })
+  @Prop({ type: String, default: 'text/html' })
   private mode!: string;
 
-  @Prop()
+  @Prop({ type: String, required: true })
   private currentProject!: string;
 
-  @Prop()
+  @Prop({ type: Object as () => FileModel, required: true })
   private currentFile!: FileModel;
 
-  @Prop()
+  @Prop({ type: String, required: true })
   private currentView!: string;
 
   editor!: CodeMirror.Editor;
 
   @Watch('mode')
-  onModeChanged(value: string) {
+  onModeChanged(value: string): void {
     this.editor.setOption('mode', value);
     this.editor.setOption('value', this.value);
     this.editor.refresh();
   }
 
   @Watch('currentFile')
-  onCurrentFileChange(newFile: FileModel, oldFile: FileModel) {
+  onCurrentFileChange(newFile: FileModel, oldFile: FileModel): void {
     if (newFile.name !== oldFile.name) {
       this.editor.setOption('value', newFile.code);
       this.editor.refresh();
@@ -51,7 +51,7 @@ export default class CodePane extends Vue {
   }
 
   @Watch('currentProject')
-  onCurrentProjectChanged() {
+  onCurrentProjectChanged(): void {
     this.editor.setOption('value', this.currentFile.code);
     this.editor.refresh();
 
@@ -59,7 +59,7 @@ export default class CodePane extends Vue {
   }
 
   @Watch('currentView')
-  onCurrentViewChange() {
+  onCurrentViewChange(): void {
     this.editor.getWrapperElement().style.height = this.currentView === 'horizontal' ? '100vh' : '50vh';
     (this.$root.$refs.Preview as ThePreview).showPreview();
   }
