@@ -81,16 +81,18 @@ export default class Home extends Vue {
     }
   }
 
-  private updateCode(changedCode: string) {
+  private updateCode(changedCode: string): void {
     const selectedFile = this.currentFile;
-    selectedFile.code = changedCode;
+    if (selectedFile) {
+      selectedFile.code = changedCode;
+    }
   }
 
-  private get currentProject() {
+  private get currentProject(): string {
     return this.$store.state.project.currentProject;
   }
 
-  private get currentFile() {
+  private get currentFile(): FileModel | null {
     const projectFiles = this.$store.getters['fileExplorer/projectFiles'](this.currentProject);
     for (let i = 0; i < projectFiles.length; i += 1) {
       if (projectFiles[i].name === this.$store.state.fileExplorer.state.selectedFile) {
