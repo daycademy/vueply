@@ -67,7 +67,7 @@ export default class ThePreview extends Vue {
     return this.$store.state.project.currentProject;
   }
 
-  showPreview() {
+  showPreview(): void {
     this.amountOfPrints = 0;
 
     const playBtn = document.getElementById('play-btn');
