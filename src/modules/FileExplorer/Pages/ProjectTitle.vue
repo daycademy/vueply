@@ -22,10 +22,10 @@ import SettingsDropdown from '../Components/SettingsDropdown.vue';
   },
 })
 export default class ProjectTitle extends Vue {
-  @Prop({})
+  @Prop({ type: Object as () => ProjectFileLink, required: true })
   private currentProject!: ProjectFileLink;
 
-  private chooseProject(project: string) {
+  private chooseProject(project: string): void {
     this.$store.dispatch('setProject', project);
     const projectFiles = this.$store.getters['fileExplorer/projectFiles'](project);
     if (projectFiles && projectFiles.length > 0) {
