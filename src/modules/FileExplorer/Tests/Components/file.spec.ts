@@ -1,8 +1,10 @@
 import VueCirrus from 'vue-cirrus';
+import Vuex from 'vuex';
 import { expect } from 'chai';
 import { createLocalVue, mount, Wrapper } from '@vue/test-utils';
 import File from '@/modules/FileExplorer/Components/File.vue';
 import i18n from '@/i18n';
+import store from '@/store';
 
 describe('FileExplorer => File.vue', () => {
   let localVue;
@@ -10,9 +12,11 @@ describe('FileExplorer => File.vue', () => {
   beforeEach(() => {
     localVue = createLocalVue();
     localVue.use(VueCirrus);
+    localVue.use(Vuex);
     wrapper = mount(File, {
       localVue,
       i18n,
+      store,
       propsData: {
         filename: 'index.html',
         fileType: 'text/html',
