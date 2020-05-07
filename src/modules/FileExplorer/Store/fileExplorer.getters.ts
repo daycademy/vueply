@@ -5,7 +5,6 @@ import { State } from '@/store/@types';
 const projectFiles = ({ state }: State<FileState>) => (project: string): Array<FileModel> => state
   .files.filter((file: FileModel) => file.project === project);
 
-
 export default {
   projectFiles,
 };
