@@ -25,9 +25,9 @@ describe('FileExplorer => ProjectTitle', () => {
       router,
       propsData: {
         currentProject: {
-          displayName: 'Test',
-          fileTypes: ['text/html'],
-          projectName: 'test',
+          displayName: 'Vue',
+          fileTypes: ['text/x-vue'],
+          projectName: 'vue',
         } as ProjectFileLink,
       },
     });
@@ -37,10 +37,7 @@ describe('FileExplorer => ProjectTitle', () => {
     expect(wrapper.html()).to.be.a('string').and.satisfy((text: string) => text.startsWith('<p data-v-'));
   });
 
-  /*
-  it('set currentProject in store to emitted project', () => {
-    wrapper.find(SettingsDropdown).vm.$emit('choose-project', 'test');
-    expect(store.state.project.currentProject).equal('test');
+  it('renders current selected project', () => {
+    expect(wrapper.find('li').attributes()).to.be.eql({ style: 'background-color: rgb(46, 204, 113); color: rgb(255, 255, 255);' });
   });
-  */
 });
