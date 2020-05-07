@@ -11,7 +11,7 @@
       :close-target="`#${$route.path}`"
       zoomOut
     >
-      <h5>Project</h5>
+      <h5>{{ $t('project_title') }}</h5>
       <ul class="projects">
         <li
           v-for="project in projects"
@@ -31,7 +31,7 @@
         </li>
       </ul>
 
-      <h5>View</h5>
+      <h5>{{ $t('view_title') }}</h5>
       <ul>
         <li
           v-for="(view, index) in views"

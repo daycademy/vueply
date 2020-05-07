@@ -5,5 +5,6 @@
   "download_file": "Datei runterladen",
   "delete_file": "Datei löschen",
   "files_name": "DATEIEN",
-  "settings_modal_title": "Einstellungen"
+  "settings_modal_title": "Einstellungen",
+  "view_title": "Ansicht"
 }
