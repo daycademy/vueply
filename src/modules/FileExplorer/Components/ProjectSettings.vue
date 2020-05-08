@@ -62,7 +62,7 @@ import ProjectFileLink from '@/store/models/ProjectFileLink';
     },
   },
 })
-export default class SettingsDropdown extends Vue {
+export default class ProjectSettings extends Vue {
   @Prop({ type: Array as () => Array<ProjectFileLink>, required: true })
   private projects!: Array<ProjectFileLink>;
 

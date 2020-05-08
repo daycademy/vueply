@@ -1,7 +1,7 @@
 <template>
   <p class="project-title">
     {{ currentProject.displayName }} {{ $t('project_title') }}
-    <SettingsDropdown
+    <ProjectSettings
       :current-project="currentProject"
       :projects="$store.state.project.projectFilesLink"
       @choose-project="chooseProject"
@@ -14,11 +14,11 @@
 import Vue from 'vue';
 import { Component, Prop } from 'vue-property-decorator';
 import ProjectFileLink from '@/store/models/ProjectFileLink';
-import SettingsDropdown from '../Components/SettingsDropdown.vue';
+import ProjectSettings from '../Components/ProjectSettings.vue';
 
 @Component({
   components: {
-    SettingsDropdown,
+    ProjectSettings,
   },
 })
 export default class ProjectTitle extends Vue {
