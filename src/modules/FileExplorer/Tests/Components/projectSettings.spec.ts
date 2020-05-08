@@ -4,21 +4,21 @@ import Vuex from 'vuex';
 import { expect } from 'chai';
 import sinon from 'sinon';
 import { createLocalVue, mount, Wrapper } from '@vue/test-utils';
-import SettingsDropdown from '@/modules/FileExplorer/Components/SettingsDropdown.vue';
+import ProjectSettings from '@/modules/FileExplorer/Components/SettingsDropdown.vue';
 import ProjectFileLink from '@/store/models/ProjectFileLink';
 import i18n from '@/i18n';
 import router from '@/router';
 import store from '@/store';
 
-describe('FileExplorer => SettingsDropdown.vue', () => {
+describe('FileExplorer => ProjectSettings.vue', () => {
   let localVue;
-  let wrapper: Wrapper<SettingsDropdown>;
+  let wrapper: Wrapper<ProjectSettings>;
   beforeEach(() => {
     localVue = createLocalVue();
     localVue.use(VueCirrus);
     localVue.use(VueRouter);
     localVue.use(Vuex);
-    wrapper = mount(SettingsDropdown, {
+    wrapper = mount(ProjectSettings, {
       localVue,
       i18n,
       router,
