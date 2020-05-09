@@ -4,7 +4,7 @@ import Vuex from 'vuex';
 import { expect } from 'chai';
 import sinon from 'sinon';
 import { createLocalVue, mount, Wrapper } from '@vue/test-utils';
-import ProjectSettings from '@/modules/FileExplorer/Components/SettingsDropdown.vue';
+import ProjectSettings from '@/modules/FileExplorer/Components/ProjectSettings.vue';
 import ProjectFileLink from '@/store/models/ProjectFileLink';
 import i18n from '@/i18n';
 import router from '@/router';
