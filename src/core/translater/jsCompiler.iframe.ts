@@ -27,7 +27,16 @@ function handleJs(files) {
 }
 
 try {
-  (new Function(handleJs(files)))();
+  var codeStr = handleJs(files);
+
+  limitEval(codeStr, function (success) {
+    if (success) {
+      (new Function(codeStr))();
+    } else {
+      console.log('Endless loop detected!');
+      throw new Error('Endless loop detected!');
+    }
+  });
 } catch (err) {
   console.log(err);
   document.getElementsByTagName('body')[0].innerHTML = '<p style="color:red">' + err + '</p>';

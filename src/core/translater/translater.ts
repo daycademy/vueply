@@ -26,6 +26,7 @@ const writeToDoc = (
   document.write('<body>');
   if (!template) document.write('<div id="app"></div>');
   else document.write(template);
+  document.write(`<script>${endlessLoopDetector}<\/script>`);
   if (!singleFile) {
     document.write(`<script type="text/javascript">${script}<\/script>`);
     if (projectType === 'javascript') {
@@ -43,7 +44,6 @@ const writeToDoc = (
       document.write(`<script type="text/javascript">${markdownCompiler}<\/script>`);
     }
   } else {
-    document.write(`<script>${endlessLoopDetector}<\/script>`);
     document.write(`<script type="text/javascript">
 var codeStr = \`${script}\`;
 codeStr = codeStr.replace(/document.(.*?){(\\s.*)(\\s}\\);)/g, '');
