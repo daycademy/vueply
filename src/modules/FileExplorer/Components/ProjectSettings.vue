@@ -9,7 +9,7 @@
       m-id="settings-modal"
       :title="$t('settings_modal_title')"
       :close-target="`#${$route.path}`"
-      zoomOut
+      animation="zoomOut"
     >
       <h5>{{ $t('project_title') }}</h5>
       <ul class="projects">
