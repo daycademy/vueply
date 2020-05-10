@@ -40,4 +40,11 @@ describe('FileExplorer => ProjectTitle', () => {
   it('renders current selected project', () => {
     expect(wrapper.find('li').attributes()).to.be.eql({ style: 'background-color: rgb(46, 204, 113); color: rgb(255, 255, 255);' });
   });
+
+  it('set current view when view is selected', () => {
+    const selectedView = 'vertical';
+    /* eslint-disable-next-line */
+    (wrapper.vm as any).chooseView(selectedView);
+    expect(store.state.project.currentView).eql(selectedView);
+  });
 });
