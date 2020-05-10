@@ -47,4 +47,11 @@ describe('FileExplorer => ProjectTitle', () => {
     (wrapper.vm as any).chooseView(selectedView);
     expect(store.state.project.currentView).eql(selectedView);
   });
+
+  it('set project when project is selected', () => {
+    const selectedProject = 'vue';
+    /* eslint-disable-next-line */
+    (wrapper.vm as any).chooseProject(selectedProject);
+    expect(store.state.project.currentProject).eql(selectedProject);
+  });
 });
