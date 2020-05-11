@@ -1,0 +1,14 @@
+{
+  "name": "live-code-server",
+  "version": "1.0.0",
+  "description": "This is the live code server for vueply",
+  "main": "src/index.js",
+  "author": "Florian Woelki",
+  "license": "MIT",
+  "scripts": {
+    "start": "node ."
+  },
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
