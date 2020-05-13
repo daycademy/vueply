@@ -11,11 +11,13 @@
     "dev": "nodemon --watch src -e ts --exec npm run start"
   },
   "dependencies": {
+    "@types/socket.io": "^2.1.4",
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
-    "pusher": "^3.0.1"
+    "pusher": "^3.0.1",
+    "socket.io": "^2.3.0"
   },
   "devDependencies": {
     "@types/body-parser": "^1.19.0",
