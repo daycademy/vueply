@@ -103,6 +103,11 @@
   resolved "https://registry.yarnpkg.com/@types/node/-/node-13.13.5.tgz#96ec3b0afafd64a4ccea9107b75bf8489f0e5765"
   integrity sha512-3ySmiBYJPqgjiHA7oEaIo2Rzz0HrOZ7yrNO5HWyaE5q0lQ3BppDZ3N53Miz8bw2I7gh1/zir2MGVZBvpb1zq9g==
 
+"@types/python-shell@^0.4.2":
+  version "0.4.2"
+  resolved "https://registry.yarnpkg.com/@types/python-shell/-/python-shell-0.4.2.tgz#b6a5cbbf8ab2717fa036bf232e581f7aa4004c05"
+  integrity sha512-deATAIZFUdjZwXilgZVgK+CVpoSfdS1NUmgGVooAkPMJe2X6NTnwWfr5+tEpdRDiG5BKoNFwr2p8LU29/bIaIQ==
+
 "@types/qs@*":
   version "6.9.2"
   resolved "https://registry.yarnpkg.com/@types/qs/-/qs-6.9.2.tgz#faab98ec4f96ee72c829b7ec0983af4f4d343113"
@@ -1490,6 +1495,11 @@ pusher@^3.0.1:
     request "2.88.0"
     tweetnacl "^1.0.0"
     tweetnacl-util "^0.15.0"
+
+python-shell@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/python-shell/-/python-shell-2.0.0.tgz#d09c47c9f1e99704250a4c51bd4a9936209fafdd"
+  integrity sha512-0FCKvCPs0Bl09AGfuzd5kHVdg/SYtkVPt5sILpuJWNJ7JQ+QKAdd93TYg/AfLR6/uldvZopSk3F2vUQ4IY50gg==
 
 qs@6.7.0:
   version "6.7.0"
