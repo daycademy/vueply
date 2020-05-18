@@ -7,6 +7,8 @@ import cors from 'cors';
 import http from 'http';
 import socketio from 'socket.io';
 
+import './pythonExecutor';
+
 const app = express();
 const httpServer = new http.Server(app);
 const io = socketio(httpServer);
