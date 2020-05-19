@@ -6,8 +6,7 @@ import bodyParser from 'body-parser';
 import cors from 'cors';
 import http from 'http';
 import socketio from 'socket.io';
-
-import './pythonExecutor';
+import { executeCode } from './pythonExecutor';
 
 const app = express();
 const httpServer = new http.Server(app);
@@ -21,6 +20,16 @@ app.set('port', process.env.PORT || 4000);
 
 app.get('/', (req, res) => {
   res.send('Hello world!');
+});
+
+app.post('/execute-python', (req, res) => {
+  if (!req.body.code) {
+    res.status(400).send('Please specify a code body');
+    return;
+  }
+  // tslint:disable-next-line:no-console
+  console.log('Got body:', req.body);
+  res.sendStatus(200);
 });
 
 io.on('connection', (socket: any) => {
