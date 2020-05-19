@@ -1,17 +1,11 @@
-const pythonScript = `${process.cwd()}/example.py`;
-
 import { PythonShell } from 'python-shell';
-const pyShell = new PythonShell(pythonScript);
-pyShell.on('message', (message: string) => {
-  // tslint:disable-next-line:no-console
-  console.log(message);
-});
 
-pyShell.end((err) => {
+PythonShell.runString('x=1+1;print(x)', null, (err, output) => {
   if (err) {
     throw err;
   }
-
   // tslint:disable-next-line:no-console
-  console.log('Python script executed successfully');
+  console.log(output);
+  // tslint:disable-next-line:no-console
+  console.log('finished');
 });
