@@ -78,6 +78,27 @@ export default class ThePreview extends Vue {
       }, 750);
     }
 
+    if (this.currentProject === 'python') {
+      const pythonFile = this.$store.getters['fileExplorer/projectFiles'](this.currentProject)[0] as FileModel;
+      if (pythonFile) {
+        const data = {
+          code: pythonFile.code,
+        };
+        fetch('http://localhost:4000/execute-python', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data),
+        }).then((response) => {
+          console.log(response);
+        }).catch((err) => {
+          console.log(err);
+        });
+      }
+      return;
+    }
+
     const projectFiles = this.$store.getters['fileExplorer/projectFiles'](this.currentProject);
 
     const allHtmlFiles: Array<FileModel> = projectFiles.filter((projectFile: FileModel) => projectFile.type === 'text/html');
