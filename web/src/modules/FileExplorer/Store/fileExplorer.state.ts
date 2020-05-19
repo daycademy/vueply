@@ -260,12 +260,28 @@ export interface Entity {
 - [X] Do homework
 `,
     },
+    {
+      name: 'file.py',
+      type: 'python',
+      project: 'python',
+      code: `print(1+1)
+
+abc = 1729
+if abc >= 1729:
+      print(1729)
+`,
+    },
   ),
   fileTypes: [
     {
       codeMirrorName: 'javascript',
       shortcut: 'js',
       defaultCode: '/* Insert your code here ... */',
+    },
+    {
+      codeMirrorName: 'python',
+      shortcut: 'py',
+      defaultCode: '# Insert your code here ...',
     },
     {
       codeMirrorName: 'text/typescript',

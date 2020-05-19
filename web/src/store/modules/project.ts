@@ -30,6 +30,10 @@ const state: ProjectState = {
       icon: 'fa-markdown',
       fileType: 'text/x-markdown',
     },
+    {
+      icon: 'fa-python',
+      fileType: 'python',
+    },
   ],
   projectFilesLink: [
     {
@@ -73,6 +77,13 @@ const state: ProjectState = {
       icon: 'text/x-markdown',
       color: '#95A5A6',
       fileTypes: ['text/x-markdown'],
+    },
+    {
+      displayName: 'Python',
+      projectName: 'python',
+      icon: 'python',
+      color: '#3498db',
+      fileTypes: ['text/x-python'],
     },
   ],
 };

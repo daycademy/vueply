@@ -41,6 +41,9 @@ export default class File extends Vue {
   &.fa-vuejs {
     color: #2ECC71;
   }
+  &.fa-python {
+    color: #3498db;
+  }
   &.fa-markdown {
     margin-right: 0.5em;
     color: #95A5A6;
