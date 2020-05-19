@@ -90,11 +90,16 @@ export default class ThePreview extends Vue {
             'Content-Type': 'application/json',
           },
           body: JSON.stringify(data),
-        }).then((response) => {
-          console.log(response);
-        }).catch((err) => {
-          console.log(err);
-        });
+        })
+          .then((response) => response.json())
+          .then((responseData) => {
+            if (responseData.executedCode) {
+              translater.writePythonToDoc(window.frames[0].document, responseData.executedCode);
+            }
+          })
+          .catch((err) => {
+            console.log(err);
+          });
       }
       return;
     }
