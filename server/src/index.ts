@@ -22,14 +22,23 @@ app.get('/', (req, res) => {
   res.send('Hello world!');
 });
 
-app.post('/execute-python', (req, res) => {
+app.post('/execute-python', async (req, res) => {
   if (!req.body.code) {
     res.status(400).send('Please specify a code body');
     return;
   }
-  // tslint:disable-next-line:no-console
-  console.log('Got body:', req.body);
-  res.sendStatus(200);
+
+  let code = req.body.code as string;
+  code = code.replace(/\\n/g, ';');
+  executeCode(code, (err, output) => {
+    if (err) {
+      res.sendStatus(500);
+      throw err;
+    }
+    // tslint:disable-next-line:no-console
+    console.log('executed code:', output);
+    res.send({ executedCode: output });
+  });
 });
 
 io.on('connection', (socket: any) => {
