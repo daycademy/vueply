@@ -13,6 +13,7 @@ const writePythonToDoc = (document: Document, prints: [string]): boolean => {
   document.write('<head>');
   document.write('</head>');
   document.write('<body>');
+  document.write('<h1>Console Output</h1>');
   document.write('<script src="https://kit.fontawesome.com/5b323b6f9f.js" crossorigin="anonymous"><\/script>');
   document.write(`<script type="text/javascript">
 var prints = \`${prints}\`;
