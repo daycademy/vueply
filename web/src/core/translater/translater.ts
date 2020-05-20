@@ -8,6 +8,10 @@ import endlessLoopDetector from './endlessLoopDetector';
 import markdownCss from './markdown.css';
 
 const writePythonToDoc = (document: Document, prints: [string]): boolean => {
+  let logResult = '';
+  for (let i = 0; i < prints.length; i += 1) {
+    logResult += i === prints.length - 1 ? prints[i] : `${prints[i]}#;#`;
+  }
   document.write('<!DOCTYPE html>');
   document.write('<html>');
   document.write('<head>');
@@ -16,8 +20,8 @@ const writePythonToDoc = (document: Document, prints: [string]): boolean => {
   document.write('<h1>Console Output</h1>');
   document.write('<script src="https://kit.fontawesome.com/5b323b6f9f.js" crossorigin="anonymous"><\/script>');
   document.write(`<script type="text/javascript">
-var prints = [${prints}];
-prints.forEach((print) => console.log(print));
+var prints = '${logResult}';
+prints.split('#;#').forEach((print) => console.log(print));
 <\/script>`);
   document.write('</body>');
   document.write('</html>');
