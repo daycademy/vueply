@@ -35,8 +35,6 @@ app.post('/execute-python', async (req, res) => {
       res.status(500).send(err);
       return;
     }
-    // tslint:disable-next-line:no-console
-    console.log('executed code:', output);
     res.send({ executedCode: output });
   });
 });
