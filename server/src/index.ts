@@ -32,8 +32,8 @@ app.post('/execute-python', async (req, res) => {
   code = code.replace(/\\n/g, ';');
   executeCode(code, (err, output) => {
     if (err) {
-      res.sendStatus(500);
-      throw err;
+      res.status(500).send(err);
+      return;
     }
     // tslint:disable-next-line:no-console
     console.log('executed code:', output);
