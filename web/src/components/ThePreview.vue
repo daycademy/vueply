@@ -10,6 +10,7 @@
     <div id="play-btn">
       <i class="fas fa-play-circle" aria-hidden="true"></i>
     </div>
+    <div v-if="loading" class="loader"></div>
   </section>
 </template>
 
@@ -22,6 +23,8 @@ import FileModel from '../store/models/FileModel';
 @Component({})
 export default class ThePreview extends Vue {
   private amountOfPrints = 0;
+
+  private loading = true;
 
   private isTerminated = false;
 
@@ -84,6 +87,7 @@ export default class ThePreview extends Vue {
         const data = {
           code: pythonFile.code,
         };
+        this.loading = true;
         fetch('http://localhost:4000/execute-python', {
           method: 'POST',
           headers: {
@@ -95,6 +99,7 @@ export default class ThePreview extends Vue {
           .then((responseData) => {
             if (responseData.executedCode) {
               translater.writePythonToDoc(window.frames[0].document, responseData.executedCode);
+              this.loading = false;
             }
           })
           .catch((err) => {
@@ -151,6 +156,27 @@ export default class ThePreview extends Vue {
   width: 100%;
   height: 100%;
   position: relative;
+
+  .loader {
+    position: absolute;
+    top: calc(50% - 75px);
+    left: 50%;
+    border: 5px solid #f3f3f3;
+    border-top: 5px solid #555;
+    border-radius: 50%;
+    width: 75px;
+    height: 75px;
+    animation: spin 2s linear infinite;
+  }
+
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
 
   #play-btn {
     opacity: 0;
