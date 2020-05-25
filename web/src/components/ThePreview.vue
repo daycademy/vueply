@@ -24,7 +24,7 @@ import FileModel from '../store/models/FileModel';
 export default class ThePreview extends Vue {
   private amountOfPrints = 0;
 
-  private loading = true;
+  private loading = false;
 
   private isTerminated = false;
 
