@@ -35,6 +35,10 @@ app.post('/execute-python', async (req, res) => {
       res.status(500).send(err);
       return;
     }
+    if (output === null) {
+      res.send({ executedCode: ['Endless loop detected'] });
+      return;
+    }
     res.send({ executedCode: output });
   });
 });
