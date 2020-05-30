@@ -46,7 +46,7 @@ const writeToDoc = (
   } else {
     document.write(`<script type="text/javascript">
 var codeStr = \`${script}\`;
-codeStr = codeStr.replace(/document.(.*?){(\\s.*)(\\s}\\);)/g, '');
+codeStr = codeStr.replace(/document.(.*?){(\\s.*)*(}\\);)/g, '');
 
 limitEval(codeStr, function (success) {
   if (success) {
