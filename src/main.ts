@@ -14,6 +14,10 @@ import 'codemirror/addon/scroll/simplescrollbars';
 import 'codemirror/addon/edit/matchbrackets';
 import 'codemirror/addon/edit/matchtags';
 import 'codemirror/addon/edit/closebrackets';
+import 'codemirror/addon/hint/show-hint';
+import 'codemirror/addon/hint/html-hint';
+import 'codemirror/addon/hint/css-hint';
+import 'codemirror/addon/hint/javascript-hint';
 import 'vue-cirrus/dist/vue-cirrus.css';
 
 Vue.use(VueCirrus);
