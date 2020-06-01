@@ -6,5 +6,6 @@
   "delete_file": "Datei löschen",
   "files_name": "DATEIEN",
   "settings_modal_title": "Einstellungen",
-  "view_title": "Ansicht"
+  "view_title": "Ansicht",
+  "tooltips_hotkey": "für Tooltips"
 }
