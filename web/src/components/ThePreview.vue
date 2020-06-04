@@ -104,7 +104,7 @@ export default class ThePreview extends Vue {
             }
           })
           .catch((err) => {
-            console.log(err);
+            // console.log(err);
           });
       }
       return;
