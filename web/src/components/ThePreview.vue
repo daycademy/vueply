@@ -41,21 +41,22 @@ export default class ThePreview extends Vue {
       if (this.isTerminated) {
         return;
       }
+      const p = frame.document.createElement('p');
       if (this.amountOfPrints >= 50) {
-        frame.document.getElementsByTagName('body')[0].innerHTML += `<p>
-  <div style="height: 1px; background-color: #eee; margin: 1em 0;"></div>
+        p.innerHTML = `<div style="height: 1px; background-color: #eee; margin: 1em 0;"></div>
   <i class="fas fa-terminal" style="color: #aaa; font-size: 14px; margin-right: 1em;"></i>
-  -- terminated
-</p>`;
+  -- terminated`;
+        frame.document.getElementsByTagName('body')[0].appendChild(p);
         this.isTerminated = true;
         return;
       }
 
-      frame.document.getElementsByTagName('body')[0].innerHTML += `<p>
+      p.innerHTML = `<p>
   <div style="height: 1px; background-color: #eee; margin: 1em 0;"></div>
   <i class="fas fa-terminal" style="color: #aaa; font-size: 14px; margin-right: 1em;"></i>
   ${message}
 </p>`;
+      frame.document.getElementsByTagName('body')[0].appendChild(p);
       originalLog.apply(message, args);
       this.amountOfPrints += 1;
     };

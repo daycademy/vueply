@@ -67,19 +67,9 @@ const writeToDoc = (
     }
   } else {
     document.write(`<script type="text/javascript">
-var codeStr = \`${script}\`;
-codeStr = codeStr.replace(/document.(.*?){(\\s.*)(\\s}\\);)/g, '');
-
-limitEval(codeStr, function (success) {
-  if (success) {
-    ;(function() {
-      ${script}
-    })()
-  } else {
-    console.log('Endless loop detected!');
-    throw new Error('Endless loop detected!');
-  }
-});
+;(function() {
+  ${script}
+})()
 <\/script>`);
   }
 
