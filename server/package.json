@@ -6,6 +6,7 @@
   "scripts": {
     "prebuild": "tslint -c tslint.json -p tsconfig.json --fix",
     "build": "tsc",
+    "postinstall": "npm run build",
     "prestart": "npm run build",
     "start": "node .",
     "dev": "nodemon --watch src -e ts --exec npm run start"
