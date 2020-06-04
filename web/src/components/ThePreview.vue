@@ -89,7 +89,7 @@ export default class ThePreview extends Vue {
           code: pythonFile.code,
         };
         this.loading = true;
-        fetch('http://localhost:4000/execute-python', {
+        fetch('https://vueply-server.herokuapp.com/execute-python', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
