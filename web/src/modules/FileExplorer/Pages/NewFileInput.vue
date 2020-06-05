@@ -12,10 +12,10 @@
 <script lang="ts">
 import Vue from 'vue';
 import { Component, Prop } from 'vue-property-decorator';
-import FileType from '@/store/models/FileType';
-import ProjectFileLink from '@/store/models/ProjectFileLink';
-import FileModel from '@/store/models/FileModel';
 import CodePane from '@/modules/CodePane/TheCodePane.vue';
+import FileType from '../../../store/models/FileType';
+import ProjectFileLink from '../../../store/models/ProjectFileLink';
+import FileModel from '../../../store/models/FileModel';
 
 @Component({})
 export default class NewFileInput extends Vue {

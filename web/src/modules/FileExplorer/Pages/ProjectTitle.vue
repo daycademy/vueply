@@ -13,7 +13,7 @@
 <script lang="ts">
 import Vue from 'vue';
 import { Component, Prop } from 'vue-property-decorator';
-import ProjectFileLink from '@/store/models/ProjectFileLink';
+import ProjectFileLink from '../../../store/models/ProjectFileLink';
 import ProjectSettings from '../Components/ProjectSettings.vue';
 
 @Component({

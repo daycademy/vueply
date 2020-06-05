@@ -11,9 +11,9 @@
 <script lang="ts">
 import Vue from 'vue';
 import { Component, Prop } from 'vue-property-decorator';
-import FileModel from '@/store/models/FileModel';
-import { download, transform } from '@/core/download';
-import { files, currentProject } from '@/core/storeUtils';
+import FileModel from '../../../store/models/FileModel';
+import { download, transform } from '../../../core/download';
+import { files, currentProject } from '../../../core/storeUtils';
 
 @Component({})
 export default class DownloadFileButton extends Vue {

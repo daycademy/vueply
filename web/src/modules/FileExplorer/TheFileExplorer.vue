@@ -41,11 +41,11 @@
 <script lang="ts">
 import Vue from 'vue';
 import { Component } from 'vue-property-decorator';
-import FileModel from '@/store/models/FileModel';
-import ProjectFileLink from '@/store/models/ProjectFileLink';
 import ThePreview from '@/components/ThePreview.vue';
-import { download, transform } from '@/core/download';
-import { files, currentProject } from '@/core/storeUtils';
+import FileModel from '../../store/models/FileModel';
+import ProjectFileLink from '../../store/models/ProjectFileLink';
+import { download, transform } from '../../core/download';
+import { files, currentProject } from '../../core/storeUtils';
 import { File, AddFileButton, FileMenu } from './Components';
 import { ProjectTitle, HowToUse, NewFileInput } from './Pages';
 import CodePane from '../CodePane/TheCodePane.vue';
