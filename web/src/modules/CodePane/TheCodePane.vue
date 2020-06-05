@@ -77,6 +77,12 @@ export default class CodePane extends Vue {
       scrollbarStyle: 'overlay',
     });
 
+    editor.setOption('extraKeys', {
+      'Ctrl-Space': () => {
+        CodeMirror.showHint(editor);
+      },
+    });
+
     window.addEventListener('load', () => {
       editor.getWrapperElement().style.fontSize = '16px';
       editor.getWrapperElement().style.height = this.currentView === 'horizontal' ? '100vh' : '50vh';
@@ -85,12 +91,6 @@ export default class CodePane extends Vue {
 
     /* eslint-disable-next-line */
     editor.on('change', (changeObject: any) => this.$emit('input', changeObject.getValue()));
-
-    editor.on('keyup', (cm: CodeMirror.Doc, event: KeyboardEvent) => {
-      if (!cm.state.completionActive && event.keyCode === 32 && event.ctrlKey) {
-        CodeMirror.showHint(editor);
-      }
-    });
 
     this.editor = editor;
     this.$root.$refs.CodePane = this;
