@@ -148,7 +148,7 @@ const translateFilesIntoJavaScript = (
     jsFiles += `
   {
     filename: \`${javascriptFile.name}\`,
-    content: \`${javascriptFile.code.replace(/`/g, '\\`').replace(/\${/g, '\\${')}\`
+    content: \`${javascriptFile.code.replace(/`/g, '\\`').replace(/\${/g, '\\${').replace(/\.\//g, '')}\`
   },
 `;
   });
