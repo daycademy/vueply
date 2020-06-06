@@ -21,11 +21,12 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Use Node.js ${{ matrix.node-version }}
-      working-directory: ./web
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - run: yarn --frozen-lockfile
+    - name: Install dependencies
+      working-directory: ./web
+      run: yarn --frozen-lockfile
     - name: Run Tests
       working-directory: ./web
       run: yarn test:unit --watch false
