@@ -26,14 +26,6 @@ describe('RouterView.vue', () => {
     expect(wrapper.vm.$route.name).eq($route.name);
   });
 
-  it('renders default full path', () => {
-    const $route = {
-      fullPath: '/de/javascript',
-    };
-
-    expect(wrapper.vm.$route.fullPath).eq($route.fullPath);
-  });
-
   it('renders javascript project', () => {
     const $route = {
       fullPath: '/de/javascript',
