@@ -9,7 +9,7 @@
     "postinstall": "npm run build",
     "prestart": "npm run build",
     "start": "node .",
-    "dev": "nodemon --watch src -e ts --exec npm run start"
+    "dev": "ts-node-dev --respawn src/index.ts"
   },
   "dependencies": {
     "@types/socket.io": "^2.1.4",
@@ -29,6 +29,8 @@
     "@types/node": "^13.13.5",
     "@types/python-shell": "^0.4.2",
     "nodemon": "^2.0.3",
+    "ts-node": "^8.10.2",
+    "ts-node-dev": "^1.0.0-pre.44",
     "tslint": "^6.1.2",
     "typescript": "^3.8.3"
   }
