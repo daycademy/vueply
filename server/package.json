@@ -28,7 +28,6 @@
     "@types/express": "^4.17.6",
     "@types/node": "^13.13.5",
     "@types/python-shell": "^0.4.2",
-    "nodemon": "^2.0.3",
     "ts-node": "^8.10.2",
     "ts-node-dev": "^1.0.0-pre.44",
     "tslint": "^6.1.2",
